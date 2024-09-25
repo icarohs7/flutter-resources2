@@ -1,0 +1,24 @@
+name: build
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout
+
+      - name: Install Flutter
+        uses: subosito/flutter-action
+        with:
+          channel: "stable"
+
+      - name: Install Python
+        uses: actions/setup-python
+        with:
+          python-version: "3.9.x"
+
+      - name: Analyze and Test
+        run: python build.py
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
