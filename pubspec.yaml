@@ -10,6 +10,7 @@ dependencies:
     git:
       path: core_resources
       url: https://github.com/icarohs7/flutter-resources
+  equatable: '>=2.0.5'
   flutter:
     sdk: flutter
   flutter_html: ^3.0.0-beta.2

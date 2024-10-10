@@ -10,6 +10,7 @@ export 'package:core_resources/core_resources.dart'
         Function2UncurryExtension,
         Function3UncurryExtension,
         Function4UncurryExtension;
+export 'package:equatable/equatable.dart' show Equatable, EquatableMixin;
 export 'package:reactor_fp_resources/reactor_fp_resources.dart'
     hide FpdartOnMap, Group, Order, State, FpdartOnIterableOfIterable;
 
