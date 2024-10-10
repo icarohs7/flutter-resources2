@@ -23,6 +23,7 @@ export 'package:masked_text_resources/masked_text_resources.dart'
     show FieldMasks, MaskTextInputFormatter;
 export 'package:reactor_fp_resources/reactor_fp_resources.dart'
     hide FpdartOnMap, Group, Order, State, FpdartOnIterableOfIterable;
+export 'package:search_resources/search_resources.dart';
 export 'package:skeletonizer/skeletonizer.dart'
     show
         Skeletonizer,
@@ -33,6 +34,8 @@ export 'package:skeletonizer/skeletonizer.dart'
         SkeletonizerConfig,
         SkeletonizerConfigData,
         ShimmerEffect;
+export 'package:stream_resources/stream_resources.dart';
+export 'package:value_notifier_resources/value_notifier_resources.dart';
 
 export 'src/adapters/adapters.dart';
 export 'src/animationresources/animation_resources.dart';

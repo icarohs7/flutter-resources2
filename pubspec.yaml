@@ -31,8 +31,20 @@ dependencies:
     git:
       ref: 0235930b2d67b2a56f30349aa69bf8ab3c1d0c3d
       url: https://github.com/erknvl/store_redirect
+  search_resources:
+    git:
+      path: search_resources
+      url: https://github.com/icarohs7/flutter-resources
+  stream_resources:
+    git:
+      path: stream_resources
+      url: https://github.com/icarohs7/flutter-resources
   super_sliver_list: '>=0.4.1'
   url_launcher: '>=6.3.0'
+  value_notifier_resources:
+    git:
+      path: value_notifier_resources
+      url: https://github.com/icarohs7/flutter-resources
 dev_dependencies:
   build_runner:
   flutter_test:
