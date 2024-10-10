@@ -11,6 +11,7 @@ dependencies:
       path: core_resources
       url: https://github.com/icarohs7/flutter-resources
   equatable: '>=2.0.5'
+  extended_image: '>=8.2.1'
   flutter:
     sdk: flutter
   flutter_html: ^3.0.0-beta.2
@@ -21,6 +22,7 @@ dependencies:
     git:
       path: reactor_fp_resources
       url: https://github.com/icarohs7/flutter-resources
+  skeletonizer: '>=1.4.1+1'
   store_redirect:
     git:
       ref: 0235930b2d67b2a56f30349aa69bf8ab3c1d0c3d
