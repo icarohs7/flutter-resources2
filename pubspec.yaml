@@ -18,6 +18,10 @@ dependencies:
   freezed_annotation: ^2.4.4
   get_it: '>=7.2.0'
   html_unescape: '>=2.0.0'
+  masked_text_resources:
+    git:
+      path: masked_text_resources
+      url: https://github.com/icarohs7/flutter-resources
   reactor_fp_resources:
     git:
       path: reactor_fp_resources

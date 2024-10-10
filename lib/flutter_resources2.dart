@@ -19,6 +19,8 @@ export 'package:extended_image/extended_image.dart'
         ExtendedNetworkImageProvider,
         ExtendedAssetImageProvider,
         ExtendedMemoryImageProvider;
+export 'package:masked_text_resources/masked_text_resources.dart'
+    show FieldMasks, MaskTextInputFormatter;
 export 'package:reactor_fp_resources/reactor_fp_resources.dart'
     hide FpdartOnMap, Group, Order, State, FpdartOnIterableOfIterable;
 export 'package:skeletonizer/skeletonizer.dart'
