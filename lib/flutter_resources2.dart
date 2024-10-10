@@ -21,3 +21,4 @@ export 'src/extensions/extensions.dart';
 export 'src/failure/failure.dart';
 export 'src/htmlrenderresources/html_render_resources.dart';
 export 'src/listresources/list_resources.dart';
+export 'src/types/types.dart';
