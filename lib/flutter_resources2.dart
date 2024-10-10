@@ -33,6 +33,7 @@ export 'package:skeletonizer/skeletonizer.dart'
         ShimmerEffect;
 
 export 'src/adapters/adapters.dart';
+export 'src/animationresources/animation_resources.dart';
 export 'src/baseclasses/baseclasses.dart';
 export 'src/chatresources/chat_resources.dart';
 export 'src/extensions/extensions.dart';
