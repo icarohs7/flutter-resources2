@@ -14,6 +14,7 @@ export 'package:equatable/equatable.dart' show Equatable, EquatableMixin;
 export 'package:extended_image/extended_image.dart'
     show
         LoadState,
+        LoadStateChanged,
         ExtendedImage,
         ExtendedFileImageProvider,
         ExtendedNetworkImageProvider,
