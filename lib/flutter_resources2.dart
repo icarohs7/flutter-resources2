@@ -42,6 +42,7 @@ export 'src/adapters/adapters.dart';
 export 'src/animationresources/animation_resources.dart';
 export 'src/baseclasses/baseclasses.dart';
 export 'src/chatresources/chat_resources.dart';
+export 'src/dialogs/dialogs.dart';
 export 'src/extensions/extensions.dart';
 export 'src/failure/failure.dart';
 export 'src/htmlrenderresources/html_render_resources.dart';
