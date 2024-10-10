@@ -8,4 +8,4 @@ https://github.com/icarohs7/flutter-resources2/actions)
 [![GitHub license](https://img.shields.io/github/license/icarohs7/flutter-resources2.svg)](
 https://github.com/icarohs7/flutter-resources2/blob/master/LICENSE)
 [![codecov](https://codecov.io/gh/icarohs7/flutter-resources2/branch/master/graph/badge.svg)](
-https://codecov.io/gh/icarohs7/flutter-resources)
+https://codecov.io/gh/icarohs7/flutter-resources2)
