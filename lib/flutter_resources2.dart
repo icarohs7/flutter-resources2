@@ -41,8 +41,8 @@ export 'package:value_notifier_resources/value_notifier_resources.dart';
 
 export 'src/adapters/adapters.dart';
 export 'src/animationresources/animation_resources.dart';
-export 'src/baseclasses/baseclasses.dart';
 export 'src/chatresources/chat_resources.dart';
+export 'src/classes/classes.dart';
 export 'src/dialogs/dialogs.dart';
 export 'src/extensions/extensions.dart';
 export 'src/failure/failure.dart';

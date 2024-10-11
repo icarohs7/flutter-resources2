@@ -1,7 +1,7 @@
 import 'package:core_resources/core_resources.dart';
 import 'package:flutter/material.dart';
 
-import '../baseclasses/baseclasses.dart';
+import '../classes/classes.dart';
 
 class NProvider<T> extends HookWidget {
   const NProvider({
