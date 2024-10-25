@@ -27,6 +27,7 @@ abstract class ImageUtils {
         minHeight: 800,
         minWidth: 800,
         quality: 85,
+        keepExif: true,
       );
     }
 
@@ -36,6 +37,7 @@ abstract class ImageUtils {
         minHeight: 800,
         minWidth: 800,
         quality: 85,
+        keepExif: true,
       );
     }
 
