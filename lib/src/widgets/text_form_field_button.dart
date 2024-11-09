@@ -7,6 +7,7 @@ class TextFormFieldButton extends HookWidget {
   final InputDecoration? decoration;
   final VoidCallback? onTap;
   final Widget Function(TextEditingController controller)? fieldBuilder;
+  final bool? enabled;
 
   const TextFormFieldButton({
     this.value,
@@ -14,12 +15,14 @@ class TextFormFieldButton extends HookWidget {
     this.decoration,
     this.onTap,
     this.fieldBuilder,
+    this.enabled,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     final controller = useTextEditingController();
+    final enabled = onTap != null && this.enabled != false;
 
     useEffect(() {
       Future(() => controller.text = value ?? '');
@@ -28,14 +31,14 @@ class TextFormFieldButton extends HookWidget {
     }, [value]);
 
     return InkWell(
-      onTap: onTap,
+      onTap: enabled ? onTap : null,
       child: AbsorbPointer(
         child: fieldBuilder?.call(controller) ??
             TextFormField(
               controller: controller,
               validator: validator,
               decoration: decoration,
-              enabled: onTap != null,
+              enabled: enabled,
             ),
       ),
     );
