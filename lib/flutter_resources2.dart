@@ -10,6 +10,7 @@ export 'package:core_resources/core_resources.dart'
         Function2UncurryExtension,
         Function3UncurryExtension,
         Function4UncurryExtension;
+export 'package:diacritic/diacritic.dart';
 export 'package:equatable/equatable.dart' show Equatable, EquatableMixin;
 export 'package:extended_image/extended_image.dart'
     show
@@ -48,6 +49,7 @@ export 'src/extensions/extensions.dart';
 export 'src/failure/failure.dart';
 export 'src/htmlrenderresources/html_render_resources.dart';
 export 'src/listresources/list_resources.dart';
+export 'src/search_resources/search_resources.dart';
 export 'src/types/types.dart';
 export 'src/utils/screen_utils.dart';
 export 'src/utils/utils.dart';

@@ -10,6 +10,7 @@ dependencies:
     git:
       path: core_resources
       url: https://github.com/icarohs7/flutter-resources
+  diacritic: '>=0.1.5'
   equatable: '>=2.0.5'
   extended_image: '>=8.2.1'
   flutter:
