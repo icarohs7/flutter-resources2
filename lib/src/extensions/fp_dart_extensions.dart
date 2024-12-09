@@ -21,10 +21,10 @@ extension NTaskEitherExtensions<L, R> on TaskEither<L, R> {
   /// `this` is [right], ignoring the operation's
   /// result and passing the original value down
   /// the chain
-  TaskEither<L, R> andThenRunF(Future<void> Function() op) {
+  TaskEither<L, R> andThenRunF(Future<void> Function(R) op) {
     return flatMap((r) {
       return TaskEither(() async {
-        await op().orNull();
+        await op(r).orNull();
         return right(r);
       });
     });
