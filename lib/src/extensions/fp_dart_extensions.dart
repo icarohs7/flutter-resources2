@@ -49,6 +49,19 @@ extension NTaskExtensions<R> on Task<R> {
   /// Run this [Task] and right after the [Future] returned from `then`.
   Task<B> andThenF<B>(Future<B> Function() then) => andThen(() => Task(() => then()));
 
+  /// Run the given operation
+  /// ignoring the parameterized operation's
+  /// result and passing the original value down
+  /// the chain
+  Task<R> andThenRunF(Future<void> Function(R) op) {
+    return flatMap((r) {
+      return Task(() async {
+        await op(r).orNull();
+        return r;
+      });
+    });
+  }
+
   /// Change the given [loadingObservable] to true when the task
   /// start running, changing it to false when the execution is done
   Task<R> withLoading(ValueNotifier<bool> loadingObservable) {
@@ -70,7 +83,8 @@ extension NFutureVoidExtensions on Future<void> {
 
 extension NVoidFnExtensions0 on void Function() {
   /// Change the return type of the function to [Unit]
-  Unit Function() get unit => () {
+  Unit Function() get unit =>
+          () {
         this();
         return fp.unit;
       };
@@ -78,7 +92,8 @@ extension NVoidFnExtensions0 on void Function() {
 
 extension NVoidFnExtensions1<A> on void Function<A>(A) {
   /// Change the return type of the function to [Unit]
-  Unit Function(A) get unit => (a) {
+  Unit Function(A) get unit =>
+          (a) {
         this(a);
         return fp.unit;
       };
@@ -86,7 +101,8 @@ extension NVoidFnExtensions1<A> on void Function<A>(A) {
 
 extension NVoidFnExtensions2<A, B> on void Function<A, B>(A, B) {
   /// Change the return type of the function to [Unit]
-  Unit Function(A, B) get unit => (a, b) {
+  Unit Function(A, B) get unit =>
+          (a, b) {
         this(a, b);
         return fp.unit;
       };
@@ -94,7 +110,8 @@ extension NVoidFnExtensions2<A, B> on void Function<A, B>(A, B) {
 
 extension NFutureVoidFnExtensions0 on Future<void> Function() {
   /// Change the return type of the function to [Future<Unit>]
-  Future<Unit> Function() get unit => () async {
+  Future<Unit> Function() get unit =>
+          () async {
         await this();
         return fp.unit;
       };
@@ -102,7 +119,8 @@ extension NFutureVoidFnExtensions0 on Future<void> Function() {
 
 extension NFutureVoidFnExtensions1<A> on Future<void> Function<A>(A) {
   /// Change the return type of the function to [Future<Unit>]
-  Future<Unit> Function(A) get unit => (a) async {
+  Future<Unit> Function(A) get unit =>
+          (a) async {
         await this(a);
         return fp.unit;
       };
@@ -110,7 +128,8 @@ extension NFutureVoidFnExtensions1<A> on Future<void> Function<A>(A) {
 
 extension NFutureVoidFnExtensions2<A, B> on Future<void> Function<A, B>(A, B) {
   /// Change the return type of the function to [Future<Unit>]
-  Future<Unit> Function(A, B) get unit => (a, b) async {
+  Future<Unit> Function(A, B) get unit =>
+          (a, b) async {
         await this(a, b);
         return fp.unit;
       };
