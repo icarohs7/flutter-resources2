@@ -25,6 +25,7 @@ dependencies:
   get_it: '>=7.2.0'
   html_unescape: '>=2.0.0'
   image: '>=4.2.0'
+  launch_app_store: '>=1.1.2'
   masked_text_resources:
     git:
       path: masked_text_resources
@@ -34,10 +35,6 @@ dependencies:
       path: reactor_fp_resources
       url: https://github.com/icarohs7/flutter-resources
   skeletonizer: '>=1.4.1+1'
-  store_redirect:
-    git:
-      ref: 0235930b2d67b2a56f30349aa69bf8ab3c1d0c3d
-      url: https://github.com/erknvl/store_redirect
   search_resources:
     git:
       path: search_resources
