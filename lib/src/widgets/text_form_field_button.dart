@@ -6,6 +6,7 @@ class TextFormFieldButton extends HookWidget {
   final FormFieldValidator<String?>? validator;
   final InputDecoration? decoration;
   final VoidCallback? onTap;
+  final VoidCallback? onLongPress;
   final Widget Function(TextEditingController controller)? fieldBuilder;
   final bool? enabled;
 
@@ -14,6 +15,7 @@ class TextFormFieldButton extends HookWidget {
     this.validator,
     this.decoration,
     this.onTap,
+    this.onLongPress,
     this.fieldBuilder,
     this.enabled,
     super.key,
@@ -32,6 +34,7 @@ class TextFormFieldButton extends HookWidget {
 
     return InkWell(
       onTap: enabled ? onTap : null,
+      onLongPress: enabled ? onLongPress : null,
       child: AbsorbPointer(
         child: fieldBuilder?.call(controller) ??
             TextFormField(
