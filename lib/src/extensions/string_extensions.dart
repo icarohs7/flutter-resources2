@@ -1,6 +1,6 @@
 import 'package:core_resources/core_resources.dart';
 
-extension NStringCasingExtension on String {
+extension NStringExtensions on String {
   /// Capitalize the first letter of each word
   /// of the given string
   ///
@@ -11,4 +11,13 @@ extension NStringCasingExtension on String {
       .split(' ')
       .map((str) => str.capitalize())
       .join(' ');
+
+  /// Returns whether this string has only digits
+  bool get isNumericOnly => hasMatch(r'^\d+$');
+
+  /// Returns whether there's any match of the given [pattern]
+  /// on this string
+  bool hasMatch(String pattern) {
+    return RegExp(pattern).hasMatch(this);
+  }
 }

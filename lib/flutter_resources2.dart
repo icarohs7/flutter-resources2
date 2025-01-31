@@ -51,6 +51,5 @@ export 'src/htmlrenderresources/html_render_resources.dart';
 export 'src/listresources/list_resources.dart';
 export 'src/search_resources/search_resources.dart';
 export 'src/types/types.dart';
-export 'src/utils/screen_utils.dart';
 export 'src/utils/utils.dart';
 export 'src/widgets/widgets.dart';
