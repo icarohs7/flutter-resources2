@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('NIterableExtensions', () {
     test('operator [] works correctly', () {
-      var list = [1, 2, 3, 4];
+      Iterable<int> list = [1, 2, 3, 4];
       expect(list[0], equals(1));
       expect(list[3], equals(4));
       expect(() => list[4], throwsRangeError);
