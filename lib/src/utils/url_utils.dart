@@ -10,5 +10,5 @@ String baseUrlFrom(String url) {
   return url
       .replaceAll('https://', '')
       .replaceAll('http://', '')
-      .apply((url) => url.substring(0, url.indexOf('/')));
+      .apply((url) => url.contains('/') ? url.substring(0, url.indexOf('/')) : url);
 }

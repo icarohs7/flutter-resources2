@@ -5,6 +5,10 @@ extension NStringCasingExtension on String {
   /// of the given string
   ///
   /// 'hello world'.toTitleCase() // Hello World
-  String toTitleCase() =>
-      replaceAll(RegExp(' +'), ' ').split(' ').map((str) => str.capitalize()).join(' ');
+  /// 'hELLO wORLD'.toTitleCase() // Hello World
+  String toTitleCase() => toLowerCase()
+      .replaceAll(RegExp(' +'), ' ')
+      .split(' ')
+      .map((str) => str.capitalize())
+      .join(' ');
 }
