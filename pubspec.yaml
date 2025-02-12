@@ -25,7 +25,6 @@ dependencies:
   get_it: '>=7.2.0'
   html_unescape: '>=2.0.0'
   image: '>=4.2.0'
-  launch_app_store: '>=1.1.2'
   masked_text_resources:
     git:
       path: masked_text_resources
@@ -39,6 +38,10 @@ dependencies:
     git:
       path: search_resources
       url: https://github.com/icarohs7/flutter-resources
+  store_redirect:
+    git:
+      ref: ad9c6f7f1729bfa273bf3fba329d8aa5ec42041e
+      url: https://github.com/Eufranio/store_redirect
   stream_resources:
     git:
       path: stream_resources
