@@ -33,7 +33,7 @@ dependencies:
     git:
       path: reactor_fp_resources
       url: https://github.com/icarohs7/flutter-resources
-  skeletonizer: '2.0.0-pre'
+  skeletonizer: '>=2.0.0'
   search_resources:
     git:
       path: search_resources
