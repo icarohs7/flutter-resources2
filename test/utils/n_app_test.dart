@@ -36,6 +36,14 @@ void main() {
       expect(result, NOS.MacOS);
     });
 
+    test('returns Linux when platform is Linux', () {
+      debugDefaultTargetPlatformOverride = TargetPlatform.linux;
+
+      final result = NApp.os;
+
+      expect(result, NOS.Linux);
+    });
+
     test('returns Unknown when platform is Fuchsia', () {
       debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
 

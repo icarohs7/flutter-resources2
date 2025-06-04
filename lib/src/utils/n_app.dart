@@ -15,6 +15,8 @@ class NApp {
 
   static bool get isMacOS => defaultTargetPlatform == TargetPlatform.macOS;
 
+  static bool get isLinux => defaultTargetPlatform == TargetPlatform.linux;
+
   static bool get isFuchsia => defaultTargetPlatform == TargetPlatform.fuchsia;
 
   static NOS get os {
@@ -23,6 +25,7 @@ class NApp {
     if (isWeb) return NOS.Web;
     if (isWindows) return NOS.Windows;
     if (isMacOS) return NOS.MacOS;
+    if (isLinux) return NOS.Linux;
     if (isFuchsia) return NOS.Fuchsia;
     return NOS.Unknown;
   }
@@ -33,6 +36,7 @@ enum NOS {
   IOS('iOS'),
   Windows('Windows'),
   MacOS('MacOS'),
+  Linux('Linux'),
   Fuchsia('Fuchsia'),
   Web('Web'),
   Unknown('Unknown');
