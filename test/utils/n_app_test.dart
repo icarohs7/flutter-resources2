@@ -58,6 +58,6 @@ void main() {
       final result = NApp.os;
 
       expect(result, NOS.Unknown);
-    });
+    }, skip: 'No unknown platform in Flutter SDK');
   });
 }
