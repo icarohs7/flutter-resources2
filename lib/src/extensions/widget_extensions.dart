@@ -38,4 +38,6 @@ extension NWidgetExtensions on Widget {
             : EdgeInsets.symmetric(vertical: vertical ?? 0.0, horizontal: horizontal ?? 0.0),
         sliver: this,
       );
+
+  SliverToBoxAdapter toSliver() => SliverToBoxAdapter(child: this);
 }
