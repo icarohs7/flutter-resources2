@@ -89,7 +89,7 @@ extension NVoidFnExtensions0 on void Function() {
       };
 }
 
-extension NVoidFnExtensions1<A> on void Function<A>(A) {
+extension NVoidFnExtensions1<A> on void Function(A) {
   /// Change the return type of the function to [Unit]
   Unit Function(A) get unit => (a) {
         this(a);
@@ -97,7 +97,7 @@ extension NVoidFnExtensions1<A> on void Function<A>(A) {
       };
 }
 
-extension NVoidFnExtensions2<A, B> on void Function<A, B>(A, B) {
+extension NVoidFnExtensions2<A, B> on void Function(A, B) {
   /// Change the return type of the function to [Unit]
   Unit Function(A, B) get unit => (a, b) {
         this(a, b);
@@ -113,7 +113,7 @@ extension NFutureVoidFnExtensions0 on Future<void> Function() {
       };
 }
 
-extension NFutureVoidFnExtensions1<A> on Future<void> Function<A>(A) {
+extension NFutureVoidFnExtensions1<A> on Future<void> Function(A) {
   /// Change the return type of the function to [Future<Unit>]
   Future<Unit> Function(A) get unit => (a) async {
         await this(a);
@@ -121,7 +121,7 @@ extension NFutureVoidFnExtensions1<A> on Future<void> Function<A>(A) {
       };
 }
 
-extension NFutureVoidFnExtensions2<A, B> on Future<void> Function<A, B>(A, B) {
+extension NFutureVoidFnExtensions2<A, B> on Future<void> Function(A, B) {
   /// Change the return type of the function to [Future<Unit>]
   Future<Unit> Function(A, B) get unit => (a, b) async {
         await this(a, b);
