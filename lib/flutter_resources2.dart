@@ -24,6 +24,7 @@ export 'package:extended_image/extended_image.dart'
 export 'package:flutter_image_compress/flutter_image_compress.dart' show XFile;
 export 'package:masked_text_resources/masked_text_resources.dart'
     show FieldMasks, MaskTextInputFormatter;
+export 'package:omni_datetime_picker/omni_datetime_picker.dart';
 export 'package:reactor_fp_resources/reactor_fp_resources.dart'
     hide FpdartOnMap, Group, Order, State, FpdartOnIterableOfIterable;
 export 'package:search_resources/search_resources.dart';
