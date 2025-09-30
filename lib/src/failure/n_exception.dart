@@ -5,7 +5,8 @@ class NException extends Equatable implements Exception {
   final Object? parentError;
   final StackTrace? parentStackTrace;
 
-  const NException([this.message = 'NException', this.parentError, this.parentStackTrace]);
+  NException([this.message = 'NException', this.parentError, StackTrace? parentStackTrace])
+      : parentStackTrace = parentStackTrace ?? StackTrace.current;
 
   @override
   String toString() => 'NException: $message';
