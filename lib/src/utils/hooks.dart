@@ -45,3 +45,28 @@ Size? useRenderBoxSize() {
   });
   return size.value;
 }
+
+
+/// Executes a callback function on the next frame after the current build.
+///
+/// This hook uses [WidgetsBinding.addPostFrameCallback] to schedule the [callback]
+/// to run after the current frame is rendered. This is useful for performing
+/// actions that need to happen after the layout is complete.
+///
+/// Parameters:
+/// - [callback]: The function to execute on the next frame.
+/// - [keys]: Optional list of dependencies that will trigger the callback to be
+///   rescheduled when they change.
+///
+/// Example:
+/// ```dart
+/// useOnNextFrame(() {
+///   print('This will run after the frame is rendered');
+/// });
+/// ```
+void useOnNextFrame(VoidCallback callback, [List<Object?>? keys]) {
+  useEffect(() {
+    WidgetsBinding.instance.addPostFrameCallback((_) => callback());
+    return null;
+  }, keys);
+}

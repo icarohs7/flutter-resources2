@@ -63,4 +63,111 @@ void main() {
       expect(find.text('90.00'), findsOneWidget);
     });
   });
+
+  group('useOnNextFrame', () {
+    testWidgets('runs callback on the next frame after build', (tester) async {
+      var called = 0;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: HookBuilder(
+            builder: (_) {
+              useOnNextFrame(() {
+                called++;
+              });
+              return const SizedBox.shrink();
+            },
+          ),
+        ),
+      );
+
+      // In widget tests, pumpWidget already pumps a frame, so the callback
+      // scheduled via addPostFrameCallback may have run by now.
+      expect(called, 1);
+
+      // Additional pump should not re-run the callback without a new schedule.
+      await tester.pump();
+      expect(called, 1);
+    });
+
+    testWidgets('re-schedules when dependency changes', (tester) async {
+      var called = 0;
+      int dep = 0;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: StatefulBuilder(
+            builder: (context, setState) {
+              return Column(
+                children: [
+                  TextButton(
+                    key: const ValueKey('inc-dep'),
+                    onPressed: () => setState(() => dep++),
+                    child: const Text('inc'),
+                  ),
+                  HookBuilder(
+                    builder: (_) {
+                      useOnNextFrame(() {
+                        called++;
+                      }, [dep]);
+                      return const SizedBox.shrink();
+                    },
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
+      );
+
+      // First scheduling likely executed during pumpWidget's implicit frame.
+      expect(called, 1);
+
+      // Change dependency -> schedules again.
+      await tester.tap(find.byKey(const ValueKey('inc-dep')));
+      await tester.pump();
+      expect(called, 2);
+    });
+
+    testWidgets('does not re-schedule if dependency stays the same on rebuild', (tester) async {
+      var called = 0;
+      int dep = 0;
+      bool dummy = false;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: StatefulBuilder(
+            builder: (context, setState) {
+              return Column(
+                children: [
+                  TextButton(
+                    key: const ValueKey('rebuild'),
+                    onPressed: () => setState(() => dummy = !dummy),
+                    child: const Text('rebuild'),
+                  ),
+                  HookBuilder(
+                    builder: (_) {
+                      useOnNextFrame(() {
+                        called++;
+                      }, [dep]);
+                      return const SizedBox.shrink();
+                    },
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
+      );
+
+      // Initial schedule
+      await tester.pump();
+      expect(called, 1);
+
+      // Rebuild without changing dependency -> should NOT schedule again
+      await tester.tap(find.byKey(const ValueKey('rebuild')));
+      await tester.pump();
+      expect(called, 1);
+    });
+  });
 }
