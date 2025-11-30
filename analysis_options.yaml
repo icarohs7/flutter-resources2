@@ -1,5 +1,9 @@
+formatter:
+  page_width: 100
+
 analyzer:
   errors:
+    invalid_annotation_target: ignore
     # treat missing required parameters as a warning (not a hint)
     missing_required_param: warning
     # treat missing returns as a warning (not a hint)
@@ -11,6 +15,7 @@ analyzer:
     - '**/lib/**/graphql_api.dart'
     - '**/*.g.dart'
     - '**/*.freezed.dart'
+    - '**/*.swagger.dart'
     - '**/models/api/*.dart'
     - instructions/**
     - bin/cache/**
@@ -22,7 +27,7 @@ linter:
   rules:
     - annotate_overrides
     - avoid_empty_else
-    #    - avoid_function_literals_in_foreach_calls
+    - avoid_function_literals_in_foreach_calls
     - avoid_init_to_null
     - avoid_null_checks_in_equality_operators
     - avoid_print
@@ -51,7 +56,7 @@ linter:
     - implementation_imports
     - library_names
     - library_prefixes
-    #    - library_private_types_in_public_api
+    - library_private_types_in_public_api
     - no_duplicate_case_values
     - no_leading_underscores_for_library_prefixes
     - no_leading_underscores_for_local_identifiers
@@ -89,7 +94,7 @@ linter:
     - prefer_void_to_null
     - provide_deprecation_message
     - recursive_getters
-    #    - sized_box_for_whitespace
+    - sized_box_for_whitespace
     - slash_for_doc_comments
     - sort_child_properties_last
     - type_init_formals
@@ -112,6 +117,7 @@ linter:
     - use_function_type_syntax_for_parameters
     - use_key_in_widget_constructors
     - use_rethrow_when_possible
+    - use_string_in_part_of_directives
     - use_super_parameters
     - valid_regexps
     - void_checks
