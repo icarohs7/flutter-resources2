@@ -43,7 +43,7 @@ class DateTimeFormField extends StatelessWidget {
       final selectedTime = await showOmniDateTimePicker(
         context: context,
         title: title?.apply((t) => Text(t, style: context.textTheme.titleLarge)),
-        padding: EdgeInsets.only(top: 8),
+        padding: .only(top: 8),
         is24HourMode: true,
         isShowSeconds: false,
         initialDate: value ?? pickerInitialDate,
@@ -67,7 +67,8 @@ class DateTimeFormField extends StatelessWidget {
       onTap: onTap,
       value: value?.string(dateTimeFormat),
       validator: validator?.apply(
-        (v) => (String? input) => v(value),
+        (v) =>
+            (String? input) => v(value),
       ),
       decoration: decoration,
       enabled: enabled,

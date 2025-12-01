@@ -9,8 +9,12 @@ void main() {
       NSearchSuggestion(title: 'Suggestion 2', subtitle: '', action: (context) {}),
     ];
 
-    Widget createWidgetUnderTest(
-        {String? searchHint, ShapeBorder? shape, double? elevation, Widget? icon}) {
+    Widget createWidgetUnderTest({
+      String? searchHint,
+      ShapeBorder? shape,
+      double? elevation,
+      Widget? icon,
+    }) {
       return MaterialApp(
         home: Scaffold(
           body: NInputSearchBar(

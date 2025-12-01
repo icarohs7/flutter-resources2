@@ -36,7 +36,8 @@ class TextFormFieldButton extends HookWidget {
       onTap: enabled ? onTap : null,
       onLongPress: enabled ? onLongPress : null,
       child: AbsorbPointer(
-        child: fieldBuilder?.call(controller) ??
+        child:
+            fieldBuilder?.call(controller) ??
             TextFormField(
               controller: controller,
               validator: validator,

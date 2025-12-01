@@ -10,10 +10,7 @@ void main() {
     testWidgets('builds with provided instance', (WidgetTester tester) async {
       final instance = MockDisposable();
       await tester.pumpWidget(
-        NProvider<MockDisposable>(
-          instance: instance,
-          builder: (context) => Container(),
-        ),
+        NProvider<MockDisposable>(instance: instance, builder: (context) => Container()),
       );
 
       expect(find.byType(Container), findsOneWidget);
@@ -40,10 +37,7 @@ void main() {
       final instance = MockDisposable();
 
       await tester.pumpWidget(
-        NProvider<MockDisposable>(
-          instance: instance,
-          builder: (context) => Container(),
-        ),
+        NProvider<MockDisposable>(instance: instance, builder: (context) => Container()),
       );
 
       await tester.pumpWidget(Container());

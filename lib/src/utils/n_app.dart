@@ -5,29 +5,29 @@ import 'package:flutter/foundation.dart';
 const getIt = Core.get;
 
 class NApp {
-  static bool get isAndroid => defaultTargetPlatform == TargetPlatform.android;
+  static bool get isAndroid => defaultTargetPlatform == .android;
 
-  static bool get isIOS => defaultTargetPlatform == TargetPlatform.iOS;
+  static bool get isIOS => defaultTargetPlatform == .iOS;
 
   static bool get isWeb => kIsWeb;
 
-  static bool get isWindows => defaultTargetPlatform == TargetPlatform.windows;
+  static bool get isWindows => defaultTargetPlatform == .windows;
 
-  static bool get isMacOS => defaultTargetPlatform == TargetPlatform.macOS;
+  static bool get isMacOS => defaultTargetPlatform == .macOS;
 
-  static bool get isLinux => defaultTargetPlatform == TargetPlatform.linux;
+  static bool get isLinux => defaultTargetPlatform == .linux;
 
-  static bool get isFuchsia => defaultTargetPlatform == TargetPlatform.fuchsia;
+  static bool get isFuchsia => defaultTargetPlatform == .fuchsia;
 
   static NOS get os {
-    if (isAndroid) return NOS.Android;
-    if (isIOS) return NOS.IOS;
-    if (isWeb) return NOS.Web;
-    if (isWindows) return NOS.Windows;
-    if (isMacOS) return NOS.MacOS;
-    if (isLinux) return NOS.Linux;
-    if (isFuchsia) return NOS.Fuchsia;
-    return NOS.Unknown;
+    if (isAndroid) return .Android;
+    if (isIOS) return .IOS;
+    if (isWeb) return .Web;
+    if (isWindows) return .Windows;
+    if (isMacOS) return .MacOS;
+    if (isLinux) return .Linux;
+    if (isFuchsia) return .Fuchsia;
+    return .Unknown;
   }
 }
 

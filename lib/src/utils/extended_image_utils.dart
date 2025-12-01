@@ -5,7 +5,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 class ExtendedImageUtils {
   static Widget? ignoreErrorCallback(ExtendedImageState state) {
     return switch (state.extendedImageLoadState) {
-      LoadState.failed => SizedBox(),
+      .failed => SizedBox(),
       _ => null,
     };
   }
@@ -13,19 +13,19 @@ class ExtendedImageUtils {
   static loadUsingShimmerAndFailWith([Widget? onFailure]) {
     return (ExtendedImageState state) {
       return switch (state.extendedImageLoadState) {
-        LoadState.loading => Skeletonizer(
-            enabled: true,
-            enableSwitchAnimation: true,
-            child: Skeleton.leaf(
-              child: Container(
-                color: Colors.grey,
-                width: state.extendedImageInfo?.image.width.toDouble(),
-                height: state.extendedImageInfo?.image.height.toDouble(),
-              ),
+        .loading => Skeletonizer(
+          enabled: true,
+          enableSwitchAnimation: true,
+          child: Skeleton.leaf(
+            child: Container(
+              color: Colors.grey,
+              width: state.extendedImageInfo?.image.width.toDouble(),
+              height: state.extendedImageInfo?.image.height.toDouble(),
             ),
           ),
-        LoadState.failed => onFailure ?? SizedBox(),
-        LoadState.completed => null,
+        ),
+        .failed => onFailure ?? SizedBox(),
+        .completed => null,
       };
     };
   }

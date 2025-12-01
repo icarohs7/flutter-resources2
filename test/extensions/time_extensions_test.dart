@@ -3,11 +3,13 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('NDurationExtensions', () {
-    test('stringify returns correct string for duration with days, hours, minutes, and seconds',
-        () {
-      final duration = Duration(days: 1, hours: 2, minutes: 3, seconds: 4);
-      expect(duration.stringify, '1 dia, 2 horas, 3 minutos, 4 segundos');
-    });
+    test(
+      'stringify returns correct string for duration with days, hours, minutes, and seconds',
+      () {
+        final duration = Duration(days: 1, hours: 2, minutes: 3, seconds: 4);
+        expect(duration.stringify, '1 dia, 2 horas, 3 minutos, 4 segundos');
+      },
+    );
 
     test('stringify returns correct string for duration with only hours, minutes, and seconds', () {
       final duration = Duration(hours: 2, minutes: 3, seconds: 4);

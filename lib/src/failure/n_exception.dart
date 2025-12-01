@@ -6,7 +6,7 @@ class NException extends Equatable implements Exception {
   final StackTrace? parentStackTrace;
 
   NException([this.message = 'NException', this.parentError, StackTrace? parentStackTrace])
-      : parentStackTrace = parentStackTrace ?? StackTrace.current;
+    : parentStackTrace = parentStackTrace ?? StackTrace.current;
 
   @override
   String toString() => 'NException: $message';
@@ -16,11 +16,7 @@ class NException extends Equatable implements Exception {
 
   //<editor-fold desc="Data Methods">
   Map<String, dynamic> toJson() {
-    return {
-      'message': message,
-      'parentError': parentError,
-      'parentStackTrace': parentStackTrace,
-    };
+    return {'message': message, 'parentError': parentError, 'parentStackTrace': parentStackTrace};
   }
 
   factory NException.fromJson(Map<String, dynamic> map) {
@@ -30,5 +26,5 @@ class NException extends Equatable implements Exception {
       map['parentStackTrace'] as StackTrace?,
     );
   }
-//</editor-fold>
+  //</editor-fold>
 }

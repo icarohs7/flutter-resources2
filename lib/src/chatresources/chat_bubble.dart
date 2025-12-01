@@ -9,12 +9,7 @@ class ChatBubble extends StatelessWidget {
   final double nipWidth;
   final EdgeInsets textPadding;
 
-  const ChatBubble(
-    this.message, {
-    super.key,
-    this.nipWidth = 12,
-    this.textPadding = const EdgeInsets.all(8),
-  });
+  const ChatBubble(this.message, {super.key, this.nipWidth = 12, this.textPadding = const .all(8)});
 
   @override
   Widget build(BuildContext context) {
@@ -27,22 +22,22 @@ class ChatBubble extends StatelessWidget {
         bottom: 2,
         right: message.fromMe ? 8 : 48,
       ),
-      nip: message.fromMe ? BubbleNip.rightTop : BubbleNip.leftTop,
+      nip: message.fromMe ? .rightTop : .leftTop,
       nipWidth: nipWidth,
       color: message.fromMe ? Colors.lightGreenAccent[100] : null,
       stick: true,
-      alignment: message.fromMe ? Alignment.topRight : Alignment.topLeft,
+      alignment: message.fromMe ? .topRight : .topLeft,
       elevation: 4,
       child: DefaultTextStyle(
         style: context.textTheme.bodyMedium!,
         child: Padding(
           padding: textPadding,
           child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: .min,
+            crossAxisAlignment: .start,
             children: <Widget>[
               Row(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: .min,
                 children: [
                   if (message.showSender && message.sender != null)
                     Text(

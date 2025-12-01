@@ -22,28 +22,25 @@ class NInputSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
+      margin: const .symmetric(vertical: 8, horizontal: 24),
       child: Material(
         elevation: elevation ?? 6,
         shape: shape ?? StadiumBorder(),
         child: InkWell(
-          onTap: () => showSearch(
-            context: context,
-            delegate: NBasicSearchDelegate(suggestions),
-          ),
+          onTap: () => showSearch(context: context, delegate: NBasicSearchDelegate(suggestions)),
           customBorder: shape ?? StadiumBorder(),
           child: Row(
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                padding: .symmetric(vertical: 8, horizontal: 16),
                 child: icon ?? Icon(Icons.search),
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+                  padding: .symmetric(vertical: 16, horizontal: 8),
                   child: Text(
                     searchHint ?? 'Pesquisar',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 18, fontWeight: .bold),
                   ),
                 ),
               ),

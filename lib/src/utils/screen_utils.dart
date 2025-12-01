@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 
 abstract class ScreenUtils {
   static Future<void> lockOrientationToPortrait() async {
-    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).orNull();
+    await SystemChrome.setPreferredOrientations([.portraitUp]).orNull();
   }
 
   static Future<void> lockOrientationToLandscape() async {
-    await SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]).orNull();
+    await SystemChrome.setPreferredOrientations([.landscapeLeft]).orNull();
   }
 }

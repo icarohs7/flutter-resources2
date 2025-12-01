@@ -39,10 +39,7 @@ class NSelectionPage<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: title?.apply((title) {
-        return AppBar(
-          title: Text(title),
-          centerTitle: true,
-        );
+        return AppBar(title: Text(title), centerTitle: true);
       }),
       body: CustomScrollView(
         slivers: [

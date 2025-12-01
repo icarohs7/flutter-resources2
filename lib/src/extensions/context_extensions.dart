@@ -1,7 +1,8 @@
+import 'package:core_resources/core_resources.dart';
 import 'package:flutter/material.dart';
 
 extension NContextExtensions on BuildContext {
-  Color get secondaryColor => Theme.of(this).colorScheme.secondary;
+  ColorScheme get colorScheme => theme.colorScheme;
 
-  ColorScheme get colorScheme => Theme.of(this).colorScheme;
+  Color get secondaryColor => colorScheme.secondary;
 }

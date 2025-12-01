@@ -53,7 +53,10 @@ class DateFormField extends StatelessWidget {
     return TextFormFieldButton(
       onTap: onTap,
       value: value?.string(dateFormat),
-      validator: validator?.apply((v) => (String? input) => v(value)),
+      validator: validator?.apply(
+        (v) =>
+            (String? input) => v(value),
+      ),
       decoration: decoration,
       enabled: enabled,
     );

@@ -55,28 +55,34 @@ void main() {
 
   test('TaskEither.andThenRunF runs the given operation and returns the original value', () async {
     final completer = Completer<void>();
-    final task = TaskEither<MockFailure, int>(() async => right(10)).andThenRunF((_) async => completer.future);
+    final task = TaskEither<MockFailure, int>(
+      () async => right(10),
+    ).andThenRunF((_) async => completer.future);
     final result = task.run();
     completer.complete();
     expect((await result).fold(identity, identity), 10);
   });
 
   test('TaskEither.andThenRunF handles operation failure gracefully', () async {
-    final task = TaskEither<MockFailure, int>(() async => right(10)).andThenRunF((_) async => throw Exception('Operation failed'));
+    final task = TaskEither<MockFailure, int>(
+      () async => right(10),
+    ).andThenRunF((_) async => throw Exception('Operation failed'));
     final result = task.run();
     expect((await result).fold(identity, identity), 10);
   });
 
   test('TaskEither.withTimeout returns left on timeout', () async {
-    final task = TaskEither<MockFailure, int>(() async => Future.delayed(Duration(seconds: 2), () => right(10)))
-        .withTimeout(Duration(seconds: 1), () => MockFailure());
+    final task = TaskEither<MockFailure, int>(
+      () async => Future.delayed(Duration(seconds: 2), () => right(10)),
+    ).withTimeout(Duration(seconds: 1), () => MockFailure());
     final result = task.run();
     expect((await result).fold(identity, (_) => null), isA<MockFailure>());
   });
 
   test('TaskEither.withTimeout returns right if completed within timeout', () async {
-    final task = TaskEither<MockFailure, int>(() async => Future.delayed(Duration(seconds: 1), () => right(10)))
-        .withTimeout(Duration(seconds: 2), () => MockFailure());
+    final task = TaskEither<MockFailure, int>(
+      () async => Future.delayed(Duration(seconds: 1), () => right(10)),
+    ).withTimeout(Duration(seconds: 2), () => MockFailure());
     final result = task.run();
     expect((await result).fold(identity, identity), 10);
   });

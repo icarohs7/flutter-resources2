@@ -9,16 +9,14 @@ extension NWidgetExtensions on Widget {
     double? left,
     double? vertical,
     double? horizontal,
-  }) =>
-      Padding(
-        padding: all != null
-            ? EdgeInsets.all(all)
-            : top != null || right != null || bottom != null || left != null
-            ? EdgeInsets.only(
-            top: top ?? 0.0, right: right ?? 0.0, bottom: bottom ?? 0.0, left: left ?? 0.0)
-            : EdgeInsets.symmetric(vertical: vertical ?? 0.0, horizontal: horizontal ?? 0.0),
-        child: this,
-      );
+  }) => Padding(
+    padding: all != null
+        ? .all(all)
+        : top != null || right != null || bottom != null || left != null
+        ? .only(top: top ?? 0.0, right: right ?? 0.0, bottom: bottom ?? 0.0, left: left ?? 0.0)
+        : .symmetric(vertical: vertical ?? 0.0, horizontal: horizontal ?? 0.0),
+    child: this,
+  );
 
   Widget withSliverPadding({
     double? all,
@@ -28,16 +26,14 @@ extension NWidgetExtensions on Widget {
     double? left,
     double? vertical,
     double? horizontal,
-  }) =>
-      SliverPadding(
-        padding: all != null
-            ? EdgeInsets.all(all)
-            : top != null || right != null || bottom != null || left != null
-            ? EdgeInsets.only(
-            top: top ?? 0.0, right: right ?? 0.0, bottom: bottom ?? 0.0, left: left ?? 0.0)
-            : EdgeInsets.symmetric(vertical: vertical ?? 0.0, horizontal: horizontal ?? 0.0),
-        sliver: this,
-      );
+  }) => SliverPadding(
+    padding: all != null
+        ? .all(all)
+        : top != null || right != null || bottom != null || left != null
+        ? .only(top: top ?? 0.0, right: right ?? 0.0, bottom: bottom ?? 0.0, left: left ?? 0.0)
+        : .symmetric(vertical: vertical ?? 0.0, horizontal: horizontal ?? 0.0),
+    sliver: this,
+  );
 
   SliverToBoxAdapter toSliver() => SliverToBoxAdapter(child: this);
 }

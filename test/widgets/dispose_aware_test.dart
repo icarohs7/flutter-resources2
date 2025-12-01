@@ -8,10 +8,7 @@ void main() {
       bool disposed = false;
       await tester.pumpWidget(
         MaterialApp(
-          home: DisposeAware(
-            onDispose: () => disposed = true,
-            child: Container(),
-          ),
+          home: DisposeAware(onDispose: () => disposed = true, child: Container()),
         ),
       );
 

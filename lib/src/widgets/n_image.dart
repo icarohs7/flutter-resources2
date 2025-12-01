@@ -28,7 +28,7 @@ class NImage extends StatelessWidget {
     this.imageProvider,
     this.width,
     this.height,
-    this.alignment = Alignment.center,
+    this.alignment = .center,
     this.fit,
     this.constraints,
     this.loadStateChanged,
@@ -54,18 +54,19 @@ class NImage extends StatelessWidget {
 
     return switch (imageProvider ?? getProvider()) {
       ImageProvider provider => ExtendedImage(
-          image: provider,
-          width: width,
-          height: height,
-          alignment: alignment,
-          fit: fit,
-          constraints: constraints,
-          color: color,
-          loadStateChanged: loadStateChanged ??
-              onFailureFallback?.apply((f) => ExtendedImageUtils.loadUsingShimmerAndFailWith(f)) ??
-              ExtendedImageUtils.loadUsingShimmerAndFailWith(),
-          shape: shape,
-        ),
+        image: provider,
+        width: width,
+        height: height,
+        alignment: alignment,
+        fit: fit,
+        constraints: constraints,
+        color: color,
+        loadStateChanged:
+            loadStateChanged ??
+            onFailureFallback?.apply((f) => ExtendedImageUtils.loadUsingShimmerAndFailWith(f)) ??
+            ExtendedImageUtils.loadUsingShimmerAndFailWith(),
+        shape: shape,
+      ),
       _ => SizedBox(width: width, height: height),
     };
   }

@@ -15,10 +15,7 @@ void main() {
               child: HookBuilder(
                 builder: (context) {
                   final h = useAspectRatioHeight(16, 9);
-                  return Text(
-                    h?.toStringAsFixed(2) ?? 'null',
-                    textDirection: TextDirection.ltr,
-                  );
+                  return Text(h?.toStringAsFixed(2) ?? 'null', textDirection: TextDirection.ltr);
                 },
               ),
             ),
@@ -43,10 +40,7 @@ void main() {
                 child: HookBuilder(
                   builder: (context) {
                     final h = useAspectRatioHeight(4, 3); // height = width * 3 / 4
-                    return Text(
-                      h?.toStringAsFixed(2) ?? 'null',
-                      textDirection: TextDirection.ltr,
-                    );
+                    return Text(h?.toStringAsFixed(2) ?? 'null', textDirection: TextDirection.ltr);
                   },
                 ),
               ),

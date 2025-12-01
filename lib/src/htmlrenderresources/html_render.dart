@@ -5,12 +5,7 @@ import '../adapters/adapters.dart';
 import 'extensions.dart';
 
 class HtmlRender extends StatelessWidget {
-  const HtmlRender({
-    super.key,
-    required this.data,
-    this.style,
-    this.extensions = const [],
-  });
+  const HtmlRender({super.key, required this.data, this.style, this.extensions = const []});
 
   final String data;
   final Map<String, Style>? style;
@@ -18,8 +13,11 @@ class HtmlRender extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = context.getInheritedWidgetOfExactType<MediaQuery>();
+    final mediaQueryData = mediaQuery?.data ?? .fromView(View.of(context));
+
     return MediaQuery(
-      data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)),
+      data: mediaQueryData,
       child: Html(
         data: data.htmlUnescaped,
         style: {...?style},

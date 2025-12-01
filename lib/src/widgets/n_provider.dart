@@ -4,12 +4,7 @@ import 'package:flutter/material.dart';
 import '../classes/classes.dart';
 
 class NProvider<T> extends HookWidget {
-  const NProvider({
-    required this.instance,
-    this.dispose,
-    required this.builder,
-    super.key,
-  });
+  const NProvider({required this.instance, this.dispose, required this.builder, super.key});
 
   final T instance;
   final void Function(T)? dispose;

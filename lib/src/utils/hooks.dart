@@ -46,7 +46,6 @@ Size? useRenderBoxSize() {
   return size.value;
 }
 
-
 /// Executes a callback function on the next frame after the current build.
 ///
 /// This hook uses [WidgetsBinding.addPostFrameCallback] to schedule the [callback]

@@ -27,7 +27,7 @@ class Chat extends StatelessWidget {
     this.fieldHint,
     this.messageWhenEmpty,
     this.enabled = true,
-    this.mainAxisSize = MainAxisSize.max,
+    this.mainAxisSize = .max,
   });
 
   final MainAxisSize mainAxisSize;
@@ -51,11 +51,8 @@ class Chat extends StatelessWidget {
                 if (messageWhenEmpty != null)
                   Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Text(
-                        messageWhenEmpty!,
-                        style: TextStyle(fontSize: 16),
-                      ),
+                      padding: const .all(8),
+                      child: Text(messageWhenEmpty!, style: TextStyle(fontSize: 16)),
                     ),
                   )
                 else
@@ -65,7 +62,7 @@ class Chat extends StatelessWidget {
         ),
         if (onSubmit != null)
           Padding(
-            padding: const EdgeInsets.all(8),
+            padding: const .all(8),
             child: Row(
               children: <Widget>[
                 Expanded(
@@ -76,7 +73,7 @@ class Chat extends StatelessWidget {
                     enabled: enabled && !isLoading,
                     decoration: InputDecoration(
                       hintText: fieldHint,
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(32)),
+                      border: OutlineInputBorder(borderRadius: .circular(32)),
                     ),
                   ),
                 ),

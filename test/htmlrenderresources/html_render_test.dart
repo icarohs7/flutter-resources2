@@ -6,9 +6,7 @@ void main() {
   group('HtmlRender', () {
     testWidgets('renders HTML data correctly', (WidgetTester tester) async {
       const htmlData = '<p>Hello, World!</p>';
-      await tester.pumpWidget(MaterialApp(
-        home: HtmlRender(data: htmlData),
-      ));
+      await tester.pumpWidget(MaterialApp(home: HtmlRender(data: htmlData)));
 
       expect(find.text('Hello, World!'), findsOneWidget);
     });

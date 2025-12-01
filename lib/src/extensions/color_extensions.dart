@@ -11,9 +11,9 @@ extension NColorExtensions on Color {
   /// * Bits 0-7 are the blue value.
   get rgba {
     return _floatToInt8(a) << 24 |
-    _floatToInt8(r) << 16 |
-    _floatToInt8(g) << 8 |
-    _floatToInt8(b) << 0;
+        _floatToInt8(r) << 16 |
+        _floatToInt8(g) << 8 |
+        _floatToInt8(b) << 0;
   }
 
   Color withAlphaDecimal(double opacity) {

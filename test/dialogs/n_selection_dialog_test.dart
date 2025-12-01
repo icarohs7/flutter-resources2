@@ -5,17 +5,21 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('showSelectionFullscreenDialog', () {
     testWidgets('displays the dialog with given title', (WidgetTester tester) async {
-      await tester.pumpWidget(MaterialApp(
-        home: Builder(
-          builder: (context) => ElevatedButton(
-            onPressed: () => showSelectionFullscreenDialog(context,
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Builder(
+            builder: (context) => ElevatedButton(
+              onPressed: () => showSelectionFullscreenDialog(
+                context,
                 title: 'Test Title',
                 itemCount: 1,
-                itemBuilder: (context, index) => Text('Item $index')),
-            child: Text('Show Dialog'),
+                itemBuilder: (context, index) => Text('Item $index'),
+              ),
+              child: Text('Show Dialog'),
+            ),
           ),
         ),
-      ));
+      );
 
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();
@@ -24,15 +28,20 @@ void main() {
     });
 
     testWidgets('displays the correct number of items', (WidgetTester tester) async {
-      await tester.pumpWidget(MaterialApp(
-        home: Builder(
-          builder: (context) => ElevatedButton(
-            onPressed: () => showSelectionFullscreenDialog(context,
-                itemCount: 3, itemBuilder: (context, index) => Text('Item $index')),
-            child: Text('Show Dialog'),
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Builder(
+            builder: (context) => ElevatedButton(
+              onPressed: () => showSelectionFullscreenDialog(
+                context,
+                itemCount: 3,
+                itemBuilder: (context, index) => Text('Item $index'),
+              ),
+              child: Text('Show Dialog'),
+            ),
           ),
         ),
-      ));
+      );
 
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();
@@ -43,19 +52,21 @@ void main() {
     });
 
     testWidgets('displays separator between items', (WidgetTester tester) async {
-      await tester.pumpWidget(MaterialApp(
-        home: Builder(
-          builder: (context) => ElevatedButton(
-            onPressed: () => showSelectionFullscreenDialog(
-              context,
-              itemCount: 2,
-              itemBuilder: (context, index) => Text('Item $index'),
-              separatorBuilder: (context, index) => Divider(),
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Builder(
+            builder: (context) => ElevatedButton(
+              onPressed: () => showSelectionFullscreenDialog(
+                context,
+                itemCount: 2,
+                itemBuilder: (context, index) => Text('Item $index'),
+                separatorBuilder: (context, index) => Divider(),
+              ),
+              child: Text('Show Dialog'),
             ),
-            child: Text('Show Dialog'),
           ),
         ),
-      ));
+      );
 
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();
@@ -64,15 +75,20 @@ void main() {
     });
 
     testWidgets('handles null title gracefully', (WidgetTester tester) async {
-      await tester.pumpWidget(MaterialApp(
-        home: Builder(
-          builder: (context) => ElevatedButton(
-            onPressed: () => showSelectionFullscreenDialog(context,
-                itemCount: 1, itemBuilder: (context, index) => Text('Item $index')),
-            child: Text('Show Dialog'),
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Builder(
+            builder: (context) => ElevatedButton(
+              onPressed: () => showSelectionFullscreenDialog(
+                context,
+                itemCount: 1,
+                itemBuilder: (context, index) => Text('Item $index'),
+              ),
+              child: Text('Show Dialog'),
+            ),
           ),
         ),
-      ));
+      );
 
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();

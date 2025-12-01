@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui' as ui;
 
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/foundation.dart';
@@ -94,7 +93,7 @@ abstract class ImageUtils {
         .resolve(const ImageConfiguration())
         .addListener(ImageStreamListener((info, _) => completer.complete(info)));
     final imageInfo = await completer.future;
-    final byteData = await imageInfo.image.toByteData(format: ui.ImageByteFormat.png);
+    final byteData = await imageInfo.image.toByteData(format: .png);
     return byteData?.buffer.asUint8List();
   }
 

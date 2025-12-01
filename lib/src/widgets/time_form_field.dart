@@ -33,20 +33,19 @@ class TimeFormField extends StatelessWidget {
       final selectedTime = await showTimePicker(
         context: context,
         helpText: pickerHelpText,
-        initialTime: TimeOfDay.fromDateTime(value ?? pickerInitialTime),
+        initialTime: .fromDateTime(value ?? pickerInitialTime),
       );
       if (selectedTime == null) return;
-      onChanged(DateTime.now().copyWith(
-        hour: selectedTime.hour,
-        minute: selectedTime.minute,
-        second: 0,
-      ));
+      onChanged(.now().copyWith(hour: selectedTime.hour, minute: selectedTime.minute, second: 0));
     }
 
     return TextFormFieldButton(
       onTap: onTap,
       value: value?.string(timeFormat),
-      validator: validator?.apply((v) => (String? input) => v(value)),
+      validator: validator?.apply(
+        (v) =>
+            (String? input) => v(value),
+      ),
       decoration: decoration,
       enabled: enabled,
     );
