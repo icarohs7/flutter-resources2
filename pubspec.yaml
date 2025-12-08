@@ -4,7 +4,6 @@ publish_to: 'none'
 environment:
   sdk: '>=3.10.0 <4.0.0'
 dependencies:
-  asuka: '>=2.2.1'
   bubble: '>=1.2.1'
   core_resources:
     git:

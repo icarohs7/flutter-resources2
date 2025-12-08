@@ -1,4 +1,3 @@
-export 'package:asuka/asuka.dart' show Asuka;
 export 'package:core_resources/core_resources.dart'
     hide
         Store,
