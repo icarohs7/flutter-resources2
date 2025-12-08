@@ -21,23 +21,27 @@ dependencies:
       path: packages/flutter_image_compress
       ref: c2db80264a15162f05ca610570e8bc0cef9d4377
       url: https://github.com/alainjr10/flutter_image_compress
+  flutter_secure_storage: '>=9.2.4'
   freezed_annotation: '>=2.4.4'
   get_it: '>=7.2.0'
+  hive_ce_flutter: '>=2.3.3'
   html_unescape: '>=2.0.0'
   image: '>=4.2.0'
   masked_text_resources:
     git:
       path: masked_text_resources
       url: https://github.com/icarohs7/flutter-resources
+  omni_datetime_picker: '>=2.3.1'
   reactor_fp_resources:
     git:
       path: reactor_fp_resources
       url: https://github.com/icarohs7/flutter-resources
-  skeletonizer: '>=2.0.0'
   search_resources:
     git:
       path: search_resources
       url: https://github.com/icarohs7/flutter-resources
+  share_plus: '>=10.1.4'
+  skeletonizer: '>=2.0.0'
   store_redirect:
     git:
       ref: ad9c6f7f1729bfa273bf3fba329d8aa5ec42041e
@@ -52,14 +56,22 @@ dependencies:
     git:
       path: value_notifier_resources
       url: https://github.com/icarohs7/flutter-resources
-  share_plus: '>=10.1.4'
-  omni_datetime_picker: '>=2.3.1'
 dev_dependencies:
   build_runner:
   flutter_test:
     sdk: flutter
   freezed: any
   json_serializable: any
+  mockito: ^5.5.1
   mocktail: ^1.0.4
 flutter:
   uses-material-design: true
+scripts:
+  build_runner_clean: flutter pub run build_runner clean
+  build_runner: flutter pub run build_runner build
+  brc: rps build_runner_clean
+  br: rps build_runner
+  brcb:
+    $script: rps brc
+    $after: rps br -d
+  preview: flutter widget-preview start

@@ -22,6 +22,8 @@ export 'package:extended_image/extended_image.dart'
         ExtendedAssetImageProvider,
         ExtendedMemoryImageProvider;
 export 'package:flutter_image_compress/flutter_image_compress.dart' show XFile;
+export 'package:flutter_secure_storage/flutter_secure_storage.dart';
+export 'package:hive_ce_flutter/hive_flutter.dart';
 export 'package:masked_text_resources/masked_text_resources.dart'
     show FieldMasks, MaskTextInputFormatter;
 export 'package:omni_datetime_picker/omni_datetime_picker.dart';
@@ -51,6 +53,7 @@ export 'src/failure/failure.dart';
 export 'src/htmlrenderresources/html_render_resources.dart';
 export 'src/listresources/list_resources.dart';
 export 'src/search_resources/search_resources.dart';
+export 'src/storage/storage.dart';
 export 'src/types/types.dart';
 export 'src/utils/utils.dart';
 export 'src/widgets/widgets.dart';
