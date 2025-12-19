@@ -164,4 +164,138 @@ void main() {
       expect(called, 1);
     });
   });
+
+  group('useCurrentDateTime', () {
+    testWidgets('returns current date time initially', (tester) async {
+      late DateTime currentTime;
+      await tester.pumpWidget(
+        HookBuilder(
+          builder: (context) {
+            currentTime = useCurrentDateTime();
+            return Container();
+          },
+        ),
+      );
+
+      final now = DateTime.now();
+      // Allow for a small difference due to execution time
+      expect(currentTime.difference(now).inMilliseconds.abs(), lessThan(100));
+    });
+
+    testWidgets('updates periodically', (tester) async {
+      DateTime? time1;
+      DateTime? time2;
+
+      await tester.runAsync(() async {
+        await tester.pumpWidget(
+          HookBuilder(
+            builder: (context) {
+              final time = useCurrentDateTime(interval: const Duration(milliseconds: 100));
+              time1 ??= time;
+              time2 = time;
+              return Container();
+            },
+          ),
+        );
+
+        expect(time1, isNotNull);
+        expect(time2, equals(time1));
+
+        await Future.delayed(const Duration(milliseconds: 150));
+        await tester.pump();
+
+        expect(time2!.isAfter(time1!), isTrue);
+      });
+    });
+
+    testWidgets('updates interval correctly', (tester) async {
+      Duration interval = const Duration(milliseconds: 200);
+      int rebuildCount = 0;
+
+      await tester.runAsync(() async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: StatefulBuilder(
+                builder: (context, setState) {
+                  return Column(
+                    children: [
+                      TextButton(
+                        key: const ValueKey('change-interval'),
+                        onPressed: () => setState(() => interval = const Duration(milliseconds: 50)),
+                        child: const Text('change'),
+                      ),
+                      HookBuilder(
+                        builder: (context) {
+                          useCurrentDateTime(interval: interval);
+                          rebuildCount++;
+                          return Container();
+                        },
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+
+        final initialRebuilds = rebuildCount;
+
+        await Future.delayed(const Duration(milliseconds: 250));
+        await tester.pump();
+        expect(rebuildCount, greaterThan(initialRebuilds));
+
+        final countAfterFirstInterval = rebuildCount;
+
+        await tester.tap(find.byKey(const ValueKey('change-interval')));
+        await tester.pump();
+
+        await Future.delayed(const Duration(milliseconds: 100));
+        await tester.pump();
+        expect(rebuildCount, greaterThan(countAfterFirstInterval));
+      });
+    });
+
+    testWidgets('cancels timer on unmount', (tester) async {
+      bool mounted = true;
+      await tester.runAsync(() async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: StatefulBuilder(
+                builder: (context, setState) {
+                  return Column(
+                    children: [
+                      TextButton(
+                        key: const ValueKey('unmount'),
+                        onPressed: () => setState(() => mounted = false),
+                        child: const Text('unmount'),
+                      ),
+                      if (mounted)
+                        HookBuilder(
+                          builder: (context) {
+                            useCurrentDateTime(interval: const Duration(milliseconds: 50));
+                            return Container();
+                          },
+                        ),
+                    ],
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+
+        await tester.tap(find.byKey(const ValueKey('unmount')));
+        await tester.pump();
+
+        // If timer wasn't cancelled, it might still try to trigger a rebuild or cause issues
+        // Though in tests it's hard to prove it's NOT running without checking internal state
+        // but we can at least ensure no errors occur after unmount when time passes.
+        await Future.delayed(const Duration(milliseconds: 100));
+        await tester.pump();
+      });
+    });
+  });
 }

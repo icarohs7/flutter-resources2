@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:core_resources/core_resources.dart';
 import 'package:flutter/widgets.dart';
 
@@ -68,4 +70,35 @@ void useOnNextFrame(VoidCallback callback, [List<Object?>? keys]) {
     WidgetsBinding.instance.addPostFrameCallback((_) => callback());
     return null;
   }, keys);
+}
+
+
+/// Returns the current DateTime that automatically updates at a specified interval.
+///
+/// This hook provides a DateTime value that is periodically updated, allowing
+/// widgets to rebuild with the current time. Useful for displaying clocks,
+/// timestamps, or time-dependent UI elements.
+///
+/// Parameters:
+/// - [interval]: The duration between updates. Defaults to 1 second.
+///
+/// Returns the current DateTime value that updates at the specified interval.
+///
+/// Example:
+/// ```dart
+/// final currentTime = useCurrentDateTime();
+/// Text('Current time: ${currentTime.hour}:${currentTime.minute}:${currentTime.second}');
+///
+/// // Update every 100 milliseconds for more precision
+/// final preciseTime = useCurrentDateTime(interval: Duration(milliseconds: 100));
+/// ```
+DateTime useCurrentDateTime({Duration interval = const Duration(seconds: 1)}) {
+  final now = useState(DateTime.now());
+
+  useEffect(() {
+    final timer = Timer.periodic(interval, (_) => now.value = DateTime.now());
+    return timer.cancel;
+  }, [interval]);
+
+  return now.value;
 }
