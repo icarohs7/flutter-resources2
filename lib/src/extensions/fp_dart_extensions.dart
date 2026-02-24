@@ -21,6 +21,19 @@ extension NTaskEitherExtensions<L, R> on TaskEither<L, R> {
   /// `this` is [right], ignoring the operation's
   /// result and passing the original value down
   /// the chain
+  TaskEither<L, R> andThenRun(void Function(R) op) {
+    return flatMap((r) {
+      return TaskEither(() async {
+        runCatching(() => op(r));
+        return right(r);
+      });
+    });
+  }
+
+  /// Run the given operation if the result of
+  /// `this` is [right], ignoring the operation's
+  /// result and passing the original value down
+  /// the chain
   TaskEither<L, R> andThenRunF(Future<void> Function(R) op) {
     return flatMap((r) {
       return TaskEither(() async {
@@ -83,48 +96,54 @@ extension NFutureVoidExtensions on Future<void> {
 
 extension NVoidFnExtensions0 on void Function() {
   /// Change the return type of the function to [Unit]
-  Unit Function() get unit => () {
-    this();
-    return fp.unit;
-  };
+  Unit Function() get unit =>
+          () {
+        this();
+        return fp.unit;
+      };
 }
 
 extension NVoidFnExtensions1<A> on void Function(A) {
   /// Change the return type of the function to [Unit]
-  Unit Function(A) get unit => (a) {
-    this(a);
-    return fp.unit;
-  };
+  Unit Function(A) get unit =>
+          (a) {
+        this(a);
+        return fp.unit;
+      };
 }
 
 extension NVoidFnExtensions2<A, B> on void Function(A, B) {
   /// Change the return type of the function to [Unit]
-  Unit Function(A, B) get unit => (a, b) {
-    this(a, b);
-    return fp.unit;
-  };
+  Unit Function(A, B) get unit =>
+          (a, b) {
+        this(a, b);
+        return fp.unit;
+      };
 }
 
 extension NFutureVoidFnExtensions0 on Future<void> Function() {
   /// Change the return type of the function to [Future<Unit>]
-  Future<Unit> Function() get unit => () async {
-    await this();
-    return fp.unit;
-  };
+  Future<Unit> Function() get unit =>
+          () async {
+        await this();
+        return fp.unit;
+      };
 }
 
 extension NFutureVoidFnExtensions1<A> on Future<void> Function(A) {
   /// Change the return type of the function to [Future<Unit>]
-  Future<Unit> Function(A) get unit => (a) async {
-    await this(a);
-    return fp.unit;
-  };
+  Future<Unit> Function(A) get unit =>
+          (a) async {
+        await this(a);
+        return fp.unit;
+      };
 }
 
 extension NFutureVoidFnExtensions2<A, B> on Future<void> Function(A, B) {
   /// Change the return type of the function to [Future<Unit>]
-  Future<Unit> Function(A, B) get unit => (a, b) async {
-    await this(a, b);
-    return fp.unit;
-  };
+  Future<Unit> Function(A, B) get unit =>
+          (a, b) async {
+        await this(a, b);
+        return fp.unit;
+      };
 }

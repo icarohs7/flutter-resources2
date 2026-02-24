@@ -53,6 +53,29 @@ void main() {
     expect(isLoading.value, false);
   });
 
+  test('TaskEither.andThenRun runs the given operation and returns the original value', () async {
+    var r = 0;
+    final task = TaskEither<MockFailure, int>(() async => right(10)).andThenRun((_) => r = 1);
+    final result = task.run();
+    expect((await result).fold(identity, identity), 10);
+    expect(r, equals(1));
+  });
+
+  test('TaskEither.andThenRun handles operation failure gracefully', () async {
+    var a = 0;
+    var b = 0;
+    final task = TaskEither<MockFailure, int>(() async => right(10)).andThenRun((_) {
+      a = 1;
+      throw Exception('Operation failed');
+      // ignore: dead_code
+      b = 1;
+    });
+    final result = task.run();
+    expect((await result).fold(identity, identity), 10);
+    expect(a, equals(1));
+    expect(b, equals(0));
+  });
+
   test('TaskEither.andThenRunF runs the given operation and returns the original value', () async {
     final completer = Completer<void>();
     final task = TaskEither<MockFailure, int>(
