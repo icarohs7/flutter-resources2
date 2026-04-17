@@ -32,11 +32,13 @@ class NBottomNav extends StatelessWidget {
         ...items.mapIndexed((index, item) {
           final isSelected = selectedIndex == index;
           final badgeContent = item.badgeText ?? '';
+          final selectedIcon = item.selectedIcon ?? item.icon;
+          final icon = isSelected ? selectedIcon : item.icon;
           return NavigationDestination(
             icon: Badge(
               label: item.badge ?? Text(badgeContent),
               isLabelVisible: item.badge != null || badgeContent.isNotBlank,
-              child: Icon(item.icon, color: isSelected ? selectedItemColor : unselectedItemColor),
+              child: Icon(icon, color: isSelected ? selectedItemColor : unselectedItemColor),
             ),
             label: item.title,
             tooltip: item.title,
@@ -51,6 +53,7 @@ class NBottomNavItem {
   const NBottomNavItem(
     this.title,
     this.icon, {
+    this.selectedIcon,
     this.badgeText,
     this.badge,
     this.childBuilder,
@@ -59,6 +62,7 @@ class NBottomNavItem {
 
   final String title;
   final IconData icon;
+  final IconData? selectedIcon;
   final String? badgeText;
   final Widget? badge;
   final VoidCallback? onTap;
