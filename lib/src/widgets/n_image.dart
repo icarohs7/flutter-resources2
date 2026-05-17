@@ -9,10 +9,12 @@ import '../utils/utils.dart';
 class NImage extends StatelessWidget {
   final String? url;
   final String? asset;
+  final ExtendedImageMode mode;
   final Uint8List? bytes;
   final ImageProvider? imageProvider;
   final double? width;
   final double? height;
+  final InitGestureConfigHandler? initGestureConfigHandler;
   final AlignmentGeometry alignment;
   final BoxFit? fit;
   final BoxConstraints? constraints;
@@ -24,10 +26,12 @@ class NImage extends StatelessWidget {
   const NImage({
     this.url,
     this.asset,
+    this.mode = .none,
     this.bytes,
     this.imageProvider,
     this.width,
     this.height,
+    this.initGestureConfigHandler,
     this.alignment = .center,
     this.fit,
     this.constraints,
@@ -55,8 +59,10 @@ class NImage extends StatelessWidget {
     return switch (imageProvider ?? getProvider()) {
       ImageProvider provider => ExtendedImage(
         image: provider,
+        mode: mode,
         width: width,
         height: height,
+        initGestureConfigHandler: initGestureConfigHandler,
         alignment: alignment,
         fit: fit,
         constraints: constraints,
