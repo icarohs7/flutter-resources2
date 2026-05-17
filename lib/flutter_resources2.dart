@@ -13,8 +13,7 @@ export 'package:diacritic/diacritic.dart';
 export 'package:equatable/equatable.dart' show Equatable, EquatableMixin;
 export 'package:extended_image/extended_image.dart'
     show
-        LoadState,
-        LoadStateChanged,
+        InitGestureConfigHandler,
         ExtendedImage,
         ExtendedImageMode,
         ExtendedImageState,
@@ -22,7 +21,9 @@ export 'package:extended_image/extended_image.dart'
         ExtendedNetworkImageProvider,
         ExtendedAssetImageProvider,
         ExtendedMemoryImageProvider,
-        GestureConfig;
+        GestureConfig,
+        LoadState,
+        LoadStateChanged;
 export 'package:flutter_image_compress/flutter_image_compress.dart' show XFile;
 export 'package:flutter_secure_storage/flutter_secure_storage.dart';
 export 'package:hive_ce_flutter/hive_flutter.dart';
