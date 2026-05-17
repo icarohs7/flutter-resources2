@@ -4,14 +4,23 @@ import 'package:flutter/material.dart';
 import '../classes/classes.dart';
 
 class NProvider<T> extends HookWidget {
-  const NProvider({required this.instance, this.dispose, required this.builder, super.key});
-
-  final T instance;
+  final T Function() instanceFactory;
   final void Function(T)? dispose;
   final Widget Function(T) builder;
+  final List<Object?> keys;
+
+  const NProvider({
+    required this.instanceFactory,
+    this.dispose,
+    required this.builder,
+    this.keys = const <Object?>[],
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final instance = useMemoized(instanceFactory, keys);
+
     useEffect(() {
       return () {
         final value = instance;
@@ -19,7 +28,7 @@ class NProvider<T> extends HookWidget {
         dispose?.call(value);
         if (value is Disposable || dispose != null) clog('$value -> disposed');
       };
-    }, []);
+    }, keys);
 
     return builder(instance);
   }

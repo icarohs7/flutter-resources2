@@ -10,7 +10,10 @@ void main() {
     testWidgets('builds with provided instance', (WidgetTester tester) async {
       final instance = MockDisposable();
       await tester.pumpWidget(
-        NProvider<MockDisposable>(instance: instance, builder: (context) => Container()),
+        NProvider<MockDisposable>(
+          instanceFactory: () => instance,
+          builder: (context) => Container(),
+        ),
       );
 
       expect(find.byType(Container), findsOneWidget);
@@ -22,7 +25,7 @@ void main() {
 
       await tester.pumpWidget(
         NProvider<MockDisposable>(
-          instance: instance,
+          instanceFactory: () => instance,
           dispose: (value) => disposed = true,
           builder: (context) => Container(),
         ),
@@ -37,12 +40,68 @@ void main() {
       final instance = MockDisposable();
 
       await tester.pumpWidget(
-        NProvider<MockDisposable>(instance: instance, builder: (context) => Container()),
+        NProvider<MockDisposable>(
+          instanceFactory: () => instance,
+          builder: (context) => Container(),
+        ),
       );
 
       await tester.pumpWidget(Container());
 
       verify(instance.onDispose).called(1);
+    });
+
+    testWidgets('recreates instance when keys change and disposes old one', (
+      WidgetTester tester,
+    ) async {
+      final instances = <MockDisposable>[];
+      var key = 0;
+
+      Widget build() {
+        return NProvider<MockDisposable>(
+          instanceFactory: () {
+            final instance = MockDisposable();
+            instances.add(instance);
+            return instance;
+          },
+          keys: [key],
+          builder: (context) => Container(),
+        );
+      }
+
+      await tester.pumpWidget(build());
+      expect(instances.length, 1);
+
+      key = 1;
+      await tester.pumpWidget(build());
+      expect(instances.length, 2);
+
+      verify(instances[0].onDispose).called(1);
+      verifyNever(instances[1].onDispose);
+
+      await tester.pumpWidget(Container());
+      verify(instances[1].onDispose).called(1);
+    });
+
+    testWidgets('does not recreate instance when keys do not change', (WidgetTester tester) async {
+      var callCount = 0;
+      final instance = MockDisposable();
+
+      Widget build() {
+        return NProvider<MockDisposable>(
+          instanceFactory: () {
+            callCount++;
+            return instance;
+          },
+          builder: (context) => Container(),
+        );
+      }
+
+      await tester.pumpWidget(build());
+      await tester.pumpWidget(build());
+      await tester.pumpWidget(build());
+
+      expect(callCount, 1);
     });
   });
 }
