@@ -16,6 +16,7 @@ export 'package:extended_image/extended_image.dart'
         LoadState,
         LoadStateChanged,
         ExtendedImage,
+        ExtendedImageMode,
         ExtendedImageState,
         ExtendedFileImageProvider,
         ExtendedNetworkImageProvider,
