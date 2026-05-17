@@ -19,7 +19,8 @@ export 'package:extended_image/extended_image.dart'
         ExtendedFileImageProvider,
         ExtendedNetworkImageProvider,
         ExtendedAssetImageProvider,
-        ExtendedMemoryImageProvider;
+        ExtendedMemoryImageProvider,
+        GestureConfig;
 export 'package:flutter_image_compress/flutter_image_compress.dart' show XFile;
 export 'package:flutter_secure_storage/flutter_secure_storage.dart';
 export 'package:hive_ce_flutter/hive_flutter.dart';
