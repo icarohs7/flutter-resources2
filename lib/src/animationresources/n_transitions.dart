@@ -10,6 +10,7 @@ class NTransitions {
   }
 
   static Widget topToBottomExpansion(child, value) {
-    return SizeTransition(sizeFactor: value, axis: .vertical, axisAlignment: -1, child: child);
+    return SizeTransition(sizeFactor: value, axis: .vertical, alignment: .topLeft, child: child);
   }
 }
+
