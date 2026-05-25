@@ -1,3 +1,4 @@
+import 'package:core_resources/core_resources.dart' show SimpleAlert;
 import 'package:flutter/material.dart' as m;
 import 'package:flutter/material.dart';
 
@@ -78,4 +79,23 @@ abstract class NMessenger {
       animationStyle: animationStyle,
     );
   }
+
+  /// Shows a [SimpleAlert] using the global navigator.
+  ///
+  /// Same parameters as [showSimpleAlert] from `core_resources`, without
+  /// requiring a [BuildContext]. Returns null if the navigator is not available.
+  static Future<T?> showSimpleAlert<T>({
+    Widget? title,
+    Widget? content,
+    String? confirmText,
+    void Function(BuildContext context)? onConfirm,
+  }) =>
+      showDialog<T>(
+        builder: (context) => SimpleAlert(
+          title: title,
+          content: content,
+          confirmText: confirmText,
+          onConfirm: onConfirm,
+        ),
+      );
 }

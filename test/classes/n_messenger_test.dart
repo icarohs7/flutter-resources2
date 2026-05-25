@@ -19,6 +19,11 @@ void main() {
         builder: (context) => const SizedBox.shrink(),
       );
       expect(dialogResult, isNull);
+
+      final alertResult = await NMessenger.showSimpleAlert<int>(
+        title: const Text('Title'),
+      );
+      expect(alertResult, isNull);
     });
 
     testWidgets('shows snackbar using global ScaffoldMessenger key', (tester) async {
@@ -57,6 +62,27 @@ void main() {
 
       final result = await future;
       expect(result, 'ok');
+    });
+
+    testWidgets('shows SimpleAlert using global Navigator key', (tester) async {
+      await tester.pumpWidget(buildApp());
+
+      final future = NMessenger.showSimpleAlert(
+        title: const Text('Alert title'),
+        content: const Text('Alert body'),
+        confirmText: 'Got it',
+      );
+
+      await tester.pumpAndSettle();
+      expect(find.text('Alert title'), findsOneWidget);
+      expect(find.text('Alert body'), findsOneWidget);
+      expect(find.text('Got it'), findsOneWidget);
+
+      await tester.tap(find.text('Got it'));
+      await tester.pumpAndSettle();
+
+      expect(await future, isNull);
+      expect(find.text('Alert title'), findsNothing);
     });
   });
 }
