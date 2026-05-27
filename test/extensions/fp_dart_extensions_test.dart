@@ -110,6 +110,52 @@ void main() {
     expect((await result).fold(identity, identity), 10);
   });
 
+  group('TaskEither.withTiming', () {
+    late List<LogRecord> records;
+    late StreamSubscription<LogRecord> subscription;
+
+    setUp(() {
+      records = [];
+      subscription = Logger.root.onRecord.listen(records.add);
+    });
+
+    tearDown(() async {
+      await subscription.cancel();
+    });
+
+    test('logs completion and returns right result', () async {
+      final task = TaskEither<MockFailure, int>(() async => right(10)).withTiming('fetch');
+      final result = await task.run();
+
+      expect(result.fold(identity, identity), 10);
+      expect(records, hasLength(1));
+      expect(records.first.level, Level.INFO);
+      expect(records.first.message, matches(RegExp(r'^\[fetch\] completed in \d+ms$')));
+    });
+
+    test('logs completion and returns left result', () async {
+      final failure = MockFailure();
+      final task = TaskEither<MockFailure, int>(() async => left(failure)).withTiming('fetch');
+      final result = await task.run();
+
+      expect(result.fold(identity, (_) => null), failure);
+      expect(records, hasLength(1));
+      expect(records.first.level, Level.INFO);
+      expect(records.first.message, matches(RegExp(r'^\[fetch\] completed in \d+ms$')));
+    });
+
+    test('rethrows and logs failure when run throws', () async {
+      final task = TaskEither<MockFailure, int>(() async {
+        throw Exception('boom');
+      }).withTiming('fetch');
+
+      await expectLater(task.run(), throwsA(isA<Exception>()));
+      expect(records, hasLength(1));
+      expect(records.first.level, Level.INFO);
+      expect(records.first.message, matches(RegExp(r'^\[fetch\] failed in \d+ms$')));
+    });
+  });
+
   test('TaskEither.moveToIsolate runs the task on an isolate and returns the result', () async {
     final task = TaskEither<MockFailure, int>(() async => right(10)).moveToIsolate();
     final result = task.run();
