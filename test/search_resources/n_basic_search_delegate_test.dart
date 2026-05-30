@@ -170,6 +170,22 @@ void main() {
         expect(find.text('Solicitar outro'), findsOneWidget);
       });
     });
+    group('buildResults', () {
+      testWidgets('shows the same filtered list after submitting the query', (WidgetTester tester) async {
+        final suggestions = <NSearchSuggestion>[
+          NSearchSuggestion(title: 'Solicitar Servico', subtitle: '', action: (_) {}),
+          NSearchSuggestion(title: 'Outro', subtitle: '', action: (_) {}),
+        ];
+
+        await _openSearch(tester, suggestions);
+        await _enterSearchQuery(tester, 'solicitar');
+        await tester.testTextInput.receiveAction(TextInputAction.search);
+        await tester.pumpAndSettle();
+
+        expect(find.text('Solicitar Servico'), findsOneWidget);
+        expect(find.text('Outro'), findsNothing);
+      });
+    });
   });
 }
 
@@ -190,4 +206,5 @@ Future<void> _enterSearchQuery(WidgetTester tester, String query) async {
   await tester.enterText(find.byType(TextField), query);
   await tester.pumpAndSettle();
 }
+
 

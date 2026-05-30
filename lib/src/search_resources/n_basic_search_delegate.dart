@@ -12,7 +12,12 @@ class NBasicSearchDelegate extends SimpleSearchDelegate<Unit> {
   NBasicSearchDelegate(this.suggestions);
 
   @override
-  Widget buildSuggestions(BuildContext context) {
+  Widget buildSuggestions(BuildContext context) => _buildItems(context);
+
+  @override
+  Widget buildResults(BuildContext context) => _buildItems(context);
+
+  Widget _buildItems(BuildContext context) {
     sanitize(String input) => removeDiacritics(input.toLowerCase());
     itemMatches(NSearchSuggestion item) {
       final q = sanitize(query);
