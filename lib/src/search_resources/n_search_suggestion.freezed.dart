@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$NSearchSuggestion implements DiagnosticableTreeMixin {
 
- String get title; String get subtitle; void Function(BuildContext context) get action; String? get group; Widget Function(BuildContext context)? get tileBuilder;
+ String get title; String get subtitle; void Function(BuildContext context) get action; bool Function(String query)? get itemMatches; String? get group; Widget Function(BuildContext context)? get tileBuilder;
 /// Create a copy of NSearchSuggestion
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,21 +26,21 @@ $NSearchSuggestionCopyWith<NSearchSuggestion> get copyWith => _$NSearchSuggestio
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'NSearchSuggestion'))
-    ..add(DiagnosticsProperty('title', title))..add(DiagnosticsProperty('subtitle', subtitle))..add(DiagnosticsProperty('action', action))..add(DiagnosticsProperty('group', group))..add(DiagnosticsProperty('tileBuilder', tileBuilder));
+    ..add(DiagnosticsProperty('title', title))..add(DiagnosticsProperty('subtitle', subtitle))..add(DiagnosticsProperty('action', action))..add(DiagnosticsProperty('itemMatches', itemMatches))..add(DiagnosticsProperty('group', group))..add(DiagnosticsProperty('tileBuilder', tileBuilder));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NSearchSuggestion&&(identical(other.title, title) || other.title == title)&&(identical(other.subtitle, subtitle) || other.subtitle == subtitle)&&(identical(other.action, action) || other.action == action)&&(identical(other.group, group) || other.group == group)&&(identical(other.tileBuilder, tileBuilder) || other.tileBuilder == tileBuilder));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NSearchSuggestion&&(identical(other.title, title) || other.title == title)&&(identical(other.subtitle, subtitle) || other.subtitle == subtitle)&&(identical(other.action, action) || other.action == action)&&(identical(other.itemMatches, itemMatches) || other.itemMatches == itemMatches)&&(identical(other.group, group) || other.group == group)&&(identical(other.tileBuilder, tileBuilder) || other.tileBuilder == tileBuilder));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,title,subtitle,action,group,tileBuilder);
+int get hashCode => Object.hash(runtimeType,title,subtitle,action,itemMatches,group,tileBuilder);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'NSearchSuggestion(title: $title, subtitle: $subtitle, action: $action, group: $group, tileBuilder: $tileBuilder)';
+  return 'NSearchSuggestion(title: $title, subtitle: $subtitle, action: $action, itemMatches: $itemMatches, group: $group, tileBuilder: $tileBuilder)';
 }
 
 
@@ -51,7 +51,7 @@ abstract mixin class $NSearchSuggestionCopyWith<$Res>  {
   factory $NSearchSuggestionCopyWith(NSearchSuggestion value, $Res Function(NSearchSuggestion) _then) = _$NSearchSuggestionCopyWithImpl;
 @useResult
 $Res call({
- String title, String subtitle, void Function(BuildContext context) action, String? group, Widget Function(BuildContext context)? tileBuilder
+ String title, String subtitle, void Function(BuildContext context) action, bool Function(String query)? itemMatches, String? group, Widget Function(BuildContext context)? tileBuilder
 });
 
 
@@ -68,12 +68,13 @@ class _$NSearchSuggestionCopyWithImpl<$Res>
 
 /// Create a copy of NSearchSuggestion
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? subtitle = null,Object? action = null,Object? group = freezed,Object? tileBuilder = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? subtitle = null,Object? action = null,Object? itemMatches = freezed,Object? group = freezed,Object? tileBuilder = freezed,}) {
   return _then(_self.copyWith(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,subtitle: null == subtitle ? _self.subtitle : subtitle // ignore: cast_nullable_to_non_nullable
 as String,action: null == action ? _self.action : action // ignore: cast_nullable_to_non_nullable
-as void Function(BuildContext context),group: freezed == group ? _self.group : group // ignore: cast_nullable_to_non_nullable
+as void Function(BuildContext context),itemMatches: freezed == itemMatches ? _self.itemMatches : itemMatches // ignore: cast_nullable_to_non_nullable
+as bool Function(String query)?,group: freezed == group ? _self.group : group // ignore: cast_nullable_to_non_nullable
 as String?,tileBuilder: freezed == tileBuilder ? _self.tileBuilder : tileBuilder // ignore: cast_nullable_to_non_nullable
 as Widget Function(BuildContext context)?,
   ));
@@ -160,10 +161,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title,  String subtitle,  void Function(BuildContext context) action,  String? group,  Widget Function(BuildContext context)? tileBuilder)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title,  String subtitle,  void Function(BuildContext context) action,  bool Function(String query)? itemMatches,  String? group,  Widget Function(BuildContext context)? tileBuilder)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _NSearchSuggestion() when $default != null:
-return $default(_that.title,_that.subtitle,_that.action,_that.group,_that.tileBuilder);case _:
+return $default(_that.title,_that.subtitle,_that.action,_that.itemMatches,_that.group,_that.tileBuilder);case _:
   return orElse();
 
 }
@@ -181,10 +182,10 @@ return $default(_that.title,_that.subtitle,_that.action,_that.group,_that.tileBu
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title,  String subtitle,  void Function(BuildContext context) action,  String? group,  Widget Function(BuildContext context)? tileBuilder)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title,  String subtitle,  void Function(BuildContext context) action,  bool Function(String query)? itemMatches,  String? group,  Widget Function(BuildContext context)? tileBuilder)  $default,) {final _that = this;
 switch (_that) {
 case _NSearchSuggestion():
-return $default(_that.title,_that.subtitle,_that.action,_that.group,_that.tileBuilder);case _:
+return $default(_that.title,_that.subtitle,_that.action,_that.itemMatches,_that.group,_that.tileBuilder);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -201,10 +202,10 @@ return $default(_that.title,_that.subtitle,_that.action,_that.group,_that.tileBu
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title,  String subtitle,  void Function(BuildContext context) action,  String? group,  Widget Function(BuildContext context)? tileBuilder)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title,  String subtitle,  void Function(BuildContext context) action,  bool Function(String query)? itemMatches,  String? group,  Widget Function(BuildContext context)? tileBuilder)?  $default,) {final _that = this;
 switch (_that) {
 case _NSearchSuggestion() when $default != null:
-return $default(_that.title,_that.subtitle,_that.action,_that.group,_that.tileBuilder);case _:
+return $default(_that.title,_that.subtitle,_that.action,_that.itemMatches,_that.group,_that.tileBuilder);case _:
   return null;
 
 }
@@ -216,12 +217,13 @@ return $default(_that.title,_that.subtitle,_that.action,_that.group,_that.tileBu
 
 
 class _NSearchSuggestion with DiagnosticableTreeMixin implements NSearchSuggestion {
-  const _NSearchSuggestion({required this.title, required this.subtitle, required this.action, this.group, this.tileBuilder});
+  const _NSearchSuggestion({required this.title, required this.subtitle, required this.action, this.itemMatches, this.group, this.tileBuilder});
   
 
 @override final  String title;
 @override final  String subtitle;
 @override final  void Function(BuildContext context) action;
+@override final  bool Function(String query)? itemMatches;
 @override final  String? group;
 @override final  Widget Function(BuildContext context)? tileBuilder;
 
@@ -236,21 +238,21 @@ _$NSearchSuggestionCopyWith<_NSearchSuggestion> get copyWith => __$NSearchSugges
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'NSearchSuggestion'))
-    ..add(DiagnosticsProperty('title', title))..add(DiagnosticsProperty('subtitle', subtitle))..add(DiagnosticsProperty('action', action))..add(DiagnosticsProperty('group', group))..add(DiagnosticsProperty('tileBuilder', tileBuilder));
+    ..add(DiagnosticsProperty('title', title))..add(DiagnosticsProperty('subtitle', subtitle))..add(DiagnosticsProperty('action', action))..add(DiagnosticsProperty('itemMatches', itemMatches))..add(DiagnosticsProperty('group', group))..add(DiagnosticsProperty('tileBuilder', tileBuilder));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NSearchSuggestion&&(identical(other.title, title) || other.title == title)&&(identical(other.subtitle, subtitle) || other.subtitle == subtitle)&&(identical(other.action, action) || other.action == action)&&(identical(other.group, group) || other.group == group)&&(identical(other.tileBuilder, tileBuilder) || other.tileBuilder == tileBuilder));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NSearchSuggestion&&(identical(other.title, title) || other.title == title)&&(identical(other.subtitle, subtitle) || other.subtitle == subtitle)&&(identical(other.action, action) || other.action == action)&&(identical(other.itemMatches, itemMatches) || other.itemMatches == itemMatches)&&(identical(other.group, group) || other.group == group)&&(identical(other.tileBuilder, tileBuilder) || other.tileBuilder == tileBuilder));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,title,subtitle,action,group,tileBuilder);
+int get hashCode => Object.hash(runtimeType,title,subtitle,action,itemMatches,group,tileBuilder);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'NSearchSuggestion(title: $title, subtitle: $subtitle, action: $action, group: $group, tileBuilder: $tileBuilder)';
+  return 'NSearchSuggestion(title: $title, subtitle: $subtitle, action: $action, itemMatches: $itemMatches, group: $group, tileBuilder: $tileBuilder)';
 }
 
 
@@ -261,7 +263,7 @@ abstract mixin class _$NSearchSuggestionCopyWith<$Res> implements $NSearchSugges
   factory _$NSearchSuggestionCopyWith(_NSearchSuggestion value, $Res Function(_NSearchSuggestion) _then) = __$NSearchSuggestionCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String subtitle, void Function(BuildContext context) action, String? group, Widget Function(BuildContext context)? tileBuilder
+ String title, String subtitle, void Function(BuildContext context) action, bool Function(String query)? itemMatches, String? group, Widget Function(BuildContext context)? tileBuilder
 });
 
 
@@ -278,12 +280,13 @@ class __$NSearchSuggestionCopyWithImpl<$Res>
 
 /// Create a copy of NSearchSuggestion
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? subtitle = null,Object? action = null,Object? group = freezed,Object? tileBuilder = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? subtitle = null,Object? action = null,Object? itemMatches = freezed,Object? group = freezed,Object? tileBuilder = freezed,}) {
   return _then(_NSearchSuggestion(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,subtitle: null == subtitle ? _self.subtitle : subtitle // ignore: cast_nullable_to_non_nullable
 as String,action: null == action ? _self.action : action // ignore: cast_nullable_to_non_nullable
-as void Function(BuildContext context),group: freezed == group ? _self.group : group // ignore: cast_nullable_to_non_nullable
+as void Function(BuildContext context),itemMatches: freezed == itemMatches ? _self.itemMatches : itemMatches // ignore: cast_nullable_to_non_nullable
+as bool Function(String query)?,group: freezed == group ? _self.group : group // ignore: cast_nullable_to_non_nullable
 as String?,tileBuilder: freezed == tileBuilder ? _self.tileBuilder : tileBuilder // ignore: cast_nullable_to_non_nullable
 as Widget Function(BuildContext context)?,
   ));

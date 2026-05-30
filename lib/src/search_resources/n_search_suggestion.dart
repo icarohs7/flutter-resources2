@@ -10,6 +10,7 @@ abstract class NSearchSuggestion with _$NSearchSuggestion {
     required String title,
     required String subtitle,
     required void Function(BuildContext context) action,
+    bool Function(String query)? itemMatches,
     String? group,
     Widget Function(BuildContext context)? tileBuilder,
   }) = _NSearchSuggestion;
