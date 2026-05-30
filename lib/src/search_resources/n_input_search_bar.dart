@@ -27,7 +27,10 @@ class NInputSearchBar extends StatelessWidget {
         elevation: elevation ?? 6,
         shape: shape ?? StadiumBorder(),
         child: InkWell(
-          onTap: () => showSearch(context: context, delegate: NBasicSearchDelegate(suggestions)),
+          onTap: () => showSearch(
+            context: context,
+            delegate: NBasicSearchDelegate(suggestions, actionContext: context),
+          ),
           customBorder: shape ?? StadiumBorder(),
           child: Row(
             children: [

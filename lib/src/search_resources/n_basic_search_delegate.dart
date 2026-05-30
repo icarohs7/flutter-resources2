@@ -8,8 +8,9 @@ import 'n_search_suggestion.dart';
 
 class NBasicSearchDelegate extends SimpleSearchDelegate<Unit> {
   final Iterable<NSearchSuggestion> suggestions;
+  final BuildContext? actionContext;
 
-  NBasicSearchDelegate(this.suggestions);
+  NBasicSearchDelegate(this.suggestions, {this.actionContext});
 
   @override
   Widget buildSuggestions(BuildContext context) => _buildItems(context);
@@ -40,14 +41,14 @@ class NBasicSearchDelegate extends SimpleSearchDelegate<Unit> {
     );
   }
 
-  Widget _buildSuggestionTile(BuildContext context, NSearchSuggestion item) {
-    return item.tileBuilder?.call(context) ??
+  Widget _buildSuggestionTile(BuildContext searchContext, NSearchSuggestion item) {
+    return item.tileBuilder?.call(searchContext) ??
         ListTile(
           title: Text(item.title),
           subtitle: Text(item.subtitle),
           onTap: () {
-            close(context, null);
-            item.action(context);
+            close(searchContext, null);
+            item.action(actionContext ?? searchContext);
           },
         );
   }

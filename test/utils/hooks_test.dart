@@ -222,7 +222,8 @@ void main() {
                     children: [
                       TextButton(
                         key: const ValueKey('change-interval'),
-                        onPressed: () => setState(() => interval = const Duration(milliseconds: 50)),
+                        onPressed: () =>
+                            setState(() => interval = const Duration(milliseconds: 50)),
                         child: const Text('change'),
                       ),
                       HookBuilder(

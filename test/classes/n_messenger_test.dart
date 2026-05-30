@@ -20,9 +20,7 @@ void main() {
       );
       expect(dialogResult, isNull);
 
-      final alertResult = await NMessenger.showSimpleAlert<int>(
-        title: const Text('Title'),
-      );
+      final alertResult = await NMessenger.showSimpleAlert<int>(title: const Text('Title'));
       expect(alertResult, isNull);
     });
 

@@ -5,7 +5,6 @@ import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:reactor_fp_resources/reactor_fp_resources.dart';
 import 'package:stream_resources/stream_resources.dart';
 
-
 /// A base class for persistent field storage that manages reading, writing,
 /// and observing values of type [T] using Hive storage.
 ///

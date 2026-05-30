@@ -72,7 +72,6 @@ void useOnNextFrame(VoidCallback callback, [List<Object?>? keys]) {
   }, keys);
 }
 
-
 /// Returns the current DateTime that automatically updates at a specified interval.
 ///
 /// This hook provides a DateTime value that is periodically updated, allowing

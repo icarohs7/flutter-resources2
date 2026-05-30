@@ -89,13 +89,8 @@ abstract class NMessenger {
     Widget? content,
     String? confirmText,
     void Function(BuildContext context)? onConfirm,
-  }) =>
-      showDialog<T>(
-        builder: (context) => SimpleAlert(
-          title: title,
-          content: content,
-          confirmText: confirmText,
-          onConfirm: onConfirm,
-        ),
-      );
+  }) => showDialog<T>(
+    builder: (context) =>
+        SimpleAlert(title: title, content: content, confirmText: confirmText, onConfirm: onConfirm),
+  );
 }

@@ -43,10 +43,7 @@ class MockBox extends _i1.Mock implements _i2.Box<String> {
       (super.noSuchMethod(
             Invocation.getter(#name),
             returnValue: _i3.dummyValue<String>(this, Invocation.getter(#name)),
-            returnValueForMissingStub: _i3.dummyValue<String>(
-              this,
-              Invocation.getter(#name),
-            ),
+            returnValueForMissingStub: _i3.dummyValue<String>(this, Invocation.getter(#name)),
           )
           as String);
 
@@ -79,11 +76,7 @@ class MockBox extends _i1.Mock implements _i2.Box<String> {
 
   @override
   int get length =>
-      (super.noSuchMethod(
-            Invocation.getter(#length),
-            returnValue: 0,
-            returnValueForMissingStub: 0,
-          )
+      (super.noSuchMethod(Invocation.getter(#length), returnValue: 0, returnValueForMissingStub: 0)
           as int);
 
   @override
@@ -107,10 +100,7 @@ class MockBox extends _i1.Mock implements _i2.Box<String> {
   @override
   Iterable<String> valuesBetween({dynamic startKey, dynamic endKey}) =>
       (super.noSuchMethod(
-            Invocation.method(#valuesBetween, [], {
-              #startKey: startKey,
-              #endKey: endKey,
-            }),
+            Invocation.method(#valuesBetween, [], {#startKey: startKey, #endKey: endKey}),
             returnValue: <String>[],
             returnValueForMissingStub: <String>[],
           )
@@ -118,10 +108,7 @@ class MockBox extends _i1.Mock implements _i2.Box<String> {
 
   @override
   String? getAt(int? index) =>
-      (super.noSuchMethod(
-            Invocation.method(#getAt, [index]),
-            returnValueForMissingStub: null,
-          )
+      (super.noSuchMethod(Invocation.method(#getAt, [index]), returnValueForMissingStub: null)
           as String?);
 
   @override
@@ -134,10 +121,8 @@ class MockBox extends _i1.Mock implements _i2.Box<String> {
           as Map<dynamic, String>);
 
   @override
-  dynamic keyAt(int? index) => super.noSuchMethod(
-    Invocation.method(#keyAt, [index]),
-    returnValueForMissingStub: null,
-  );
+  dynamic keyAt(int? index) =>
+      super.noSuchMethod(Invocation.method(#keyAt, [index]), returnValueForMissingStub: null);
 
   @override
   _i4.Stream<_i5.BoxEvent> watch({dynamic key}) =>

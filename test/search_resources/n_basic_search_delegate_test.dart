@@ -20,7 +20,9 @@ void main() {
         expect(find.text('Item 3'), findsOneWidget);
       });
 
-      testWidgets('does not show headers for suggestions without a group', (WidgetTester tester) async {
+      testWidgets('does not show headers for suggestions without a group', (
+        WidgetTester tester,
+      ) async {
         final suggestions = <NSearchSuggestion>[
           NSearchSuggestion(title: 'Ungrouped 1', subtitle: '', action: (_) {}),
           NSearchSuggestion(title: 'Ungrouped 2', subtitle: '', action: (_) {}),
@@ -32,7 +34,9 @@ void main() {
         expect(find.text('UNGROUPED'), findsNothing);
       });
 
-      testWidgets('shows the group header again after ungrouped items', (WidgetTester tester) async {
+      testWidgets('shows the group header again after ungrouped items', (
+        WidgetTester tester,
+      ) async {
         final suggestions = <NSearchSuggestion>[
           NSearchSuggestion(title: 'Grouped', subtitle: '', group: 'Group A', action: (_) {}),
           NSearchSuggestion(title: 'Ungrouped', subtitle: '', action: (_) {}),
@@ -44,7 +48,9 @@ void main() {
         expect(find.text('GROUP A'), findsNWidgets(2));
       });
 
-      testWidgets('keeps group header when only some items in the group match', (WidgetTester tester) async {
+      testWidgets('keeps group header when only some items in the group match', (
+        WidgetTester tester,
+      ) async {
         final suggestions = <NSearchSuggestion>[
           NSearchSuggestion(title: 'Alpha', subtitle: 'foo', group: 'Group A', action: (_) {}),
           NSearchSuggestion(title: 'Beta', subtitle: 'bar', group: 'Group A', action: (_) {}),
@@ -170,8 +176,121 @@ void main() {
         expect(find.text('Solicitar outro'), findsOneWidget);
       });
     });
+    group('actionContext', () {
+      testWidgets('passes actionContext to the suggestion action when set', (
+        WidgetTester tester,
+      ) async {
+        late BuildContext hostContext;
+        BuildContext? actionReceived;
+
+        final suggestions = <NSearchSuggestion>[
+          NSearchSuggestion(
+            title: 'Pick me',
+            subtitle: '',
+            action: (context) => actionReceived = context,
+          ),
+        ];
+
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Builder(
+              builder: (context) {
+                hostContext = context;
+                return Scaffold(
+                  body: TextButton(
+                    onPressed: () => showSearch(
+                      context: context,
+                      delegate: NBasicSearchDelegate(suggestions, actionContext: context),
+                    ),
+                    child: const Text('Open search'),
+                  ),
+                );
+              },
+            ),
+          ),
+        );
+
+        await tester.tap(find.text('Open search'));
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('Pick me'));
+        await tester.pumpAndSettle();
+
+        expect(actionReceived, hostContext);
+      });
+
+      testWidgets('NInputSearchBar passes its build context to suggestion actions', (
+        WidgetTester tester,
+      ) async {
+        BuildContext? actionReceived;
+
+        final suggestions = <NSearchSuggestion>[
+          NSearchSuggestion(
+            title: 'Pick me',
+            subtitle: '',
+            action: (context) => actionReceived = context,
+          ),
+        ];
+
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(body: NInputSearchBar(suggestions: suggestions)),
+          ),
+        );
+
+        final searchBarContext = tester.element(find.byType(NInputSearchBar));
+
+        await tester.tap(find.byType(InkWell));
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('Pick me'));
+        await tester.pumpAndSettle();
+
+        expect(actionReceived, searchBarContext);
+      });
+
+      testWidgets('uses the search context when actionContext is omitted', (
+        WidgetTester tester,
+      ) async {
+        late BuildContext hostContext;
+        BuildContext? actionReceived;
+
+        final suggestions = <NSearchSuggestion>[
+          NSearchSuggestion(
+            title: 'Pick me',
+            subtitle: '',
+            action: (context) => actionReceived = context,
+          ),
+        ];
+
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Builder(
+              builder: (context) {
+                hostContext = context;
+                return Scaffold(
+                  body: TextButton(
+                    onPressed: () =>
+                        showSearch(context: context, delegate: NBasicSearchDelegate(suggestions)),
+                    child: const Text('Open search'),
+                  ),
+                );
+              },
+            ),
+          ),
+        );
+
+        await tester.tap(find.text('Open search'));
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('Pick me'));
+        await tester.pumpAndSettle();
+
+        expect(actionReceived, isNotNull);
+        expect(actionReceived, isNot(hostContext));
+      });
+    });
     group('buildResults', () {
-      testWidgets('shows the same filtered list after submitting the query', (WidgetTester tester) async {
+      testWidgets('shows the same filtered list after submitting the query', (
+        WidgetTester tester,
+      ) async {
         final suggestions = <NSearchSuggestion>[
           NSearchSuggestion(title: 'Solicitar Servico', subtitle: '', action: (_) {}),
           NSearchSuggestion(title: 'Outro', subtitle: '', action: (_) {}),
@@ -192,9 +311,7 @@ void main() {
 Future<void> _openSearch(WidgetTester tester, Iterable<NSearchSuggestion> suggestions) async {
   await tester.pumpWidget(
     MaterialApp(
-      home: Scaffold(
-        body: NInputSearchBar(suggestions: suggestions),
-      ),
+      home: Scaffold(body: NInputSearchBar(suggestions: suggestions)),
     ),
   );
 
@@ -206,5 +323,3 @@ Future<void> _enterSearchQuery(WidgetTester tester, String query) async {
   await tester.enterText(find.byType(TextField), query);
   await tester.pumpAndSettle();
 }
-
-

@@ -13,4 +13,3 @@ class NTransitions {
     return SizeTransition(sizeFactor: value, axis: .vertical, alignment: .topLeft, child: child);
   }
 }
-
