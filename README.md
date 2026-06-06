@@ -1,7 +1,6 @@
 # Flutter Resources 2
 
-Extended version of [Flutter Resources](https://github.com/icarohs7/flutter-resources), with fewer
-tests and less stable
+Extended version of [Flutter Resources](https://github.com/icarohs7/flutter-resources), less stable
 <br/>
 [![Actions Status](https://github.com/icarohs7/flutter-resources2/workflows/build/badge.svg)](
 https://github.com/icarohs7/flutter-resources2/actions)
