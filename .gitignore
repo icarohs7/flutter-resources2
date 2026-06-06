@@ -612,3 +612,8 @@ coverage/
 
 # Web related
 **/lib/generated_plugin_registrant.dart
+# Agent session state (local only)
+.memory/
+
+# Cursor rules junction (local setup — see .cursor/README.md)
+.cursor/rules

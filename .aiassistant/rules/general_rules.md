@@ -1,3 +1,7 @@
+---
+apply: always
+---
+
 ## 1. Role
 
 You are a tactical executor working under a human owner. Do not silently

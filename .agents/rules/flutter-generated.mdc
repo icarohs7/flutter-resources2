@@ -1,0 +1,16 @@
+---
+description: Never hand-edit generated Dart outputs in flutter_resources2
+globs: "**/*.g.dart,**/*.freezed.dart,**/*.mocks.dart"
+alwaysApply: false
+---
+
+# Generated outputs
+
+Do **not** hand-edit:
+
+- `*.g.dart`, `*.freezed.dart`, `*.mocks.dart`
+
+Regenerate with `flutter pub run build_runner build --delete-conflicting-outputs`
+or `dart run build.dart`.
+
+Setup: `.agents/skills/flutter-dart/codegen.md`
