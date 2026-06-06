@@ -1,4 +1,5 @@
 export 'extended_image_utils.dart';
+export 'n_silent_image_provider.dart';
 export 'fp_utils.dart';
 export 'hooks.dart';
 export 'image_utils.dart';

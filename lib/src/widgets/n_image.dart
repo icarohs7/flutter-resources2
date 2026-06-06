@@ -58,7 +58,7 @@ class NImage extends StatelessWidget {
 
     return switch (imageProvider ?? getProvider()) {
       ImageProvider provider => ExtendedImage(
-        image: provider,
+        image: NSilentImageProvider(provider),
         mode: mode,
         width: width,
         height: height,
