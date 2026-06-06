@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
+/// Padding and sliver helpers for any [Widget].
 extension NWidgetExtensions on Widget {
+  /// Wraps this widget in [Padding].
+  ///
+  /// Inset resolution order:
+  /// 1. [all] — [EdgeInsets.all]
+  /// 2. any of [top], [right], [bottom], [left] — [EdgeInsets.only] (unset sides are zero)
+  /// 3. otherwise — [EdgeInsets.symmetric] with [vertical] and [horizontal] (default zero)
   Widget withPadding({
     double? all,
     double? top,
@@ -18,6 +25,9 @@ extension NWidgetExtensions on Widget {
     child: this,
   );
 
+  /// Wraps this widget in [SliverPadding] using the same inset rules as [withPadding].
+  ///
+  /// The receiver should already be a sliver widget (for example [SliverList]).
   Widget withSliverPadding({
     double? all,
     double? top,
@@ -35,5 +45,6 @@ extension NWidgetExtensions on Widget {
     sliver: this,
   );
 
+  /// Wraps this widget in [SliverToBoxAdapter] for use in a [CustomScrollView].
   SliverToBoxAdapter toSliver() => SliverToBoxAdapter(child: this);
 }

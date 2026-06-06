@@ -60,9 +60,7 @@ void main() {
   });
 }
 
-class _FakeUrlLauncher extends Fake
-    with MockPlatformInterfaceMixin
-    implements UrlLauncherPlatform {
+class _FakeUrlLauncher extends Fake with MockPlatformInterfaceMixin implements UrlLauncherPlatform {
   PreferredLaunchMode? lastLaunchMode;
   bool launchResult = true;
   Exception? launchException;
@@ -92,8 +90,7 @@ class _FakeUrlLauncher extends Fake
     required bool universalLinksOnly,
     required Map<String, String> headers,
     String? webOnlyWindowName,
-  }) async =>
-      launchResult;
+  }) async => launchResult;
 
   @override
   Future<void> closeWebView() async {}
