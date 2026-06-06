@@ -4,19 +4,58 @@ import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 
 import 'text_form_field_button.dart';
 
+/// Read-only date-and-time field that opens [showOmniDateTimePicker] on tap.
+///
+/// The current [value] is shown through [TextFormFieldButton] using
+/// [dateTimeFormat]. Tapping the field presents an Omni date-time picker in
+/// 24-hour mode without seconds. When the user confirms a selection,
+/// [onChanged] receives [DateTime.now] with the picked calendar date and time
+/// (seconds set to zero).
+///
+/// [pickerInitialDate] is used when [value] is null. [pickerFirstDate] and
+/// [pickerLastDate] bound the selectable range; each defaults to one year
+/// before and after the current date when omitted.
+///
+/// [validator] validates the [DateTime?] [value], not the displayed string.
+/// When [enabled] is false, the field cannot be opened.
 class DateTimeFormField extends StatelessWidget {
+  /// Optional title shown at the top of the picker dialog.
   final String? title;
+
+  /// Currently selected date and time, or null when empty.
   final DateTime? value;
+
+  /// Called when the user confirms a new date and time in the picker.
   final ValueChanged<DateTime> onChanged;
+
+  /// Format pattern used to display [value] in the text field.
   final String dateTimeFormat;
+
+  /// Decoration for the underlying [TextFormField].
   final InputDecoration? decoration;
+
+  /// Help text for the picker. Reserved for API parity with [DateFormField].
   final String? pickerHelpText;
+
+  /// Field label text for the picker. Reserved for API parity with [DateFormField].
   final String? pickerFieldLabelText;
+
+  /// Initial picker position when [value] is null.
   final DateTime pickerInitialDate;
+
+  /// Earliest selectable date in the picker.
   final DateTime? pickerFirstDate;
+
+  /// Latest selectable date in the picker.
   final DateTime? pickerLastDate;
+
+  /// Locale for the picker. Reserved for API parity with [DateFormField].
   final Locale? locale;
+
+  /// Validates the current [value] when the parent [Form] is submitted.
   final FormFieldValidator<DateTime?>? validator;
+
+  /// When false, the field is read-only and the picker cannot be opened.
   final bool enabled;
 
   const DateTimeFormField({
