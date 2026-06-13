@@ -3,6 +3,26 @@ import 'package:flutter/foundation.dart';
 import 'package:reactor_fp_resources/reactor_fp_resources.dart' as fp;
 import 'package:reactor_fp_resources/reactor_fp_resources.dart';
 
+/// Collapses [Either] failures to nullable values.
+///
+/// Pairs with [CRFutureExtensions.orNull] from `core_resources`: [Future.orNull]
+/// maps thrown errors to `null`, while these extensions map [Left] to `null`.
+extension NEitherOrNullExtension<L, R> on Either<L, R> {
+  /// Returns the right value, or `null` when this is a [Left].
+  R? orNull() => fold((_) => null, identity);
+}
+
+/// Collapses [TaskEither] failures to nullable [Future] values.
+extension NTaskEitherOrNullExtension<L, R> on TaskEither<L, R> {
+  /// Runs this task and returns the right value, or `null` on [Left].
+  ///
+  /// ```dart
+  /// final user = await userRepository.findById(id).orNull();
+  /// if (user == null) return;
+  /// ```
+  Future<R?> orNull() async => (await run()).orNull();
+}
+
 extension NTaskEitherExtensions<L, R> on TaskEither<L, R> {
   /// Change the given [loadingObservable] to true when the task
   /// start running, changing it to false when the execution is done

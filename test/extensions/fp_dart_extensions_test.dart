@@ -7,6 +7,26 @@ import 'package:reactor_fp_resources/reactor_fp_resources.dart' as fp;
 import '../mocks.dart';
 
 void main() {
+  group('Either.orNull', () {
+    test('returns value on right', () {
+      expect(right<int, int>(1).orNull(), 1);
+    });
+
+    test('returns null on left', () {
+      expect(left<int, int>(0).orNull(), isNull);
+    });
+  });
+
+  group('TaskEither.orNull', () {
+    test('returns value on right', () async {
+      expect(await TaskEither<int, int>.right(1).orNull(), 1);
+    });
+
+    test('returns null on left', () async {
+      expect(await TaskEither<int, int>.left(0).orNull(), isNull);
+    });
+  });
+
   test('TaskEither.withLoading', () async {
     //arrange
     final completer = Completer();
