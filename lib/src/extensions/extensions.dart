@@ -1,6 +1,5 @@
 export 'color_extensions.dart';
 export 'context_extensions.dart';
-export 'fp_dart_extensions.dart';
 export 'function_extensions.dart';
 export 'iterable_extensions.dart';
 export 'map_extensions.dart';

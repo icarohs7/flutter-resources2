@@ -617,3 +617,7 @@ coverage/
 
 # Cursor rules junction (local setup — see .cursor/README.md)
 .cursor/rules
+
+# Local path dependency overrides (dev only)
+pubspec_overrides.yaml
+

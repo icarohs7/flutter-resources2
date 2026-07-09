@@ -1,16 +1,20 @@
+// Hide dartx APIs that clash with FR2 fp-style helpers. Workspace analyze
+// drops some re-exported extensions, so flatMap/all/partition/curry live in
+// FR2's own extension libraries (not only via dartx / reactor_fp re-exports).
 export 'package:core_resources/core_resources.dart'
     hide
         Store,
-        IterableFlatMap,
-        IterableAll,
         Function2CurryExtension,
         Function3CurryExtension,
         Function4CurryExtension,
         Function2UncurryExtension,
         Function3UncurryExtension,
-        Function4UncurryExtension;
+        Function4UncurryExtension,
+        IterablePartition,
+        IterableFlatMap,
+        IterableAll;
 export 'package:diacritic/diacritic.dart';
-export 'package:equatable/equatable.dart' show Equatable, EquatableMixin;
+export 'package:equatable/equatable.dart' show Equatable;
 export 'package:extended_image/extended_image.dart'
     show
         InitGestureConfigHandler,
@@ -30,8 +34,7 @@ export 'package:hive_ce_flutter/hive_flutter.dart';
 export 'package:masked_text_resources/masked_text_resources.dart'
     show FieldMasks, MaskTextInputFormatter;
 export 'package:omni_datetime_picker/omni_datetime_picker.dart';
-export 'package:reactor_fp_resources/reactor_fp_resources.dart'
-    hide FpdartOnMap, Group, Order, State, FpdartOnIterableOfIterable;
+export 'package:reactor_fp_resources/reactor_fp_resources.dart';
 export 'package:search_resources/search_resources.dart';
 export 'package:skeletonizer/skeletonizer.dart'
     show
