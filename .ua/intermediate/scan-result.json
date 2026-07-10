@@ -1,0 +1,689 @@
+{
+  "name": "flutter_resources2",
+  "description": "Shared Flutter library extending Flutter Resources with reusable widgets, utilities, and helpers for ValeTelecom apps.",
+  "languages": [
+    "dart",
+    "iml",
+    "json",
+    "markdown",
+    "mdc",
+    "unknown",
+    "yaml"
+  ],
+  "frameworks": [
+    "Flutter",
+    "GitHub Actions"
+  ],
+  "files": [
+    {
+      "path": ".agents/rules/flutter-dart.mdc",
+      "language": "mdc",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".agents/rules/flutter-generated.mdc",
+      "language": "mdc",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".agents/rules/flutter/dart.md",
+      "language": "markdown",
+      "sizeLines": 29,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agents/rules/flutter/generated.md",
+      "language": "markdown",
+      "sizeLines": 20,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agents/rules/README.md",
+      "language": "markdown",
+      "sizeLines": 20,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agents/skills/edit-safety/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 55,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agents/skills/flutter-dart/codegen.md",
+      "language": "markdown",
+      "sizeLines": 19,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agents/skills/flutter-dart/project.md",
+      "language": "markdown",
+      "sizeLines": 56,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agents/skills/flutter-dart/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 74,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agents/skills/flutter-dart/storage.md",
+      "language": "markdown",
+      "sizeLines": 20,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agents/skills/flutter-dart/widgets.md",
+      "language": "markdown",
+      "sizeLines": 23,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agents/skills/git-commit/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 91,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agents/skills/persistent-state/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 55,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".agents/skills/planning-workflow/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 55,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".aiassistant/rules/flutter_rules.md",
+      "language": "markdown",
+      "sizeLines": 8,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".aiassistant/rules/general_rules.md",
+      "language": "markdown",
+      "sizeLines": 84,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".cursor/README.md",
+      "language": "markdown",
+      "sizeLines": 11,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".github/workflows/build.yml",
+      "language": "yaml",
+      "sizeLines": 21,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".ua/.understandignore",
+      "language": "unknown",
+      "sizeLines": 365,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".ua/config.json",
+      "language": "json",
+      "sizeLines": 4,
+      "fileCategory": "config"
+    },
+    {
+      "path": "AGENTS.md",
+      "language": "markdown",
+      "sizeLines": 80,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "analysis_options.yaml",
+      "language": "yaml",
+      "sizeLines": 122,
+      "fileCategory": "config"
+    },
+    {
+      "path": "build.dart",
+      "language": "dart",
+      "sizeLines": 37,
+      "fileCategory": "code"
+    },
+    {
+      "path": "flutter_resources2.iml",
+      "language": "iml",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/flutter_resources2_mobile_only.dart",
+      "language": "dart",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/flutter_resources2.dart",
+      "language": "dart",
+      "sizeLines": 65,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/adapters/adapters.dart",
+      "language": "dart",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/adapters/wrappers.dart",
+      "language": "dart",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/animationresources/animation_resources.dart",
+      "language": "dart",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/animationresources/n_transitions.dart",
+      "language": "dart",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/chatresources/chat_bubble.dart",
+      "language": "dart",
+      "sizeLines": 63,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/chatresources/chat_message.dart",
+      "language": "dart",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/chatresources/chat_message.freezed.dart",
+      "language": "dart",
+      "sizeLines": 286,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/chatresources/chat_resources.dart",
+      "language": "dart",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/chatresources/chat.dart",
+      "language": "dart",
+      "sizeLines": 133,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/classes/classes.dart",
+      "language": "dart",
+      "sizeLines": 3,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/classes/disposable.dart",
+      "language": "dart",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/classes/n_messenger.dart",
+      "language": "dart",
+      "sizeLines": 96,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/classes/n_wrapper.dart",
+      "language": "dart",
+      "sizeLines": 23,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/dialogs/dialogs.dart",
+      "language": "dart",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/dialogs/n_selection_dialog.dart",
+      "language": "dart",
+      "sizeLines": 55,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/extensions/color_extensions.dart",
+      "language": "dart",
+      "sizeLines": 27,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/extensions/context_extensions.dart",
+      "language": "dart",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/extensions/extensions.dart",
+      "language": "dart",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/extensions/function_extensions.dart",
+      "language": "dart",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/extensions/iterable_extensions.dart",
+      "language": "dart",
+      "sizeLines": 52,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/extensions/map_extensions.dart",
+      "language": "dart",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/extensions/string_extensions.dart",
+      "language": "dart",
+      "sizeLines": 23,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/extensions/time_extensions.dart",
+      "language": "dart",
+      "sizeLines": 20,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/extensions/widget_extensions.dart",
+      "language": "dart",
+      "sizeLines": 50,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/failure/failure.dart",
+      "language": "dart",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/failure/n_exception.dart",
+      "language": "dart",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/failure/n_failure.dart",
+      "language": "dart",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/htmlrenderresources/extensions.dart",
+      "language": "dart",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/htmlrenderresources/html_render_resources.dart",
+      "language": "dart",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/htmlrenderresources/html_render.dart",
+      "language": "dart",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/listresources/list_resources.dart",
+      "language": "dart",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/listresources/n_list_view.dart",
+      "language": "dart",
+      "sizeLines": 3,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/listresources/n_sliver_list.dart",
+      "language": "dart",
+      "sizeLines": 3,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/search_resources/n_basic_search_delegate.dart",
+      "language": "dart",
+      "sizeLines": 105,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/search_resources/n_input_search_bar.dart",
+      "language": "dart",
+      "sizeLines": 56,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/search_resources/n_search_suggestion.dart",
+      "language": "dart",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/search_resources/n_search_suggestion.freezed.dart",
+      "language": "dart",
+      "sizeLines": 298,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/search_resources/search_resources.dart",
+      "language": "dart",
+      "sizeLines": 3,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/storage/n_base_persisted_field.dart",
+      "language": "dart",
+      "sizeLines": 55,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/storage/n_persisted_field.dart",
+      "language": "dart",
+      "sizeLines": 75,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/storage/n_secure_persisted_field.dart",
+      "language": "dart",
+      "sizeLines": 105,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/storage/storage.dart",
+      "language": "dart",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/types/fp_types.dart",
+      "language": "dart",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/types/types.dart",
+      "language": "dart",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/utils/extended_image_utils.dart",
+      "language": "dart",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/utils/fp_utils.dart",
+      "language": "dart",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/utils/hooks.dart",
+      "language": "dart",
+      "sizeLines": 103,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/utils/image_utils.dart",
+      "language": "dart",
+      "sizeLines": 134,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/utils/list_utils.dart",
+      "language": "dart",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/utils/mobile_only_utils.dart",
+      "language": "dart",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/utils/n_app.dart",
+      "language": "dart",
+      "sizeLines": 50,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/utils/n_silent_image_provider.dart",
+      "language": "dart",
+      "sizeLines": 256,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/utils/screen_utils.dart",
+      "language": "dart",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/utils/stream_utils.dart",
+      "language": "dart",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/utils/url_utils.dart",
+      "language": "dart",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/utils/utils.dart",
+      "language": "dart",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/utils/widget_utils.dart",
+      "language": "dart",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/widgets/date_form_field.dart",
+      "language": "dart",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/widgets/date_time_form_field.dart",
+      "language": "dart",
+      "sizeLines": 116,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/widgets/dispose_aware.dart",
+      "language": "dart",
+      "sizeLines": 23,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/widgets/item_select_form_field.dart",
+      "language": "dart",
+      "sizeLines": 51,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/widgets/n_bottom_nav.dart",
+      "language": "dart",
+      "sizeLines": 73,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/widgets/n_image.dart",
+      "language": "dart",
+      "sizeLines": 79,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/widgets/n_provider.dart",
+      "language": "dart",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/widgets/text_form_field_button.dart",
+      "language": "dart",
+      "sizeLines": 50,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/widgets/time_form_field.dart",
+      "language": "dart",
+      "sizeLines": 53,
+      "fileCategory": "code"
+    },
+    {
+      "path": "lib/src/widgets/widgets.dart",
+      "language": "dart",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "pubspec.yaml",
+      "language": "yaml",
+      "sizeLines": 77,
+      "fileCategory": "config"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 10,
+      "fileCategory": "docs"
+    }
+  ],
+  "totalFiles": 95,
+  "filteredByIgnore": 35,
+  "estimatedComplexity": "moderate",
+  "importMap": {
+    ".agents/rules/flutter-dart.mdc": [],
+    ".agents/rules/flutter-generated.mdc": [],
+    ".agents/rules/flutter/dart.md": [],
+    ".agents/rules/flutter/generated.md": [],
+    ".agents/rules/README.md": [],
+    ".agents/skills/edit-safety/SKILL.md": [],
+    ".agents/skills/flutter-dart/codegen.md": [],
+    ".agents/skills/flutter-dart/project.md": [],
+    ".agents/skills/flutter-dart/SKILL.md": [],
+    ".agents/skills/flutter-dart/storage.md": [],
+    ".agents/skills/flutter-dart/widgets.md": [],
+    ".agents/skills/git-commit/SKILL.md": [],
+    ".agents/skills/persistent-state/SKILL.md": [],
+    ".agents/skills/planning-workflow/SKILL.md": [],
+    ".aiassistant/rules/flutter_rules.md": [],
+    ".aiassistant/rules/general_rules.md": [],
+    ".cursor/README.md": [],
+    ".github/workflows/build.yml": [],
+    ".ua/.understandignore": [],
+    ".ua/config.json": [],
+    "AGENTS.md": [],
+    "analysis_options.yaml": [],
+    "build.dart": [],
+    "flutter_resources2.iml": [],
+    "lib/flutter_resources2_mobile_only.dart": [],
+    "lib/flutter_resources2.dart": [],
+    "lib/src/adapters/adapters.dart": [],
+    "lib/src/adapters/wrappers.dart": [],
+    "lib/src/animationresources/animation_resources.dart": [],
+    "lib/src/animationresources/n_transitions.dart": [],
+    "lib/src/chatresources/chat_bubble.dart": [],
+    "lib/src/chatresources/chat_message.dart": [],
+    "lib/src/chatresources/chat_message.freezed.dart": [],
+    "lib/src/chatresources/chat_resources.dart": [],
+    "lib/src/chatresources/chat.dart": [],
+    "lib/src/classes/classes.dart": [],
+    "lib/src/classes/disposable.dart": [],
+    "lib/src/classes/n_messenger.dart": [],
+    "lib/src/classes/n_wrapper.dart": [],
+    "lib/src/dialogs/dialogs.dart": [],
+    "lib/src/dialogs/n_selection_dialog.dart": [],
+    "lib/src/extensions/color_extensions.dart": [],
+    "lib/src/extensions/context_extensions.dart": [],
+    "lib/src/extensions/extensions.dart": [],
+    "lib/src/extensions/function_extensions.dart": [],
+    "lib/src/extensions/iterable_extensions.dart": [],
+    "lib/src/extensions/map_extensions.dart": [],
+    "lib/src/extensions/string_extensions.dart": [],
+    "lib/src/extensions/time_extensions.dart": [],
+    "lib/src/extensions/widget_extensions.dart": [],
+    "lib/src/failure/failure.dart": [],
+    "lib/src/failure/n_exception.dart": [],
+    "lib/src/failure/n_failure.dart": [],
+    "lib/src/htmlrenderresources/extensions.dart": [],
+    "lib/src/htmlrenderresources/html_render_resources.dart": [],
+    "lib/src/htmlrenderresources/html_render.dart": [],
+    "lib/src/listresources/list_resources.dart": [],
+    "lib/src/listresources/n_list_view.dart": [],
+    "lib/src/listresources/n_sliver_list.dart": [],
+    "lib/src/search_resources/n_basic_search_delegate.dart": [],
+    "lib/src/search_resources/n_input_search_bar.dart": [],
+    "lib/src/search_resources/n_search_suggestion.dart": [],
+    "lib/src/search_resources/n_search_suggestion.freezed.dart": [],
+    "lib/src/search_resources/search_resources.dart": [],
+    "lib/src/storage/n_base_persisted_field.dart": [],
+    "lib/src/storage/n_persisted_field.dart": [],
+    "lib/src/storage/n_secure_persisted_field.dart": [],
+    "lib/src/storage/storage.dart": [],
+    "lib/src/types/fp_types.dart": [],
+    "lib/src/types/types.dart": [],
+    "lib/src/utils/extended_image_utils.dart": [],
+    "lib/src/utils/fp_utils.dart": [],
+    "lib/src/utils/hooks.dart": [],
+    "lib/src/utils/image_utils.dart": [],
+    "lib/src/utils/list_utils.dart": [],
+    "lib/src/utils/mobile_only_utils.dart": [],
+    "lib/src/utils/n_app.dart": [],
+    "lib/src/utils/n_silent_image_provider.dart": [],
+    "lib/src/utils/screen_utils.dart": [],
+    "lib/src/utils/stream_utils.dart": [],
+    "lib/src/utils/url_utils.dart": [],
+    "lib/src/utils/utils.dart": [],
+    "lib/src/utils/widget_utils.dart": [],
+    "lib/src/widgets/date_form_field.dart": [],
+    "lib/src/widgets/date_time_form_field.dart": [],
+    "lib/src/widgets/dispose_aware.dart": [],
+    "lib/src/widgets/item_select_form_field.dart": [],
+    "lib/src/widgets/n_bottom_nav.dart": [],
+    "lib/src/widgets/n_image.dart": [],
+    "lib/src/widgets/n_provider.dart": [],
+    "lib/src/widgets/text_form_field_button.dart": [],
+    "lib/src/widgets/time_form_field.dart": [],
+    "lib/src/widgets/widgets.dart": [],
+    "pubspec.yaml": [],
+    "README.md": []
+  }
+}

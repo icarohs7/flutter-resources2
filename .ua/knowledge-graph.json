@@ -1,0 +1,4879 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "flutter_resources2",
+    "languages": [
+      "dart",
+      "iml",
+      "json",
+      "markdown",
+      "mdc",
+      "unknown",
+      "yaml"
+    ],
+    "frameworks": [
+      "Flutter",
+      "GitHub Actions"
+    ],
+    "description": "Shared Flutter library extending Flutter Resources with reusable widgets, utilities, and helpers for ValeTelecom apps.",
+    "analyzedAt": "2026-07-10T15:00:08.893Z",
+    "gitCommitHash": "3eb4a4c822488a109818f4e65dc13efe6f44b17a"
+  },
+  "nodes": [
+    {
+      "id": "pipeline:.github/workflows/build.yml",
+      "type": "pipeline",
+      "name": "build.yml",
+      "filePath": ".github/workflows/build.yml",
+      "summary": "GitHub Actions workflow that checks out the repo, installs Flutter stable, runs dart run build.dart for analyze and test, and uploads coverage reports to Codecov on every push.",
+      "tags": [
+        "ci-cd",
+        "deployment",
+        "github-actions",
+        "testing",
+        "coverage"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agents/skills/flutter-dart/SKILL.md",
+      "type": "document",
+      "name": "SKILL.md",
+      "filePath": ".agents/skills/flutter-dart/SKILL.md",
+      "summary": "Router skill for Dart/Flutter work in flutter_resources2: requires reading this file first, then topic files by path, and documents dual Cursor/Kimi rule formats plus library coding standards.",
+      "tags": [
+        "documentation",
+        "agent-skill",
+        "dart",
+        "flutter",
+        "coding-standards"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.agents/skills/flutter-dart/codegen.md",
+      "type": "document",
+      "name": "codegen.md",
+      "filePath": ".agents/skills/flutter-dart/codegen.md",
+      "summary": "Code-generation topic guide: never edit .g.dart/.freezed.dart files; documents freezed, json_serializable, and mockito regeneration via build_runner or build.dart.",
+      "tags": [
+        "documentation",
+        "codegen",
+        "freezed",
+        "build-runner"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agents/skills/flutter-dart/project.md",
+      "type": "document",
+      "name": "project.md",
+      "filePath": ".agents/skills/flutter-dart/project.md",
+      "summary": "Project reference for the shared Flutter library: repository layout under lib/src, barrel-export conventions, sibling flutter-resources deps, and verification/public-API change checklist.",
+      "tags": [
+        "documentation",
+        "project-layout",
+        "conventions",
+        "api"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.agents/skills/flutter-dart/storage.md",
+      "type": "document",
+      "name": "storage.md",
+      "filePath": ".agents/skills/flutter-dart/storage.md",
+      "summary": "Storage topic guide for lib/src/storage: NBasePersistedField, NPersistedField, NSecurePersistedField patterns, stable keys, and test/storage expectations.",
+      "tags": [
+        "documentation",
+        "storage",
+        "hive",
+        "persisted-fields"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agents/skills/flutter-dart/widgets.md",
+      "type": "document",
+      "name": "widgets.md",
+      "filePath": ".agents/skills/flutter-dart/widgets.md",
+      "summary": "Widgets topic guide for lib/src/widgets and related modules: form-field patterns, NProvider/DisposeAware/NImage, HookWidget preference, tests, and barrel export rules.",
+      "tags": [
+        "documentation",
+        "widgets",
+        "ui",
+        "testing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:AGENTS.md",
+      "type": "document",
+      "name": "AGENTS.md",
+      "filePath": "AGENTS.md",
+      "summary": "Agent operating rules for this shared Flutter library: role priorities, non-negotiable gates (no silent architecture decisions, no unsolicited commits), code-quality expectations, and the skill router including flutter-dart.",
+      "tags": [
+        "documentation",
+        "agent-rules",
+        "governance",
+        "skills"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Project overview for Flutter Resources 2 as an extended, less-stable fork of Flutter Resources, with CI, license, and Codecov badges.",
+      "tags": [
+        "documentation",
+        "entry-point",
+        "overview"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:analysis_options.yaml",
+      "type": "config",
+      "name": "analysis_options.yaml",
+      "filePath": "analysis_options.yaml",
+      "summary": "Dart analyzer and formatter configuration with 100-char page width, generated-file excludes, and a large enabled linter rule set including prefer_relative_imports.",
+      "tags": [
+        "configuration",
+        "linter",
+        "analyzer",
+        "dart"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:pubspec.yaml",
+      "type": "config",
+      "name": "pubspec.yaml",
+      "filePath": "pubspec.yaml",
+      "summary": "Package manifest for flutter_resources2: SDK constraint, Flutter and sibling git dependencies from flutter-resources, codegen/test dev_dependencies, and build_runner helper scripts.",
+      "tags": [
+        "configuration",
+        "dependencies",
+        "package-manifest",
+        "flutter"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.agents/rules/flutter-dart.mdc",
+      "type": "document",
+      "name": "flutter-dart.mdc",
+      "filePath": ".agents/rules/flutter-dart.mdc",
+      "summary": "Cursor rule with globs for lib/ and test/ Dart files; requires reading the flutter-dart skill before edits and lists library non-negotiables.",
+      "tags": [
+        "documentation",
+        "agent-rules",
+        "dart",
+        "guardrails"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agents/rules/flutter-generated.mdc",
+      "type": "document",
+      "name": "flutter-generated.mdc",
+      "filePath": ".agents/rules/flutter-generated.mdc",
+      "summary": "Cursor rule forbidding hand-edits of generated Dart outputs (*.g.dart, *.freezed.dart, *.mocks.dart) and pointing to build_runner regeneration.",
+      "tags": [
+        "documentation",
+        "agent-rules",
+        "codegen",
+        "guardrails"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agents/rules/flutter/dart.md",
+      "type": "document",
+      "name": "dart.md",
+      "filePath": ".agents/rules/flutter/dart.md",
+      "summary": "Kimi-format twin of flutter-dart.mdc: same Dart/Flutter library guardrails with paths and priority frontmatter.",
+      "tags": [
+        "documentation",
+        "agent-rules",
+        "dart",
+        "kimi"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agents/rules/flutter/generated.md",
+      "type": "document",
+      "name": "generated.md",
+      "filePath": ".agents/rules/flutter/generated.md",
+      "summary": "Kimi-format twin of flutter-generated.mdc: do not hand-edit generated Dart; regenerate via build_runner or build.dart.",
+      "tags": [
+        "documentation",
+        "agent-rules",
+        "codegen",
+        "kimi"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agents/rules/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": ".agents/rules/README.md",
+      "summary": "Explains dual-format project rules (.mdc for Cursor, flutter/*.md for Kimi) and the mapping between twin rule files.",
+      "tags": [
+        "documentation",
+        "agent-rules",
+        "entry-point",
+        "overview"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.agents/skills/edit-safety/SKILL.md",
+      "type": "document",
+      "name": "SKILL.md",
+      "filePath": ".agents/skills/edit-safety/SKILL.md",
+      "summary": "Agent skill for safe renames, deletes, signature changes, large refactors, and dependency additions with before/after re-read gates.",
+      "tags": [
+        "documentation",
+        "agent-skill",
+        "edit-safety",
+        "refactor"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.agents/skills/git-commit/SKILL.md",
+      "type": "document",
+      "name": "SKILL.md",
+      "filePath": ".agents/skills/git-commit/SKILL.md",
+      "summary": "Agent skill for Conventional Commits with explicit-ask gate, pre-commit checks, message format, and rare amend rules.",
+      "tags": [
+        "documentation",
+        "agent-skill",
+        "git",
+        "conventional-commits"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.agents/skills/persistent-state/SKILL.md",
+      "type": "document",
+      "name": "SKILL.md",
+      "filePath": ".agents/skills/persistent-state/SKILL.md",
+      "summary": "Agent skill for cross-session memory protocol, .memory files, context management, and self-correction after human fixes.",
+      "tags": [
+        "documentation",
+        "agent-skill",
+        "memory",
+        "persistent-state"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.agents/skills/planning-workflow/SKILL.md",
+      "type": "document",
+      "name": "SKILL.md",
+      "filePath": ".agents/skills/planning-workflow/SKILL.md",
+      "summary": "Agent skill for planning non-trivial work in vertical slices with execution limits, risk notes, and verification steps.",
+      "tags": [
+        "documentation",
+        "agent-skill",
+        "planning",
+        "workflow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.aiassistant/rules/flutter_rules.md",
+      "type": "document",
+      "name": "flutter_rules.md",
+      "filePath": ".aiassistant/rules/flutter_rules.md",
+      "summary": "JetBrains always-apply pointer to flutter-dart skill topics and reminder to keep AGENTS.md synced with general_rules.md.",
+      "tags": [
+        "documentation",
+        "agent-rules",
+        "jetbrains",
+        "dart"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.aiassistant/rules/general_rules.md",
+      "type": "document",
+      "name": "general_rules.md",
+      "filePath": ".aiassistant/rules/general_rules.md",
+      "summary": "JetBrains twin of AGENTS.md: role, non-negotiable gates, code quality, skill routing table, and communication norms for this library.",
+      "tags": [
+        "documentation",
+        "agent-rules",
+        "jetbrains",
+        "workflow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.cursor/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": ".cursor/README.md",
+      "summary": "Documents creating the .cursor/rules junction to .agents/rules so Cursor loads project .mdc rules after clone.",
+      "tags": [
+        "documentation",
+        "cursor",
+        "setup",
+        "agent-rules"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.ua/config.json",
+      "type": "config",
+      "name": "config.json",
+      "filePath": ".ua/config.json",
+      "summary": "Understand-Anything project config setting English output language and enabling auto-update of the knowledge graph on commit.",
+      "tags": [
+        "configuration",
+        "understand-anything",
+        "auto-update"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.ua/.understandignore",
+      "type": "file",
+      "name": ".understandignore",
+      "filePath": ".ua/.understandignore",
+      "summary": "Ignore patterns for Understand-Anything analysis, largely mirroring .gitignore-style exclusions for build artifacts and IDE noise.",
+      "tags": [
+        "configuration",
+        "understand-anything",
+        "ignore-list"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:flutter_resources2.iml",
+      "type": "file",
+      "name": "flutter_resources2.iml",
+      "filePath": "flutter_resources2.iml",
+      "summary": "IntelliJ/Android Studio module descriptor for the flutter_resources2 library project.",
+      "tags": [
+        "ide",
+        "intellij",
+        "project-metadata"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:build.dart",
+      "type": "file",
+      "name": "build.dart",
+      "filePath": "build.dart",
+      "summary": "CLI build script that runs pub get, build_runner, analyze, and tests with coverage in sequence via Process.run.",
+      "tags": [
+        "build-system",
+        "entry-point",
+        "codegen",
+        "script"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Top-level Dart script using dart:io Process.run with runInShell for Flutter CLI commands."
+    },
+    {
+      "id": "function:build.dart:runCommand",
+      "type": "function",
+      "name": "runCommand",
+      "filePath": "build.dart",
+      "lineRange": [
+        5,
+        22
+      ],
+      "summary": "Runs a shell command, streams stdout/stderr, and exits the process on non-zero status.",
+      "tags": [
+        "utility",
+        "process",
+        "build-system"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:build.dart:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "build.dart",
+      "lineRange": [
+        24,
+        37
+      ],
+      "summary": "Entry point that sequentially runs package get, build_runner, analyze, and coverage tests.",
+      "tags": [
+        "entry-point",
+        "build-system"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/flutter_resources2_mobile_only.dart",
+      "type": "file",
+      "name": "flutter_resources2_mobile_only.dart",
+      "filePath": "lib/flutter_resources2_mobile_only.dart",
+      "summary": "Secondary library barrel that re-exports mobile-only utilities for consumers that need platform-specific helpers.",
+      "tags": [
+        "entry-point",
+        "barrel",
+        "mobile",
+        "exports"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/flutter_resources2.dart",
+      "type": "file",
+      "name": "flutter_resources2.dart",
+      "filePath": "lib/flutter_resources2.dart",
+      "summary": "Primary public barrel: re-exports curated third-party packages (with clash hides) and all internal module barrels.",
+      "tags": [
+        "entry-point",
+        "barrel",
+        "exports",
+        "public-api"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Uses selective export show/hide to avoid dartx clashes with FR2 fp-style helpers."
+    },
+    {
+      "id": "file:lib/src/adapters/adapters.dart",
+      "type": "file",
+      "name": "adapters.dart",
+      "filePath": "lib/src/adapters/adapters.dart",
+      "summary": "Adapters module barrel that re-exports platform/store/share wrapper helpers.",
+      "tags": [
+        "barrel",
+        "adapters",
+        "exports"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/adapters/wrappers.dart",
+      "type": "file",
+      "name": "wrappers.dart",
+      "filePath": "lib/src/adapters/wrappers.dart",
+      "summary": "Thin wrappers around store_redirect, url_launcher, and share_plus with ShareParams/ShareResult typedefs.",
+      "tags": [
+        "adapters",
+        "utility",
+        "platform",
+        "wrappers"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:lib/src/adapters/wrappers.dart:redirectToStore",
+      "type": "function",
+      "name": "redirectToStore",
+      "filePath": "lib/src/adapters/wrappers.dart",
+      "lineRange": [
+        6,
+        7
+      ],
+      "summary": "Redirects the user to the Android or iOS app store listing for the given app ids.",
+      "tags": [
+        "adapters",
+        "store",
+        "platform"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:lib/src/adapters/wrappers.dart:launchUrl",
+      "type": "function",
+      "name": "launchUrl",
+      "filePath": "lib/src/adapters/wrappers.dart",
+      "lineRange": [
+        9,
+        21
+      ],
+      "summary": "Launches a URI externally or in an in-app web view, treating ACTIVITY_NOT_FOUND as a soft false.",
+      "tags": [
+        "adapters",
+        "url-launcher",
+        "platform"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:lib/src/adapters/wrappers.dart:share",
+      "type": "function",
+      "name": "share",
+      "filePath": "lib/src/adapters/wrappers.dart",
+      "lineRange": [
+        23,
+        25
+      ],
+      "summary": "Shares content via share_plus using the library ShareParams typedef.",
+      "tags": [
+        "adapters",
+        "share",
+        "platform"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/animationresources/animation_resources.dart",
+      "type": "file",
+      "name": "animation_resources.dart",
+      "filePath": "lib/src/animationresources/animation_resources.dart",
+      "summary": "Animation resources barrel re-exporting NTransitions helpers.",
+      "tags": [
+        "barrel",
+        "animation",
+        "exports"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/animationresources/n_transitions.dart",
+      "type": "file",
+      "name": "n_transitions.dart",
+      "filePath": "lib/src/animationresources/n_transitions.dart",
+      "summary": "Static helpers wrapping ScaleTransition, FadeTransition, and SizeTransition for common UI animations.",
+      "tags": [
+        "animation",
+        "utility",
+        "transitions"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/animationresources/n_transitions.dart:NTransitions",
+      "type": "class",
+      "name": "NTransitions",
+      "filePath": "lib/src/animationresources/n_transitions.dart",
+      "lineRange": [
+        3,
+        15
+      ],
+      "summary": "Namespace class with static scale, fade, and top-to-bottom expansion transition builders.",
+      "tags": [
+        "animation",
+        "transitions",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/chatresources/chat_bubble.dart",
+      "type": "file",
+      "name": "chat_bubble.dart",
+      "filePath": "lib/src/chatresources/chat_bubble.dart",
+      "summary": "Stateless chat bubble widget rendering sender, timestamp, and message body with left/right nip alignment.",
+      "tags": [
+        "component",
+        "chat",
+        "ui",
+        "widget"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:lib/src/chatresources/chat_bubble.dart:ChatBubble",
+      "type": "class",
+      "name": "ChatBubble",
+      "filePath": "lib/src/chatresources/chat_bubble.dart",
+      "lineRange": [
+        7,
+        63
+      ],
+      "summary": "Bubble UI for a ChatMessage, styling fromMe vs incoming with optional sender and timestamp rows.",
+      "tags": [
+        "component",
+        "chat",
+        "widget"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:lib/src/chatresources/chat_message.dart",
+      "type": "file",
+      "name": "chat_message.dart",
+      "filePath": "lib/src/chatresources/chat_message.dart",
+      "summary": "Freezed ChatMessage model holding sender, timestamp, text/child payload, and fromMe/showSender flags.",
+      "tags": [
+        "data-model",
+        "chat",
+        "freezed",
+        "immutable"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Uses freezed_annotation with part file for generated equality and copyWith."
+    },
+    {
+      "id": "class:lib/src/chatresources/chat_message.dart:ChatMessage",
+      "type": "class",
+      "name": "ChatMessage",
+      "filePath": "lib/src/chatresources/chat_message.dart",
+      "lineRange": [
+        7,
+        16
+      ],
+      "summary": "Immutable freezed factory for chat message display data including optional Widget child.",
+      "tags": [
+        "data-model",
+        "chat",
+        "freezed"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/chatresources/chat_message.freezed.dart",
+      "type": "file",
+      "name": "chat_message.freezed.dart",
+      "filePath": "lib/src/chatresources/chat_message.freezed.dart",
+      "summary": "Generated Freezed implementation for ChatMessage (copyWith, equality, pattern helpers); do not hand-edit.",
+      "tags": [
+        "generated",
+        "freezed",
+        "codegen",
+        "data-model"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Auto-generated by freezed; regenerate via build_runner."
+    },
+    {
+      "id": "file:lib/src/chatresources/chat_resources.dart",
+      "type": "file",
+      "name": "chat_resources.dart",
+      "filePath": "lib/src/chatresources/chat_resources.dart",
+      "summary": "Barrel re-exporting the bubble package plus Chat, ChatBubble, and ChatMessage chat UI modules.",
+      "tags": [
+        "barrel",
+        "chat",
+        "exports",
+        "ui"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/chatresources/chat.dart",
+      "type": "file",
+      "name": "chat.dart",
+      "filePath": "lib/src/chatresources/chat.dart",
+      "summary": "Scrollable chat layout widget with a reverse message list, empty-state overlay, and optional composer with validation and loading send button.",
+      "tags": [
+        "component",
+        "chat",
+        "ui",
+        "widget"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:lib/src/classes/classes.dart",
+      "type": "file",
+      "name": "classes.dart",
+      "filePath": "lib/src/classes/classes.dart",
+      "summary": "Barrel re-exporting Disposable, NMessenger, and NWrapper utility classes.",
+      "tags": [
+        "barrel",
+        "exports",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/classes/disposable.dart",
+      "type": "file",
+      "name": "disposable.dart",
+      "filePath": "lib/src/classes/disposable.dart",
+      "summary": "Abstract Disposable extending get_it Disposable with a factory that wraps a dispose callback.",
+      "tags": [
+        "utility",
+        "lifecycle",
+        "disposal",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/classes/n_messenger.dart",
+      "type": "file",
+      "name": "n_messenger.dart",
+      "filePath": "lib/src/classes/n_messenger.dart",
+      "summary": "Static global messenger helpers for snackbars and dialogs via ScaffoldMessenger and Navigator keys, including SimpleAlert without a BuildContext.",
+      "tags": [
+        "utility",
+        "messaging",
+        "dialog",
+        "snackbar"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:lib/src/classes/n_wrapper.dart",
+      "type": "file",
+      "name": "n_wrapper.dart",
+      "filePath": "lib/src/classes/n_wrapper.dart",
+      "summary": "Generic value wrapper that overrides equality via an optional comparator without changing the wrapped type.",
+      "tags": [
+        "utility",
+        "equality",
+        "generic",
+        "data-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/dialogs/dialogs.dart",
+      "type": "file",
+      "name": "dialogs.dart",
+      "filePath": "lib/src/dialogs/dialogs.dart",
+      "summary": "Barrel re-exporting the selection fullscreen dialog API.",
+      "tags": [
+        "barrel",
+        "exports",
+        "dialog"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/dialogs/n_selection_dialog.dart",
+      "type": "file",
+      "name": "n_selection_dialog.dart",
+      "filePath": "lib/src/dialogs/n_selection_dialog.dart",
+      "summary": "Fullscreen selection dialog helper and page that lists items with optional separators via NSliverList.",
+      "tags": [
+        "dialog",
+        "component",
+        "ui",
+        "selection"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:lib/src/extensions/color_extensions.dart",
+      "type": "file",
+      "name": "color_extensions.dart",
+      "filePath": "lib/src/extensions/color_extensions.dart",
+      "summary": "Color extension providing packed RGBA int conversion and decimal alpha helpers.",
+      "tags": [
+        "extension",
+        "utility",
+        "color",
+        "ui"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/extensions/context_extensions.dart",
+      "type": "file",
+      "name": "context_extensions.dart",
+      "filePath": "lib/src/extensions/context_extensions.dart",
+      "summary": "BuildContext helpers for colorScheme, secondaryColor, and FlexibleSpaceBar collapse detection.",
+      "tags": [
+        "extension",
+        "utility",
+        "context",
+        "ui"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/extensions/extensions.dart",
+      "type": "file",
+      "name": "extensions.dart",
+      "filePath": "lib/src/extensions/extensions.dart",
+      "summary": "Barrel re-exporting all library extension modules for color, context, functions, iterables, maps, strings, time, and widgets.",
+      "tags": [
+        "barrel",
+        "exports",
+        "extension",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/extensions/function_extensions.dart",
+      "type": "file",
+      "name": "function_extensions.dart",
+      "filePath": "lib/src/extensions/function_extensions.dart",
+      "summary": "Function composition and curry helpers for unary, binary, and ternary functions adapted from fpdart.",
+      "tags": [
+        "extension",
+        "utility",
+        "functional",
+        "curry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/extensions/iterable_extensions.dart",
+      "type": "file",
+      "name": "iterable_extensions.dart",
+      "filePath": "lib/src/extensions/iterable_extensions.dart",
+      "summary": "Iterable helpers including indexing, flatMap, partition, prependAll, delete, and nullable orEmpty/ifEmpty.",
+      "tags": [
+        "extension",
+        "utility",
+        "iterable",
+        "functional"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:lib/src/extensions/map_extensions.dart",
+      "type": "file",
+      "name": "map_extensions.dart",
+      "filePath": "lib/src/extensions/map_extensions.dart",
+      "summary": "Map extension that lazily yields non-null values for a sequence of keys.",
+      "tags": [
+        "extension",
+        "utility",
+        "map"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/extensions/string_extensions.dart",
+      "type": "file",
+      "name": "string_extensions.dart",
+      "filePath": "lib/src/extensions/string_extensions.dart",
+      "summary": "String helpers for title-case conversion, numeric-only checks, and regex matching.",
+      "tags": [
+        "extension",
+        "utility",
+        "string"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/extensions/time_extensions.dart",
+      "type": "file",
+      "name": "time_extensions.dart",
+      "filePath": "lib/src/extensions/time_extensions.dart",
+      "summary": "Duration extension that formats elapsed time as Portuguese day/hour/minute/second phrases.",
+      "tags": [
+        "extension",
+        "utility",
+        "duration",
+        "formatting"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/extensions/widget_extensions.dart",
+      "type": "file",
+      "name": "widget_extensions.dart",
+      "filePath": "lib/src/extensions/widget_extensions.dart",
+      "summary": "Widget helpers for Padding, SliverPadding, and SliverToBoxAdapter wrapping with flexible inset resolution.",
+      "tags": [
+        "extension",
+        "utility",
+        "widget",
+        "ui"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:lib/src/failure/failure.dart",
+      "type": "file",
+      "name": "failure.dart",
+      "filePath": "lib/src/failure/failure.dart",
+      "summary": "Barrel re-exporting NException and NFailure error types.",
+      "tags": [
+        "barrel",
+        "exports",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/failure/n_exception.dart",
+      "type": "file",
+      "name": "n_exception.dart",
+      "filePath": "lib/src/failure/n_exception.dart",
+      "summary": "Equatable Exception with message, parent error/stack, JSON serialization, and current-stack capture.",
+      "tags": [
+        "error-handling",
+        "data-model",
+        "serialization",
+        "exception"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/failure/n_failure.dart",
+      "type": "file",
+      "name": "n_failure.dart",
+      "filePath": "lib/src/failure/n_failure.dart",
+      "summary": "NFailure and NOperationCancelledFailure subtypes of NException with Portuguese default messages.",
+      "tags": [
+        "error-handling",
+        "data-model",
+        "failure"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/htmlrenderresources/extensions.dart",
+      "type": "file",
+      "name": "extensions.dart",
+      "filePath": "lib/src/htmlrenderresources/extensions.dart",
+      "summary": "String extension that HTML-unescapes text via html_unescape.",
+      "tags": [
+        "extension",
+        "html",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/htmlrenderresources/html_render_resources.dart",
+      "type": "file",
+      "name": "html_render_resources.dart",
+      "filePath": "lib/src/htmlrenderresources/html_render_resources.dart",
+      "summary": "Barrel re-exporting flutter_html, html_unescape, HtmlRender, and HTML string extensions.",
+      "tags": [
+        "barrel",
+        "exports",
+        "html",
+        "ui"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/htmlrenderresources/html_render.dart",
+      "type": "file",
+      "name": "html_render.dart",
+      "filePath": "lib/src/htmlrenderresources/html_render.dart",
+      "summary": "HtmlRender widget that unescapes HTML, preserves MediaQuery, and opens tapped links via launchUrl.",
+      "tags": [
+        "component",
+        "html",
+        "widget",
+        "ui"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/listresources/list_resources.dart",
+      "type": "file",
+      "name": "list_resources.dart",
+      "filePath": "lib/src/listresources/list_resources.dart",
+      "summary": "Barrel re-exporting NListView and NSliverList list widgets.",
+      "tags": [
+        "barrel",
+        "exports",
+        "list",
+        "ui"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/listresources/n_list_view.dart",
+      "type": "file",
+      "name": "n_list_view.dart",
+      "filePath": "lib/src/listresources/n_list_view.dart",
+      "summary": "Typedef alias mapping NListView to SuperListView from super_sliver_list.",
+      "tags": [
+        "typedef",
+        "list",
+        "ui",
+        "alias"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Public API is a typedef alias, not a class definition."
+    },
+    {
+      "id": "class:lib/src/chatresources/chat.dart:Chat",
+      "type": "class",
+      "name": "Chat",
+      "filePath": "lib/src/chatresources/chat.dart",
+      "lineRange": [
+        22,
+        133
+      ],
+      "summary": "Stateless chat UI with reverse NListView messages, empty-state text, and optional validated composer with LoadingFloatingActionButton.",
+      "tags": [
+        "component",
+        "chat",
+        "widget",
+        "ui"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:lib/src/classes/disposable.dart:Disposable",
+      "type": "class",
+      "name": "Disposable",
+      "filePath": "lib/src/classes/disposable.dart",
+      "lineRange": [
+        7,
+        13
+      ],
+      "summary": "Abstract disposable contract extending get_it Disposable with a static create factory for callback-based disposal.",
+      "tags": [
+        "utility",
+        "lifecycle",
+        "disposal",
+        "abstract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/classes/n_messenger.dart:NMessenger",
+      "type": "class",
+      "name": "NMessenger",
+      "filePath": "lib/src/classes/n_messenger.dart",
+      "lineRange": [
+        9,
+        96
+      ],
+      "summary": "Non-instantiable static facade for global snackbars and dialogs using navigator and scaffold messenger keys.",
+      "tags": [
+        "utility",
+        "messaging",
+        "dialog",
+        "static-api"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:lib/src/classes/n_wrapper.dart:NWrapper",
+      "type": "class",
+      "name": "NWrapper",
+      "filePath": "lib/src/classes/n_wrapper.dart",
+      "lineRange": [
+        4,
+        23
+      ],
+      "summary": "Generic wrapper overriding == and hashCode using an optional custom equality function.",
+      "tags": [
+        "utility",
+        "equality",
+        "generic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/dialogs/n_selection_dialog.dart:NSelectionPage",
+      "type": "class",
+      "name": "NSelectionPage",
+      "filePath": "lib/src/dialogs/n_selection_dialog.dart",
+      "lineRange": [
+        24,
+        55
+      ],
+      "summary": "Fullscreen Scaffold page listing selectable items with AppBar title and NSliverList.separated body.",
+      "tags": [
+        "component",
+        "dialog",
+        "widget",
+        "selection"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/extensions/color_extensions.dart:NColorExtensions",
+      "type": "class",
+      "name": "NColorExtensions",
+      "filePath": "lib/src/extensions/color_extensions.dart",
+      "lineRange": [
+        3,
+        27
+      ],
+      "summary": "Color extension for packed RGBA integers and withAlphaDecimal opacity.",
+      "tags": [
+        "extension",
+        "color",
+        "utility"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Dart extension on Color modeled as a class node."
+    },
+    {
+      "id": "class:lib/src/extensions/context_extensions.dart:NContextExtensions",
+      "type": "class",
+      "name": "NContextExtensions",
+      "filePath": "lib/src/extensions/context_extensions.dart",
+      "lineRange": [
+        4,
+        15
+      ],
+      "summary": "BuildContext extension exposing theme colors and FlexibleSpaceBar collapse state.",
+      "tags": [
+        "extension",
+        "context",
+        "utility"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Dart extension on BuildContext modeled as a class node."
+    },
+    {
+      "id": "class:lib/src/extensions/function_extensions.dart:NUnaryExtensions",
+      "type": "class",
+      "name": "NUnaryExtensions",
+      "filePath": "lib/src/extensions/function_extensions.dart",
+      "lineRange": [
+        2,
+        6
+      ],
+      "summary": "Unary function extension providing pipe composition.",
+      "tags": [
+        "extension",
+        "functional",
+        "utility"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Dart extension on Function modeled as a class node."
+    },
+    {
+      "id": "class:lib/src/extensions/function_extensions.dart:NCurryExtension2",
+      "type": "class",
+      "name": "NCurryExtension2",
+      "filePath": "lib/src/extensions/function_extensions.dart",
+      "lineRange": [
+        10,
+        20
+      ],
+      "summary": "Binary function curry and curryLast getters adapted from fpdart.",
+      "tags": [
+        "extension",
+        "functional",
+        "curry"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Dart extension on binary Function modeled as a class node."
+    },
+    {
+      "id": "class:lib/src/extensions/function_extensions.dart:NCurryExtension3",
+      "type": "class",
+      "name": "NCurryExtension3",
+      "filePath": "lib/src/extensions/function_extensions.dart",
+      "lineRange": [
+        24,
+        35
+      ],
+      "summary": "Ternary function curry and curryLast getters adapted from fpdart.",
+      "tags": [
+        "extension",
+        "functional",
+        "curry"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Dart extension on ternary Function modeled as a class node."
+    },
+    {
+      "id": "class:lib/src/extensions/iterable_extensions.dart:NIterableExtensions",
+      "type": "class",
+      "name": "NIterableExtensions",
+      "filePath": "lib/src/extensions/iterable_extensions.dart",
+      "lineRange": [
+        1,
+        40
+      ],
+      "summary": "Iterable extension with indexing, flatMap, all, partition, prependAll, and delete.",
+      "tags": [
+        "extension",
+        "iterable",
+        "functional"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Dart extension on Iterable modeled as a class node."
+    },
+    {
+      "id": "class:lib/src/extensions/iterable_extensions.dart:NNullableIterableExtensions",
+      "type": "class",
+      "name": "NNullableIterableExtensions",
+      "filePath": "lib/src/extensions/iterable_extensions.dart",
+      "lineRange": [
+        42,
+        52
+      ],
+      "summary": "Nullable Iterable extension providing orEmpty and ifEmpty fallbacks.",
+      "tags": [
+        "extension",
+        "iterable",
+        "null-safety"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Dart extension on Iterable? modeled as a class node."
+    },
+    {
+      "id": "class:lib/src/extensions/map_extensions.dart:NMapExtensions",
+      "type": "class",
+      "name": "NMapExtensions",
+      "filePath": "lib/src/extensions/map_extensions.dart",
+      "lineRange": [
+        1,
+        10
+      ],
+      "summary": "Map extension that yields non-null values for requested keys.",
+      "tags": [
+        "extension",
+        "map",
+        "utility"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Dart extension on Map modeled as a class node."
+    },
+    {
+      "id": "class:lib/src/extensions/string_extensions.dart:NStringExtensions",
+      "type": "class",
+      "name": "NStringExtensions",
+      "filePath": "lib/src/extensions/string_extensions.dart",
+      "lineRange": [
+        3,
+        23
+      ],
+      "summary": "String extension for toTitleCase, isNumericOnly, and hasMatch.",
+      "tags": [
+        "extension",
+        "string",
+        "utility"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Dart extension on String modeled as a class node."
+    },
+    {
+      "id": "class:lib/src/extensions/time_extensions.dart:NDurationExtensions",
+      "type": "class",
+      "name": "NDurationExtensions",
+      "filePath": "lib/src/extensions/time_extensions.dart",
+      "lineRange": [
+        1,
+        20
+      ],
+      "summary": "Duration extension formatting Portuguese human-readable time parts via stringify.",
+      "tags": [
+        "extension",
+        "duration",
+        "formatting"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Dart extension on Duration modeled as a class node."
+    },
+    {
+      "id": "class:lib/src/extensions/widget_extensions.dart:NWidgetExtensions",
+      "type": "class",
+      "name": "NWidgetExtensions",
+      "filePath": "lib/src/extensions/widget_extensions.dart",
+      "lineRange": [
+        4,
+        50
+      ],
+      "summary": "Widget extension for withPadding, withSliverPadding, and toSliver helpers.",
+      "tags": [
+        "extension",
+        "widget",
+        "ui"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Dart extension on Widget modeled as a class node."
+    },
+    {
+      "id": "class:lib/src/failure/n_exception.dart:NException",
+      "type": "class",
+      "name": "NException",
+      "filePath": "lib/src/failure/n_exception.dart",
+      "lineRange": [
+        3,
+        30
+      ],
+      "summary": "Equatable Exception carrying message, parent error, stack trace, and JSON (de)serialization.",
+      "tags": [
+        "error-handling",
+        "exception",
+        "data-model",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/failure/n_failure.dart:NFailure",
+      "type": "class",
+      "name": "NFailure",
+      "filePath": "lib/src/failure/n_failure.dart",
+      "lineRange": [
+        3,
+        11
+      ],
+      "summary": "Operation-failure Exception subtype with Portuguese default message and message-named constructor.",
+      "tags": [
+        "error-handling",
+        "failure",
+        "data-model"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/failure/n_failure.dart:NOperationCancelledFailure",
+      "type": "class",
+      "name": "NOperationCancelledFailure",
+      "filePath": "lib/src/failure/n_failure.dart",
+      "lineRange": [
+        13,
+        18
+      ],
+      "summary": "NFailure subtype representing a cancelled operation with fixed or custom message.",
+      "tags": [
+        "error-handling",
+        "failure",
+        "cancellation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/htmlrenderresources/extensions.dart:HtmlRenderExtension",
+      "type": "class",
+      "name": "HtmlRenderExtension",
+      "filePath": "lib/src/htmlrenderresources/extensions.dart",
+      "lineRange": [
+        5,
+        7
+      ],
+      "summary": "String extension exposing htmlUnescaped via a shared HtmlUnescape instance.",
+      "tags": [
+        "extension",
+        "html",
+        "utility"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Dart extension on String modeled as a class node."
+    },
+    {
+      "id": "class:lib/src/htmlrenderresources/html_render.dart:HtmlRender",
+      "type": "class",
+      "name": "HtmlRender",
+      "filePath": "lib/src/htmlrenderresources/html_render.dart",
+      "lineRange": [
+        7,
+        31
+      ],
+      "summary": "StatelessWidget rendering unescaped HTML with optional styles/extensions and link launching.",
+      "tags": [
+        "component",
+        "html",
+        "widget",
+        "ui"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:lib/src/dialogs/n_selection_dialog.dart:showSelectionFullscreenDialog",
+      "type": "function",
+      "name": "showSelectionFullscreenDialog",
+      "filePath": "lib/src/dialogs/n_selection_dialog.dart",
+      "lineRange": [
+        6,
+        22
+      ],
+      "summary": "Opens a fullscreen selection dialog via Nav.goFullscreenDialog wrapping NSelectionPage.",
+      "tags": [
+        "dialog",
+        "navigation",
+        "selection",
+        "api"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/listresources/n_sliver_list.dart",
+      "type": "file",
+      "name": "n_sliver_list.dart",
+      "filePath": "lib/src/listresources/n_sliver_list.dart",
+      "summary": "Thin typedef alias mapping NSliverList to SuperSliverList from the super_sliver_list package.",
+      "tags": [
+        "typedef",
+        "list",
+        "alias",
+        "ui"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/search_resources/n_basic_search_delegate.dart",
+      "type": "file",
+      "name": "n_basic_search_delegate.dart",
+      "filePath": "lib/src/search_resources/n_basic_search_delegate.dart",
+      "summary": "SearchDelegate that filters and groups NSearchSuggestion items with diacritic-insensitive matching, then renders them in an NListView.",
+      "tags": [
+        "search",
+        "component",
+        "delegate",
+        "ui"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:lib/src/search_resources/n_basic_search_delegate.dart:NBasicSearchDelegate",
+      "type": "class",
+      "name": "NBasicSearchDelegate",
+      "filePath": "lib/src/search_resources/n_basic_search_delegate.dart",
+      "lineRange": [
+        17,
+        63
+      ],
+      "summary": "Material search delegate that filters suggestions by query, groups by label, and invokes suggestion actions on tap.",
+      "tags": [
+        "search",
+        "delegate",
+        "ui",
+        "filtering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:lib/src/search_resources/n_basic_search_delegate.dart:_groupedEntries",
+      "type": "function",
+      "name": "_groupedEntries",
+      "filePath": "lib/src/search_resources/n_basic_search_delegate.dart",
+      "lineRange": [
+        65,
+        81
+      ],
+      "summary": "Builds a flat list of group headers and suggestion entries from an ordered suggestion iterable.",
+      "tags": [
+        "search",
+        "grouping",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/search_resources/n_input_search_bar.dart",
+      "type": "file",
+      "name": "n_input_search_bar.dart",
+      "filePath": "lib/src/search_resources/n_input_search_bar.dart",
+      "summary": "Tappable stadium-shaped search bar widget that opens showSearch with NBasicSearchDelegate.",
+      "tags": [
+        "search",
+        "component",
+        "widget",
+        "ui"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/search_resources/n_input_search_bar.dart:NInputSearchBar",
+      "type": "class",
+      "name": "NInputSearchBar",
+      "filePath": "lib/src/search_resources/n_input_search_bar.dart",
+      "lineRange": [
+        6,
+        56
+      ],
+      "summary": "Stateless search entry widget that launches NBasicSearchDelegate with the provided suggestions.",
+      "tags": [
+        "search",
+        "widget",
+        "component",
+        "ui"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/search_resources/n_search_suggestion.dart",
+      "type": "file",
+      "name": "n_search_suggestion.dart",
+      "filePath": "lib/src/search_resources/n_search_suggestion.dart",
+      "summary": "Freezed model describing a searchable suggestion with title, subtitle, action, optional matcher, group, and custom tile builder.",
+      "tags": [
+        "data-model",
+        "search",
+        "freezed",
+        "immutable"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Uses freezed code generation via part file."
+    },
+    {
+      "id": "class:lib/src/search_resources/n_search_suggestion.dart:NSearchSuggestion",
+      "type": "class",
+      "name": "NSearchSuggestion",
+      "filePath": "lib/src/search_resources/n_search_suggestion.dart",
+      "lineRange": [
+        8,
+        17
+      ],
+      "summary": "Immutable search suggestion carrying display text, tap action, and optional custom matching or tile UI.",
+      "tags": [
+        "data-model",
+        "search",
+        "freezed",
+        "immutable"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/search_resources/n_search_suggestion.freezed.dart",
+      "type": "file",
+      "name": "n_search_suggestion.freezed.dart",
+      "filePath": "lib/src/search_resources/n_search_suggestion.freezed.dart",
+      "summary": "Generated Freezed implementation for NSearchSuggestion, including copyWith, equality, diagnostics, and pattern-matching helpers.",
+      "tags": [
+        "generated",
+        "freezed",
+        "data-model",
+        "boilerplate"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Auto-generated; do not edit by hand."
+    },
+    {
+      "id": "file:lib/src/search_resources/search_resources.dart",
+      "type": "file",
+      "name": "search_resources.dart",
+      "filePath": "lib/src/search_resources/search_resources.dart",
+      "summary": "Barrel exporting the search UI API: delegate, input bar, and suggestion model.",
+      "tags": [
+        "barrel",
+        "search",
+        "exports",
+        "entry-point"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/storage/n_base_persisted_field.dart",
+      "type": "file",
+      "name": "n_base_persisted_field.dart",
+      "filePath": "lib/src/storage/n_base_persisted_field.dart",
+      "summary": "Abstract Hive-backed persisted field with serialize/deserialize hooks and a reactive ValueStream listenable.",
+      "tags": [
+        "storage",
+        "persistence",
+        "hive",
+        "reactive"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:lib/src/storage/n_base_persisted_field.dart:NBasePersistedField",
+      "type": "class",
+      "name": "NBasePersistedField",
+      "filePath": "lib/src/storage/n_base_persisted_field.dart",
+      "lineRange": [
+        15,
+        56
+      ],
+      "summary": "Generic base for typed persisted fields providing get/set/clear and a seeded watch stream over a Hive box.",
+      "tags": [
+        "storage",
+        "persistence",
+        "abstract",
+        "reactive"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:lib/src/storage/n_persisted_field.dart",
+      "type": "file",
+      "name": "n_persisted_field.dart",
+      "filePath": "lib/src/storage/n_persisted_field.dart",
+      "summary": "Unsecured Hive persisted-field implementations for int, double, bool, string, and generic JSON-encoded values.",
+      "tags": [
+        "storage",
+        "persistence",
+        "hive",
+        "factory"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:lib/src/storage/n_persisted_field.dart:NPersistedFieldInt",
+      "type": "class",
+      "name": "NPersistedFieldInt",
+      "filePath": "lib/src/storage/n_persisted_field.dart",
+      "lineRange": [
+        12,
+        18
+      ],
+      "summary": "Persisted int field with string parse/serialize and numeric default fallback.",
+      "tags": [
+        "storage",
+        "persistence",
+        "int",
+        "typed"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/storage/n_persisted_field.dart:NPersistedFieldDouble",
+      "type": "class",
+      "name": "NPersistedFieldDouble",
+      "filePath": "lib/src/storage/n_persisted_field.dart",
+      "lineRange": [
+        24,
+        30
+      ],
+      "summary": "Persisted double field with string parse/serialize and numeric default fallback.",
+      "tags": [
+        "storage",
+        "persistence",
+        "double",
+        "typed"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/storage/n_persisted_field.dart:NPersistedFieldBool",
+      "type": "class",
+      "name": "NPersistedFieldBool",
+      "filePath": "lib/src/storage/n_persisted_field.dart",
+      "lineRange": [
+        36,
+        39
+      ],
+      "summary": "Persisted bool field encoding true as the string 'true'.",
+      "tags": [
+        "storage",
+        "persistence",
+        "bool",
+        "typed"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/storage/n_persisted_field.dart:NPersistedFieldString",
+      "type": "class",
+      "name": "NPersistedFieldString",
+      "filePath": "lib/src/storage/n_persisted_field.dart",
+      "lineRange": [
+        44,
+        47
+      ],
+      "summary": "Persisted string field using identity serialize/deserialize.",
+      "tags": [
+        "storage",
+        "persistence",
+        "string",
+        "typed"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/storage/n_persisted_field.dart:NPersistedField",
+      "type": "class",
+      "name": "NPersistedField",
+      "filePath": "lib/src/storage/n_persisted_field.dart",
+      "lineRange": [
+        53,
+        75
+      ],
+      "summary": "Generic unsecured Hive field stored in the shared n_unsecure_box, with static init.",
+      "tags": [
+        "storage",
+        "persistence",
+        "hive",
+        "generic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/storage/n_secure_persisted_field.dart",
+      "type": "file",
+      "name": "n_secure_persisted_field.dart",
+      "filePath": "lib/src/storage/n_secure_persisted_field.dart",
+      "summary": "AES-encrypted Hive persisted-field variants with encryption key managed via FlutterSecureStorage.",
+      "tags": [
+        "storage",
+        "persistence",
+        "security",
+        "hive"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Encryption key is created once and stored in FlutterSecureStorage."
+    },
+    {
+      "id": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedFieldInt",
+      "type": "class",
+      "name": "NSecurePersistedFieldInt",
+      "filePath": "lib/src/storage/n_secure_persisted_field.dart",
+      "lineRange": [
+        14,
+        20
+      ],
+      "summary": "Secure persisted int field with string parse/serialize.",
+      "tags": [
+        "storage",
+        "security",
+        "int",
+        "typed"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedFieldDouble",
+      "type": "class",
+      "name": "NSecurePersistedFieldDouble",
+      "filePath": "lib/src/storage/n_secure_persisted_field.dart",
+      "lineRange": [
+        26,
+        32
+      ],
+      "summary": "Secure persisted double field with string parse/serialize.",
+      "tags": [
+        "storage",
+        "security",
+        "double",
+        "typed"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedFieldBool",
+      "type": "class",
+      "name": "NSecurePersistedFieldBool",
+      "filePath": "lib/src/storage/n_secure_persisted_field.dart",
+      "lineRange": [
+        38,
+        41
+      ],
+      "summary": "Secure persisted bool field encoding true as the string 'true'.",
+      "tags": [
+        "storage",
+        "security",
+        "bool",
+        "typed"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedFieldString",
+      "type": "class",
+      "name": "NSecurePersistedFieldString",
+      "filePath": "lib/src/storage/n_secure_persisted_field.dart",
+      "lineRange": [
+        47,
+        50
+      ],
+      "summary": "Secure persisted string field using identity serialize/deserialize.",
+      "tags": [
+        "storage",
+        "security",
+        "string",
+        "typed"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedField",
+      "type": "class",
+      "name": "NSecurePersistedField",
+      "filePath": "lib/src/storage/n_secure_persisted_field.dart",
+      "lineRange": [
+        57,
+        105
+      ],
+      "summary": "Generic encrypted Hive field in n_secure_box; init opens an AES-ciphered box using a secure key.",
+      "tags": [
+        "storage",
+        "security",
+        "hive",
+        "encryption"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:lib/src/storage/storage.dart",
+      "type": "file",
+      "name": "storage.dart",
+      "filePath": "lib/src/storage/storage.dart",
+      "summary": "Barrel exporting unsecured and secure persisted-field APIs.",
+      "tags": [
+        "barrel",
+        "storage",
+        "exports",
+        "entry-point"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/types/fp_types.dart",
+      "type": "file",
+      "name": "fp_types.dart",
+      "filePath": "lib/src/types/fp_types.dart",
+      "summary": "Typedefs specializing Either/TaskEither/Right/Left on NFailure for library-wide functional error handling.",
+      "tags": [
+        "type-definition",
+        "functional",
+        "either",
+        "typedef"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/types/types.dart",
+      "type": "file",
+      "name": "types.dart",
+      "filePath": "lib/src/types/types.dart",
+      "summary": "Barrel re-exporting functional programming type aliases.",
+      "tags": [
+        "barrel",
+        "type-definition",
+        "exports"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/utils/extended_image_utils.dart",
+      "type": "file",
+      "name": "extended_image_utils.dart",
+      "filePath": "lib/src/utils/extended_image_utils.dart",
+      "summary": "Helpers for ExtendedImage load states: ignore errors, shimmer loading placeholders, and conditional ImageProvider selection.",
+      "tags": [
+        "utility",
+        "image",
+        "ui",
+        "extended-image"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/utils/extended_image_utils.dart:ExtendedImageUtils",
+      "type": "class",
+      "name": "ExtendedImageUtils",
+      "filePath": "lib/src/utils/extended_image_utils.dart",
+      "lineRange": [
+        5,
+        40
+      ],
+      "summary": "Static helpers for ExtendedImage load-state widgets and switching between ImageProviders.",
+      "tags": [
+        "utility",
+        "image",
+        "ui",
+        "static"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/utils/fp_utils.dart",
+      "type": "file",
+      "name": "fp_utils.dart",
+      "filePath": "lib/src/utils/fp_utils.dart",
+      "summary": "Small functional helpers to cast dynamics into Either and wrap TaskEither do-notation with NFailure.",
+      "tags": [
+        "utility",
+        "functional",
+        "either",
+        "task-either"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:lib/src/utils/fp_utils.dart:eitherCast",
+      "type": "function",
+      "name": "eitherCast",
+      "filePath": "lib/src/utils/fp_utils.dart",
+      "lineRange": [
+        6,
+        10
+      ],
+      "summary": "Casts a dynamic value to R inside Either, returning left(onFailure()) on type mismatch.",
+      "tags": [
+        "utility",
+        "functional",
+        "cast",
+        "either"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/utils/hooks.dart",
+      "type": "file",
+      "name": "hooks.dart",
+      "filePath": "lib/src/utils/hooks.dart",
+      "summary": "Flutter Hooks utilities for aspect-ratio height, RenderBox size, post-frame callbacks, and a ticking DateTime.",
+      "tags": [
+        "hook",
+        "utility",
+        "flutter-hooks",
+        "layout"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:lib/src/utils/hooks.dart:useAspectRatioHeight",
+      "type": "function",
+      "name": "useAspectRatioHeight",
+      "filePath": "lib/src/utils/hooks.dart",
+      "lineRange": [
+        18,
+        25
+      ],
+      "summary": "Computes widget height from width using a width:height aspect ratio via useRenderBoxSize.",
+      "tags": [
+        "hook",
+        "layout",
+        "aspect-ratio"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:lib/src/utils/hooks.dart:useRenderBoxSize",
+      "type": "function",
+      "name": "useRenderBoxSize",
+      "filePath": "lib/src/utils/hooks.dart",
+      "lineRange": [
+        42,
+        49
+      ],
+      "summary": "Returns the widget RenderBox size after the next frame, or null if unavailable.",
+      "tags": [
+        "hook",
+        "layout",
+        "render-box"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:lib/src/utils/hooks.dart:useOnNextFrame",
+      "type": "function",
+      "name": "useOnNextFrame",
+      "filePath": "lib/src/utils/hooks.dart",
+      "lineRange": [
+        68,
+        73
+      ],
+      "summary": "Schedules a callback with addPostFrameCallback, re-running when optional keys change.",
+      "tags": [
+        "hook",
+        "lifecycle",
+        "post-frame"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:lib/src/utils/hooks.dart:useCurrentDateTime",
+      "type": "function",
+      "name": "useCurrentDateTime",
+      "filePath": "lib/src/utils/hooks.dart",
+      "lineRange": [
+        94,
+        103
+      ],
+      "summary": "Provides a DateTime state that updates on a periodic Timer interval.",
+      "tags": [
+        "hook",
+        "time",
+        "timer"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/utils/image_utils.dart",
+      "type": "file",
+      "name": "image_utils.dart",
+      "filePath": "lib/src/utils/image_utils.dart",
+      "summary": "Image resize/encode helpers, network byte loading, and ImageProvider factory covering URL, asset, file, and memory sources.",
+      "tags": [
+        "utility",
+        "image",
+        "compression",
+        "provider"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:lib/src/utils/image_utils.dart:ImageUtils",
+      "type": "class",
+      "name": "ImageUtils",
+      "filePath": "lib/src/utils/image_utils.dart",
+      "lineRange": [
+        11,
+        122
+      ],
+      "summary": "Static image utilities for compression resize, format encode, network load, and provider selection including mobile file paths.",
+      "tags": [
+        "utility",
+        "image",
+        "static",
+        "compression"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:lib/src/utils/image_utils.dart:_createCommand",
+      "type": "function",
+      "name": "_createCommand",
+      "filePath": "lib/src/utils/image_utils.dart",
+      "lineRange": [
+        124,
+        134
+      ],
+      "summary": "Builds an image package Command from an Image instance, bytes, or file path for encoding pipelines.",
+      "tags": [
+        "utility",
+        "image",
+        "internal"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/utils/list_utils.dart",
+      "type": "file",
+      "name": "list_utils.dart",
+      "filePath": "lib/src/utils/list_utils.dart",
+      "summary": "Filters an iterable of nullable items into a non-null List.",
+      "tags": [
+        "utility",
+        "list",
+        "nullable"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/utils/mobile_only_utils.dart",
+      "type": "file",
+      "name": "mobile_only_utils.dart",
+      "filePath": "lib/src/utils/mobile_only_utils.dart",
+      "summary": "dart:io helpers for File construction and detecting the Flutter test environment; kept separate for web compile safety.",
+      "tags": [
+        "utility",
+        "mobile",
+        "io",
+        "test"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Isolated from web-safe code so dart:io is not imported on web."
+    },
+    {
+      "id": "file:lib/src/utils/n_app.dart",
+      "type": "file",
+      "name": "n_app.dart",
+      "filePath": "lib/src/utils/n_app.dart",
+      "summary": "Platform detection helpers (NApp) and NOS enum, plus a getIt alias to Core.get.",
+      "tags": [
+        "utility",
+        "platform",
+        "di",
+        "enum"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/utils/n_app.dart:NApp",
+      "type": "class",
+      "name": "NApp",
+      "filePath": "lib/src/utils/n_app.dart",
+      "lineRange": [
+        7,
+        32
+      ],
+      "summary": "Static platform checks for Android, iOS, web, desktop, and Fuchsia, plus an NOS os getter.",
+      "tags": [
+        "utility",
+        "platform",
+        "static",
+        "detection"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/utils/n_app.dart:NOS",
+      "type": "class",
+      "name": "NOS",
+      "filePath": "lib/src/utils/n_app.dart",
+      "lineRange": [
+        34,
+        50
+      ],
+      "summary": "Enum of supported OS targets with stringRepresentation for display.",
+      "tags": [
+        "enum",
+        "platform",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/utils/n_silent_image_provider.dart",
+      "type": "file",
+      "name": "n_silent_image_provider.dart",
+      "filePath": "lib/src/utils/n_silent_image_provider.dart",
+      "summary": "ImageProvider wrapper that swallows load failures, serves a transparent placeholder, and caches recent failure keys with TTL.",
+      "tags": [
+        "image",
+        "provider",
+        "error-handling",
+        "resilience"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:lib/src/utils/n_silent_image_provider.dart:NSilentImageProvider",
+      "type": "class",
+      "name": "NSilentImageProvider",
+      "filePath": "lib/src/utils/n_silent_image_provider.dart",
+      "lineRange": [
+        14,
+        256
+      ],
+      "summary": "Delegating ImageProvider that converts load errors into a 1x1 transparent image and tracks failed keys for fallback UI.",
+      "tags": [
+        "image",
+        "provider",
+        "error-handling",
+        "cache"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:lib/src/utils/screen_utils.dart",
+      "type": "file",
+      "name": "screen_utils.dart",
+      "filePath": "lib/src/utils/screen_utils.dart",
+      "summary": "Helpers to lock device orientation to portrait or landscape via SystemChrome.",
+      "tags": [
+        "utility",
+        "screen",
+        "orientation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/utils/screen_utils.dart:ScreenUtils",
+      "type": "class",
+      "name": "ScreenUtils",
+      "filePath": "lib/src/utils/screen_utils.dart",
+      "lineRange": [
+        4,
+        12
+      ],
+      "summary": "Static methods locking preferred orientations to portrait or landscape.",
+      "tags": [
+        "utility",
+        "screen",
+        "orientation",
+        "static"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/utils/stream_utils.dart",
+      "type": "file",
+      "name": "stream_utils.dart",
+      "filePath": "lib/src/utils/stream_utils.dart",
+      "summary": "Converts a functional Task into a broadcast Stream that yields its result.",
+      "tags": [
+        "utility",
+        "stream",
+        "task",
+        "functional"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/utils/url_utils.dart",
+      "type": "file",
+      "name": "url_utils.dart",
+      "filePath": "lib/src/utils/url_utils.dart",
+      "summary": "Extracts a host-style base URL by stripping scheme and path from a URL string.",
+      "tags": [
+        "utility",
+        "url",
+        "parsing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/utils/utils.dart",
+      "type": "file",
+      "name": "utils.dart",
+      "filePath": "lib/src/utils/utils.dart",
+      "summary": "Barrel re-exporting image, hooks, platform, stream, URL, and widget utility modules.",
+      "tags": [
+        "barrel",
+        "utility",
+        "exports",
+        "entry-point"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/utils/widget_utils.dart",
+      "type": "file",
+      "name": "widget_utils.dart",
+      "filePath": "lib/src/utils/widget_utils.dart",
+      "summary": "Clears focus from the current FocusScope, swallowing errors via runCatching.",
+      "tags": [
+        "utility",
+        "widget",
+        "focus"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/widgets/date_form_field.dart",
+      "type": "file",
+      "name": "date_form_field.dart",
+      "filePath": "lib/src/widgets/date_form_field.dart",
+      "summary": "Read-only date form field that opens Flutter's showDatePicker on tap and displays the selected value via TextFormFieldButton.",
+      "tags": [
+        "component",
+        "form-field",
+        "date-picker",
+        "widget"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:lib/src/widgets/date_form_field.dart:DateFormField",
+      "type": "class",
+      "name": "DateFormField",
+      "filePath": "lib/src/widgets/date_form_field.dart",
+      "lineRange": [
+        6,
+        64
+      ],
+      "summary": "StatelessWidget date input that formats a DateTime value, validates the DateTime (not the string), and commits picker results through onChanged.",
+      "tags": [
+        "component",
+        "form-field",
+        "date-picker",
+        "stateless-widget"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:lib/src/widgets/date_time_form_field.dart",
+      "type": "file",
+      "name": "date_time_form_field.dart",
+      "filePath": "lib/src/widgets/date_time_form_field.dart",
+      "summary": "Combined date-and-time form field using OmniDateTimePicker, with API parity fields matching DateFormField.",
+      "tags": [
+        "component",
+        "form-field",
+        "datetime-picker",
+        "widget"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Uses omni_datetime_picker in 24-hour mode without seconds; copies picked calendar/time onto DateTime.now()."
+    },
+    {
+      "id": "class:lib/src/widgets/date_time_form_field.dart:DateTimeFormField",
+      "type": "class",
+      "name": "DateTimeFormField",
+      "filePath": "lib/src/widgets/date_time_form_field.dart",
+      "lineRange": [
+        21,
+        116
+      ],
+      "summary": "StatelessWidget that shows a formatted DateTime and opens showOmniDateTimePicker, then normalizes the selection onto the current clock with seconds cleared.",
+      "tags": [
+        "component",
+        "form-field",
+        "datetime-picker",
+        "stateless-widget"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:lib/src/widgets/dispose_aware.dart",
+      "type": "file",
+      "name": "dispose_aware.dart",
+      "filePath": "lib/src/widgets/dispose_aware.dart",
+      "summary": "Thin StatefulWidget wrapper that invokes a callback when the widget subtree is disposed.",
+      "tags": [
+        "component",
+        "lifecycle",
+        "dispose",
+        "widget"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/widgets/dispose_aware.dart:DisposeAware",
+      "type": "class",
+      "name": "DisposeAware",
+      "filePath": "lib/src/widgets/dispose_aware.dart",
+      "lineRange": [
+        3,
+        12
+      ],
+      "summary": "Public StatefulWidget that holds an onDispose callback and a child to render unchanged.",
+      "tags": [
+        "component",
+        "lifecycle",
+        "stateful-widget"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/widgets/dispose_aware.dart:_DisposeAwareState",
+      "type": "class",
+      "name": "_DisposeAwareState",
+      "filePath": "lib/src/widgets/dispose_aware.dart",
+      "lineRange": [
+        14,
+        23
+      ],
+      "summary": "Private State that returns the child in build and runs widget.onDispose before super.dispose.",
+      "tags": [
+        "component",
+        "lifecycle",
+        "state-class"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/widgets/item_select_form_field.dart",
+      "type": "file",
+      "name": "item_select_form_field.dart",
+      "filePath": "lib/src/widgets/item_select_form_field.dart",
+      "summary": "Form field that opens a fullscreen selection dialog and surfaces the chosen label through TextFormFieldButton.",
+      "tags": [
+        "component",
+        "form-field",
+        "selection",
+        "dialog"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/widgets/item_select_form_field.dart:ItemSelectFormField",
+      "type": "class",
+      "name": "ItemSelectFormField",
+      "filePath": "lib/src/widgets/item_select_form_field.dart",
+      "lineRange": [
+        6,
+        51
+      ],
+      "summary": "StatelessWidget that launches showSelectionFullscreenDialog with item builders and forwards the result via onDialogResult.",
+      "tags": [
+        "component",
+        "form-field",
+        "selection",
+        "stateless-widget"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/widgets/n_bottom_nav.dart",
+      "type": "file",
+      "name": "n_bottom_nav.dart",
+      "filePath": "lib/src/widgets/n_bottom_nav.dart",
+      "summary": "Material 3 NavigationBar wrapper with badge-aware destinations and a companion item model.",
+      "tags": [
+        "component",
+        "navigation",
+        "bottom-nav",
+        "widget"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:lib/src/widgets/n_bottom_nav.dart:NBottomNav",
+      "type": "class",
+      "name": "NBottomNav",
+      "filePath": "lib/src/widgets/n_bottom_nav.dart",
+      "lineRange": [
+        4,
+        50
+      ],
+      "summary": "StatelessWidget that maps NBottomNavItem entries to NavigationDestination widgets with optional Badge overlays.",
+      "tags": [
+        "component",
+        "navigation",
+        "bottom-nav",
+        "stateless-widget"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:lib/src/widgets/n_bottom_nav.dart:NBottomNavItem",
+      "type": "class",
+      "name": "NBottomNavItem",
+      "filePath": "lib/src/widgets/n_bottom_nav.dart",
+      "lineRange": [
+        52,
+        73
+      ],
+      "summary": "Immutable model for a bottom-nav destination: title, icons, badge content, optional onTap, and optional childBuilder override.",
+      "tags": [
+        "data-model",
+        "navigation",
+        "bottom-nav"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/widgets/n_image.dart",
+      "type": "file",
+      "name": "n_image.dart",
+      "filePath": "lib/src/widgets/n_image.dart",
+      "summary": "Unified image widget resolving network, asset, memory, or custom providers through ExtendedImage with shimmer failure fallbacks.",
+      "tags": [
+        "component",
+        "image",
+        "extended-image",
+        "widget"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:lib/src/widgets/n_image.dart:NImage",
+      "type": "class",
+      "name": "NImage",
+      "filePath": "lib/src/widgets/n_image.dart",
+      "lineRange": [
+        9,
+        79
+      ],
+      "summary": "StatelessWidget that picks an ImageProvider from url/asset/bytes/imageProvider, wraps it in NSilentImageProvider, and renders ExtendedImage or an empty SizedBox.",
+      "tags": [
+        "component",
+        "image",
+        "extended-image",
+        "stateless-widget"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Uses Dart 3 pattern matching (switch/case) to select providers and render."
+    },
+    {
+      "id": "file:lib/src/widgets/n_provider.dart",
+      "type": "file",
+      "name": "n_provider.dart",
+      "filePath": "lib/src/widgets/n_provider.dart",
+      "summary": "Hook-based scoped instance provider that memoizes a factory result and disposes Disposable instances or a custom dispose callback.",
+      "tags": [
+        "component",
+        "provider",
+        "hooks",
+        "lifecycle"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/widgets/n_provider.dart:NProvider",
+      "type": "class",
+      "name": "NProvider",
+      "filePath": "lib/src/widgets/n_provider.dart",
+      "lineRange": [
+        6,
+        35
+      ],
+      "summary": "Generic HookWidget that useMemoized-creates T, cleans up via Disposable.onDispose and/or dispose, then builds with the instance.",
+      "tags": [
+        "component",
+        "provider",
+        "hooks",
+        "generic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/widgets/text_form_field_button.dart",
+      "type": "file",
+      "name": "text_form_field_button.dart",
+      "filePath": "lib/src/widgets/text_form_field_button.dart",
+      "summary": "Shared tappable TextFormField shell used by date/time/select fields: syncs display text via hooks and absorbs pointer input into InkWell.",
+      "tags": [
+        "component",
+        "form-field",
+        "hooks",
+        "widget"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/widgets/text_form_field_button.dart:TextFormFieldButton",
+      "type": "class",
+      "name": "TextFormFieldButton",
+      "filePath": "lib/src/widgets/text_form_field_button.dart",
+      "lineRange": [
+        4,
+        50
+      ],
+      "summary": "HookWidget that keeps a TextEditingController in sync with value and presents a read-only TextFormField (or custom fieldBuilder) inside InkWell.",
+      "tags": [
+        "component",
+        "form-field",
+        "hooks",
+        "reusable"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/widgets/time_form_field.dart",
+      "type": "file",
+      "name": "time_form_field.dart",
+      "filePath": "lib/src/widgets/time_form_field.dart",
+      "summary": "Read-only time form field that opens showTimePicker and writes hour/minute onto DateTime.now via TextFormFieldButton.",
+      "tags": [
+        "component",
+        "form-field",
+        "time-picker",
+        "widget"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:lib/src/widgets/time_form_field.dart:TimeFormField",
+      "type": "class",
+      "name": "TimeFormField",
+      "filePath": "lib/src/widgets/time_form_field.dart",
+      "lineRange": [
+        6,
+        53
+      ],
+      "summary": "StatelessWidget time input that formats a DateTime value, validates the DateTime, and applies picker results with seconds cleared.",
+      "tags": [
+        "component",
+        "form-field",
+        "time-picker",
+        "stateless-widget"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:lib/src/widgets/widgets.dart",
+      "type": "file",
+      "name": "widgets.dart",
+      "filePath": "lib/src/widgets/widgets.dart",
+      "summary": "Barrel export for the widgets module, re-exporting all public form fields, navigation, image, and provider widgets.",
+      "tags": [
+        "barrel",
+        "exports",
+        "entry-point",
+        "widgets"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "pipeline:.github/workflows/build.yml",
+      "target": "file:build.dart",
+      "type": "triggers",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:.agents/skills/flutter-dart/SKILL.md",
+      "target": "document:.agents/skills/flutter-dart/project.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/skills/flutter-dart/SKILL.md",
+      "target": "document:.agents/skills/flutter-dart/widgets.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/skills/flutter-dart/SKILL.md",
+      "target": "document:.agents/skills/flutter-dart/storage.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/skills/flutter-dart/SKILL.md",
+      "target": "document:.agents/skills/flutter-dart/codegen.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/skills/flutter-dart/SKILL.md",
+      "target": "document:.agents/rules/README.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/skills/flutter-dart/project.md",
+      "target": "file:lib/flutter_resources2.dart",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/skills/flutter-dart/project.md",
+      "target": "file:build.dart",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/skills/flutter-dart/project.md",
+      "target": "config:pubspec.yaml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/skills/flutter-dart/project.md",
+      "target": "config:analysis_options.yaml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/skills/flutter-dart/storage.md",
+      "target": "file:lib/src/storage/storage.dart",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/skills/flutter-dart/widgets.md",
+      "target": "file:lib/src/widgets/widgets.dart",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/skills/flutter-dart/codegen.md",
+      "target": "file:build.dart",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/skills/flutter-dart/codegen.md",
+      "target": "file:lib/src/chatresources/chat_message.dart",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "document:.agents/skills/flutter-dart/SKILL.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "document:.agents/skills/git-commit/SKILL.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "document:.agents/skills/edit-safety/SKILL.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "file:lib/flutter_resources2.dart",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "pipeline:.github/workflows/build.yml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:analysis_options.yaml",
+      "target": "file:lib/flutter_resources2.dart",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:pubspec.yaml",
+      "target": "file:lib/flutter_resources2.dart",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:pubspec.yaml",
+      "target": "file:build.dart",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:build.dart",
+      "target": "function:build.dart:runCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:build.dart",
+      "target": "function:build.dart:runCommand",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:build.dart",
+      "target": "function:build.dart:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:build.dart",
+      "target": "function:build.dart:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/adapters/wrappers.dart",
+      "target": "function:lib/src/adapters/wrappers.dart:redirectToStore",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/adapters/wrappers.dart",
+      "target": "function:lib/src/adapters/wrappers.dart:redirectToStore",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/adapters/wrappers.dart",
+      "target": "function:lib/src/adapters/wrappers.dart:launchUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/adapters/wrappers.dart",
+      "target": "function:lib/src/adapters/wrappers.dart:launchUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/adapters/wrappers.dart",
+      "target": "function:lib/src/adapters/wrappers.dart:share",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/adapters/wrappers.dart",
+      "target": "function:lib/src/adapters/wrappers.dart:share",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/animationresources/n_transitions.dart",
+      "target": "class:lib/src/animationresources/n_transitions.dart:NTransitions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/animationresources/n_transitions.dart",
+      "target": "class:lib/src/animationresources/n_transitions.dart:NTransitions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/chatresources/chat_bubble.dart",
+      "target": "class:lib/src/chatresources/chat_bubble.dart:ChatBubble",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/chatresources/chat_bubble.dart",
+      "target": "class:lib/src/chatresources/chat_bubble.dart:ChatBubble",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/chatresources/chat_message.dart",
+      "target": "class:lib/src/chatresources/chat_message.dart:ChatMessage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/chatresources/chat_message.dart",
+      "target": "class:lib/src/chatresources/chat_message.dart:ChatMessage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/flutter_resources2_mobile_only.dart",
+      "target": "file:lib/src/utils/mobile_only_utils.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/flutter_resources2.dart",
+      "target": "file:lib/src/adapters/adapters.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/flutter_resources2.dart",
+      "target": "file:lib/src/animationresources/animation_resources.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/flutter_resources2.dart",
+      "target": "file:lib/src/chatresources/chat_resources.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/flutter_resources2.dart",
+      "target": "file:lib/src/classes/classes.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/flutter_resources2.dart",
+      "target": "file:lib/src/dialogs/dialogs.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/flutter_resources2.dart",
+      "target": "file:lib/src/extensions/extensions.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/flutter_resources2.dart",
+      "target": "file:lib/src/failure/failure.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/flutter_resources2.dart",
+      "target": "file:lib/src/htmlrenderresources/html_render_resources.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/flutter_resources2.dart",
+      "target": "file:lib/src/listresources/list_resources.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/flutter_resources2.dart",
+      "target": "file:lib/src/search_resources/search_resources.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/flutter_resources2.dart",
+      "target": "file:lib/src/storage/storage.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/flutter_resources2.dart",
+      "target": "file:lib/src/types/types.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/flutter_resources2.dart",
+      "target": "file:lib/src/utils/utils.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/flutter_resources2.dart",
+      "target": "file:lib/src/widgets/widgets.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/adapters/adapters.dart",
+      "target": "file:lib/src/adapters/wrappers.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/animationresources/animation_resources.dart",
+      "target": "file:lib/src/animationresources/n_transitions.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/chatresources/chat_bubble.dart",
+      "target": "file:lib/src/chatresources/chat_message.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/chatresources/chat_message.dart",
+      "target": "file:lib/src/chatresources/chat_message.freezed.dart",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:.agents/rules/flutter-dart.mdc",
+      "target": "document:.agents/rules/flutter/dart.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/rules/flutter-generated.mdc",
+      "target": "document:.agents/rules/flutter/generated.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/rules/README.md",
+      "target": "document:.agents/rules/flutter-dart.mdc",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/rules/README.md",
+      "target": "document:.agents/rules/flutter-generated.mdc",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/rules/README.md",
+      "target": "document:.cursor/README.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.cursor/README.md",
+      "target": "document:.agents/rules/README.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.aiassistant/rules/flutter_rules.md",
+      "target": "document:.aiassistant/rules/general_rules.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.aiassistant/rules/general_rules.md",
+      "target": "document:.agents/skills/edit-safety/SKILL.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.aiassistant/rules/general_rules.md",
+      "target": "document:.agents/skills/git-commit/SKILL.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.aiassistant/rules/general_rules.md",
+      "target": "document:.agents/skills/persistent-state/SKILL.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.aiassistant/rules/general_rules.md",
+      "target": "document:.agents/skills/planning-workflow/SKILL.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/rules/flutter-dart.mdc",
+      "target": "file:lib/flutter_resources2.dart",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/rules/flutter/dart.md",
+      "target": "file:lib/flutter_resources2.dart",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/rules/flutter-generated.mdc",
+      "target": "file:build.dart",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/rules/flutter/generated.md",
+      "target": "file:build.dart",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/rules/flutter-generated.mdc",
+      "target": "file:lib/src/chatresources/chat_message.freezed.dart",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.agents/rules/flutter/generated.md",
+      "target": "file:lib/src/chatresources/chat_message.freezed.dart",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:.ua/config.json",
+      "target": "file:.ua/.understandignore",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:.ua/.understandignore",
+      "target": "config:.ua/config.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:lib/src/chatresources/chat.dart",
+      "target": "class:lib/src/chatresources/chat.dart:Chat",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/chatresources/chat.dart",
+      "target": "class:lib/src/chatresources/chat.dart:Chat",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/classes/disposable.dart",
+      "target": "class:lib/src/classes/disposable.dart:Disposable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/classes/disposable.dart",
+      "target": "class:lib/src/classes/disposable.dart:Disposable",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/classes/n_messenger.dart",
+      "target": "class:lib/src/classes/n_messenger.dart:NMessenger",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/classes/n_messenger.dart",
+      "target": "class:lib/src/classes/n_messenger.dart:NMessenger",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/classes/n_wrapper.dart",
+      "target": "class:lib/src/classes/n_wrapper.dart:NWrapper",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/classes/n_wrapper.dart",
+      "target": "class:lib/src/classes/n_wrapper.dart:NWrapper",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/dialogs/n_selection_dialog.dart",
+      "target": "class:lib/src/dialogs/n_selection_dialog.dart:NSelectionPage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/dialogs/n_selection_dialog.dart",
+      "target": "class:lib/src/dialogs/n_selection_dialog.dart:NSelectionPage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/extensions/color_extensions.dart",
+      "target": "class:lib/src/extensions/color_extensions.dart:NColorExtensions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/extensions/color_extensions.dart",
+      "target": "class:lib/src/extensions/color_extensions.dart:NColorExtensions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/extensions/context_extensions.dart",
+      "target": "class:lib/src/extensions/context_extensions.dart:NContextExtensions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/extensions/context_extensions.dart",
+      "target": "class:lib/src/extensions/context_extensions.dart:NContextExtensions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/extensions/function_extensions.dart",
+      "target": "class:lib/src/extensions/function_extensions.dart:NUnaryExtensions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/extensions/function_extensions.dart",
+      "target": "class:lib/src/extensions/function_extensions.dart:NUnaryExtensions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/extensions/function_extensions.dart",
+      "target": "class:lib/src/extensions/function_extensions.dart:NCurryExtension2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/extensions/function_extensions.dart",
+      "target": "class:lib/src/extensions/function_extensions.dart:NCurryExtension2",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/extensions/function_extensions.dart",
+      "target": "class:lib/src/extensions/function_extensions.dart:NCurryExtension3",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/extensions/function_extensions.dart",
+      "target": "class:lib/src/extensions/function_extensions.dart:NCurryExtension3",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/extensions/iterable_extensions.dart",
+      "target": "class:lib/src/extensions/iterable_extensions.dart:NIterableExtensions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/extensions/iterable_extensions.dart",
+      "target": "class:lib/src/extensions/iterable_extensions.dart:NIterableExtensions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/extensions/iterable_extensions.dart",
+      "target": "class:lib/src/extensions/iterable_extensions.dart:NNullableIterableExtensions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/extensions/iterable_extensions.dart",
+      "target": "class:lib/src/extensions/iterable_extensions.dart:NNullableIterableExtensions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/extensions/map_extensions.dart",
+      "target": "class:lib/src/extensions/map_extensions.dart:NMapExtensions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/extensions/map_extensions.dart",
+      "target": "class:lib/src/extensions/map_extensions.dart:NMapExtensions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/extensions/string_extensions.dart",
+      "target": "class:lib/src/extensions/string_extensions.dart:NStringExtensions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/extensions/string_extensions.dart",
+      "target": "class:lib/src/extensions/string_extensions.dart:NStringExtensions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/extensions/time_extensions.dart",
+      "target": "class:lib/src/extensions/time_extensions.dart:NDurationExtensions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/extensions/time_extensions.dart",
+      "target": "class:lib/src/extensions/time_extensions.dart:NDurationExtensions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/extensions/widget_extensions.dart",
+      "target": "class:lib/src/extensions/widget_extensions.dart:NWidgetExtensions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/extensions/widget_extensions.dart",
+      "target": "class:lib/src/extensions/widget_extensions.dart:NWidgetExtensions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/failure/n_exception.dart",
+      "target": "class:lib/src/failure/n_exception.dart:NException",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/failure/n_exception.dart",
+      "target": "class:lib/src/failure/n_exception.dart:NException",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/failure/n_failure.dart",
+      "target": "class:lib/src/failure/n_failure.dart:NFailure",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/failure/n_failure.dart",
+      "target": "class:lib/src/failure/n_failure.dart:NFailure",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/failure/n_failure.dart",
+      "target": "class:lib/src/failure/n_failure.dart:NOperationCancelledFailure",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/failure/n_failure.dart",
+      "target": "class:lib/src/failure/n_failure.dart:NOperationCancelledFailure",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/htmlrenderresources/extensions.dart",
+      "target": "class:lib/src/htmlrenderresources/extensions.dart:HtmlRenderExtension",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/htmlrenderresources/extensions.dart",
+      "target": "class:lib/src/htmlrenderresources/extensions.dart:HtmlRenderExtension",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/htmlrenderresources/html_render.dart",
+      "target": "class:lib/src/htmlrenderresources/html_render.dart:HtmlRender",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/htmlrenderresources/html_render.dart",
+      "target": "class:lib/src/htmlrenderresources/html_render.dart:HtmlRender",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/dialogs/n_selection_dialog.dart",
+      "target": "function:lib/src/dialogs/n_selection_dialog.dart:showSelectionFullscreenDialog",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/dialogs/n_selection_dialog.dart",
+      "target": "function:lib/src/dialogs/n_selection_dialog.dart:showSelectionFullscreenDialog",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/chatresources/chat_resources.dart",
+      "target": "file:lib/src/chatresources/chat.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/chatresources/chat_resources.dart",
+      "target": "file:lib/src/chatresources/chat_bubble.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/chatresources/chat_resources.dart",
+      "target": "file:lib/src/chatresources/chat_message.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/chatresources/chat.dart",
+      "target": "file:lib/src/listresources/list_resources.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/chatresources/chat.dart",
+      "target": "file:lib/src/chatresources/chat_bubble.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/chatresources/chat.dart",
+      "target": "file:lib/src/chatresources/chat_message.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/classes/classes.dart",
+      "target": "file:lib/src/classes/disposable.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/classes/classes.dart",
+      "target": "file:lib/src/classes/n_messenger.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/classes/classes.dart",
+      "target": "file:lib/src/classes/n_wrapper.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/dialogs/dialogs.dart",
+      "target": "file:lib/src/dialogs/n_selection_dialog.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/dialogs/n_selection_dialog.dart",
+      "target": "file:lib/src/listresources/list_resources.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/extensions/extensions.dart",
+      "target": "file:lib/src/extensions/color_extensions.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/extensions/extensions.dart",
+      "target": "file:lib/src/extensions/context_extensions.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/extensions/extensions.dart",
+      "target": "file:lib/src/extensions/function_extensions.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/extensions/extensions.dart",
+      "target": "file:lib/src/extensions/iterable_extensions.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/extensions/extensions.dart",
+      "target": "file:lib/src/extensions/map_extensions.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/extensions/extensions.dart",
+      "target": "file:lib/src/extensions/string_extensions.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/extensions/extensions.dart",
+      "target": "file:lib/src/extensions/time_extensions.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/extensions/extensions.dart",
+      "target": "file:lib/src/extensions/widget_extensions.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/failure/failure.dart",
+      "target": "file:lib/src/failure/n_exception.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/failure/failure.dart",
+      "target": "file:lib/src/failure/n_failure.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/failure/n_failure.dart",
+      "target": "file:lib/src/failure/n_exception.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/htmlrenderresources/html_render_resources.dart",
+      "target": "file:lib/src/htmlrenderresources/extensions.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/htmlrenderresources/html_render_resources.dart",
+      "target": "file:lib/src/htmlrenderresources/html_render.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/htmlrenderresources/html_render.dart",
+      "target": "file:lib/src/adapters/adapters.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/htmlrenderresources/html_render.dart",
+      "target": "file:lib/src/htmlrenderresources/extensions.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/listresources/list_resources.dart",
+      "target": "file:lib/src/listresources/n_list_view.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/listresources/list_resources.dart",
+      "target": "file:lib/src/listresources/n_sliver_list.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:lib/src/failure/n_failure.dart:NFailure",
+      "target": "class:lib/src/failure/n_exception.dart:NException",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:lib/src/failure/n_failure.dart:NOperationCancelledFailure",
+      "target": "class:lib/src/failure/n_failure.dart:NFailure",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "function:lib/src/dialogs/n_selection_dialog.dart:showSelectionFullscreenDialog",
+      "target": "class:lib/src/dialogs/n_selection_dialog.dart:NSelectionPage",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:lib/src/chatresources/chat.dart:Chat",
+      "target": "class:lib/src/chatresources/chat_bubble.dart:ChatBubble",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:lib/src/htmlrenderresources/html_render.dart:HtmlRender",
+      "target": "class:lib/src/htmlrenderresources/extensions.dart:HtmlRenderExtension",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:lib/src/search_resources/n_basic_search_delegate.dart",
+      "target": "class:lib/src/search_resources/n_basic_search_delegate.dart:NBasicSearchDelegate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/search_resources/n_basic_search_delegate.dart",
+      "target": "class:lib/src/search_resources/n_basic_search_delegate.dart:NBasicSearchDelegate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/search_resources/n_basic_search_delegate.dart",
+      "target": "function:lib/src/search_resources/n_basic_search_delegate.dart:_groupedEntries",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/search_resources/n_basic_search_delegate.dart",
+      "target": "file:lib/src/listresources/list_resources.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/search_resources/n_basic_search_delegate.dart",
+      "target": "file:lib/src/search_resources/n_search_suggestion.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/search_resources/n_input_search_bar.dart",
+      "target": "class:lib/src/search_resources/n_input_search_bar.dart:NInputSearchBar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/search_resources/n_input_search_bar.dart",
+      "target": "class:lib/src/search_resources/n_input_search_bar.dart:NInputSearchBar",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/search_resources/n_input_search_bar.dart",
+      "target": "file:lib/src/search_resources/n_basic_search_delegate.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/search_resources/n_input_search_bar.dart",
+      "target": "file:lib/src/search_resources/n_search_suggestion.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:lib/src/search_resources/n_input_search_bar.dart:NInputSearchBar",
+      "target": "class:lib/src/search_resources/n_basic_search_delegate.dart:NBasicSearchDelegate",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/search_resources/n_search_suggestion.dart",
+      "target": "class:lib/src/search_resources/n_search_suggestion.dart:NSearchSuggestion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/search_resources/n_search_suggestion.dart",
+      "target": "class:lib/src/search_resources/n_search_suggestion.dart:NSearchSuggestion",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/search_resources/n_search_suggestion.dart",
+      "target": "file:lib/src/search_resources/n_search_suggestion.freezed.dart",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:lib/src/search_resources/search_resources.dart",
+      "target": "file:lib/src/search_resources/n_basic_search_delegate.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/search_resources/search_resources.dart",
+      "target": "file:lib/src/search_resources/n_input_search_bar.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/search_resources/search_resources.dart",
+      "target": "file:lib/src/search_resources/n_search_suggestion.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/storage/n_base_persisted_field.dart",
+      "target": "class:lib/src/storage/n_base_persisted_field.dart:NBasePersistedField",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/storage/n_base_persisted_field.dart",
+      "target": "class:lib/src/storage/n_base_persisted_field.dart:NBasePersistedField",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/storage/n_persisted_field.dart",
+      "target": "class:lib/src/storage/n_persisted_field.dart:NPersistedFieldInt",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/storage/n_persisted_field.dart",
+      "target": "class:lib/src/storage/n_persisted_field.dart:NPersistedFieldInt",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/storage/n_persisted_field.dart",
+      "target": "class:lib/src/storage/n_persisted_field.dart:NPersistedFieldDouble",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/storage/n_persisted_field.dart",
+      "target": "class:lib/src/storage/n_persisted_field.dart:NPersistedFieldDouble",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/storage/n_persisted_field.dart",
+      "target": "class:lib/src/storage/n_persisted_field.dart:NPersistedFieldBool",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/storage/n_persisted_field.dart",
+      "target": "class:lib/src/storage/n_persisted_field.dart:NPersistedFieldBool",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/storage/n_persisted_field.dart",
+      "target": "class:lib/src/storage/n_persisted_field.dart:NPersistedFieldString",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/storage/n_persisted_field.dart",
+      "target": "class:lib/src/storage/n_persisted_field.dart:NPersistedFieldString",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/storage/n_persisted_field.dart",
+      "target": "class:lib/src/storage/n_persisted_field.dart:NPersistedField",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/storage/n_persisted_field.dart",
+      "target": "class:lib/src/storage/n_persisted_field.dart:NPersistedField",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:lib/src/storage/n_persisted_field.dart:NPersistedField",
+      "target": "class:lib/src/storage/n_base_persisted_field.dart:NBasePersistedField",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:lib/src/storage/n_persisted_field.dart:NPersistedFieldInt",
+      "target": "class:lib/src/storage/n_persisted_field.dart:NPersistedField",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:lib/src/storage/n_persisted_field.dart:NPersistedFieldDouble",
+      "target": "class:lib/src/storage/n_persisted_field.dart:NPersistedField",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:lib/src/storage/n_persisted_field.dart:NPersistedFieldBool",
+      "target": "class:lib/src/storage/n_persisted_field.dart:NPersistedField",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:lib/src/storage/n_persisted_field.dart:NPersistedFieldString",
+      "target": "class:lib/src/storage/n_persisted_field.dart:NPersistedField",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:lib/src/storage/n_persisted_field.dart",
+      "target": "file:lib/src/storage/n_base_persisted_field.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/storage/n_secure_persisted_field.dart",
+      "target": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedFieldInt",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/storage/n_secure_persisted_field.dart",
+      "target": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedFieldInt",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/storage/n_secure_persisted_field.dart",
+      "target": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedFieldDouble",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/storage/n_secure_persisted_field.dart",
+      "target": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedFieldDouble",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/storage/n_secure_persisted_field.dart",
+      "target": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedFieldBool",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/storage/n_secure_persisted_field.dart",
+      "target": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedFieldBool",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/storage/n_secure_persisted_field.dart",
+      "target": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedFieldString",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/storage/n_secure_persisted_field.dart",
+      "target": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedFieldString",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/storage/n_secure_persisted_field.dart",
+      "target": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedField",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/storage/n_secure_persisted_field.dart",
+      "target": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedField",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedField",
+      "target": "class:lib/src/storage/n_base_persisted_field.dart:NBasePersistedField",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedFieldInt",
+      "target": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedField",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedFieldDouble",
+      "target": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedField",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedFieldBool",
+      "target": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedField",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedFieldString",
+      "target": "class:lib/src/storage/n_secure_persisted_field.dart:NSecurePersistedField",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:lib/src/storage/n_secure_persisted_field.dart",
+      "target": "file:lib/src/storage/n_base_persisted_field.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/storage/storage.dart",
+      "target": "file:lib/src/storage/n_persisted_field.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/storage/storage.dart",
+      "target": "file:lib/src/storage/n_secure_persisted_field.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/types/fp_types.dart",
+      "target": "file:lib/src/failure/failure.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/types/types.dart",
+      "target": "file:lib/src/types/fp_types.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/utils/extended_image_utils.dart",
+      "target": "class:lib/src/utils/extended_image_utils.dart:ExtendedImageUtils",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/utils/extended_image_utils.dart",
+      "target": "class:lib/src/utils/extended_image_utils.dart:ExtendedImageUtils",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/utils/fp_utils.dart",
+      "target": "function:lib/src/utils/fp_utils.dart:eitherCast",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/utils/fp_utils.dart",
+      "target": "function:lib/src/utils/fp_utils.dart:eitherCast",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/utils/fp_utils.dart",
+      "target": "file:lib/src/failure/failure.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/utils/fp_utils.dart",
+      "target": "file:lib/src/types/types.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/utils/hooks.dart",
+      "target": "function:lib/src/utils/hooks.dart:useAspectRatioHeight",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/utils/hooks.dart",
+      "target": "function:lib/src/utils/hooks.dart:useAspectRatioHeight",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/utils/hooks.dart",
+      "target": "function:lib/src/utils/hooks.dart:useRenderBoxSize",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/utils/hooks.dart",
+      "target": "function:lib/src/utils/hooks.dart:useRenderBoxSize",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/utils/hooks.dart",
+      "target": "function:lib/src/utils/hooks.dart:useOnNextFrame",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/utils/hooks.dart",
+      "target": "function:lib/src/utils/hooks.dart:useOnNextFrame",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/utils/hooks.dart",
+      "target": "function:lib/src/utils/hooks.dart:useCurrentDateTime",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/utils/hooks.dart",
+      "target": "function:lib/src/utils/hooks.dart:useCurrentDateTime",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:lib/src/utils/hooks.dart:useAspectRatioHeight",
+      "target": "function:lib/src/utils/hooks.dart:useRenderBoxSize",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/utils/image_utils.dart",
+      "target": "class:lib/src/utils/image_utils.dart:ImageUtils",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/utils/image_utils.dart",
+      "target": "class:lib/src/utils/image_utils.dart:ImageUtils",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/utils/image_utils.dart",
+      "target": "function:lib/src/utils/image_utils.dart:_createCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/utils/image_utils.dart",
+      "target": "file:lib/src/utils/mobile_only_utils.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:lib/src/utils/image_utils.dart:ImageUtils",
+      "target": "file:lib/src/utils/mobile_only_utils.dart",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/utils/n_app.dart",
+      "target": "class:lib/src/utils/n_app.dart:NApp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/utils/n_app.dart",
+      "target": "class:lib/src/utils/n_app.dart:NApp",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/utils/n_app.dart",
+      "target": "class:lib/src/utils/n_app.dart:NOS",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/utils/n_app.dart",
+      "target": "class:lib/src/utils/n_app.dart:NOS",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/utils/n_silent_image_provider.dart",
+      "target": "class:lib/src/utils/n_silent_image_provider.dart:NSilentImageProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/utils/n_silent_image_provider.dart",
+      "target": "class:lib/src/utils/n_silent_image_provider.dart:NSilentImageProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/utils/screen_utils.dart",
+      "target": "class:lib/src/utils/screen_utils.dart:ScreenUtils",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/utils/screen_utils.dart",
+      "target": "class:lib/src/utils/screen_utils.dart:ScreenUtils",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/utils/utils.dart",
+      "target": "file:lib/src/utils/extended_image_utils.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/utils/utils.dart",
+      "target": "file:lib/src/utils/n_silent_image_provider.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/utils/utils.dart",
+      "target": "file:lib/src/utils/fp_utils.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/utils/utils.dart",
+      "target": "file:lib/src/utils/hooks.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/utils/utils.dart",
+      "target": "file:lib/src/utils/image_utils.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/utils/utils.dart",
+      "target": "file:lib/src/utils/list_utils.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/utils/utils.dart",
+      "target": "file:lib/src/utils/n_app.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/utils/utils.dart",
+      "target": "file:lib/src/utils/screen_utils.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/utils/utils.dart",
+      "target": "file:lib/src/utils/stream_utils.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/utils/utils.dart",
+      "target": "file:lib/src/utils/url_utils.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/utils/utils.dart",
+      "target": "file:lib/src/utils/widget_utils.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/widgets/date_form_field.dart",
+      "target": "class:lib/src/widgets/date_form_field.dart:DateFormField",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/widgets/date_form_field.dart",
+      "target": "class:lib/src/widgets/date_form_field.dart:DateFormField",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/widgets/date_form_field.dart",
+      "target": "file:lib/src/widgets/text_form_field_button.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:lib/src/widgets/date_form_field.dart:DateFormField",
+      "target": "class:lib/src/widgets/text_form_field_button.dart:TextFormFieldButton",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/widgets/date_time_form_field.dart",
+      "target": "class:lib/src/widgets/date_time_form_field.dart:DateTimeFormField",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/widgets/date_time_form_field.dart",
+      "target": "class:lib/src/widgets/date_time_form_field.dart:DateTimeFormField",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/widgets/date_time_form_field.dart",
+      "target": "file:lib/src/widgets/text_form_field_button.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:lib/src/widgets/date_time_form_field.dart:DateTimeFormField",
+      "target": "class:lib/src/widgets/text_form_field_button.dart:TextFormFieldButton",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/widgets/dispose_aware.dart",
+      "target": "class:lib/src/widgets/dispose_aware.dart:DisposeAware",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/widgets/dispose_aware.dart",
+      "target": "class:lib/src/widgets/dispose_aware.dart:_DisposeAwareState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/widgets/dispose_aware.dart",
+      "target": "class:lib/src/widgets/dispose_aware.dart:DisposeAware",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/widgets/item_select_form_field.dart",
+      "target": "class:lib/src/widgets/item_select_form_field.dart:ItemSelectFormField",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/widgets/item_select_form_field.dart",
+      "target": "class:lib/src/widgets/item_select_form_field.dart:ItemSelectFormField",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/widgets/item_select_form_field.dart",
+      "target": "file:lib/src/dialogs/dialogs.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/widgets/item_select_form_field.dart",
+      "target": "file:lib/src/widgets/text_form_field_button.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:lib/src/widgets/item_select_form_field.dart:ItemSelectFormField",
+      "target": "class:lib/src/widgets/text_form_field_button.dart:TextFormFieldButton",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:lib/src/widgets/item_select_form_field.dart:ItemSelectFormField",
+      "target": "function:lib/src/dialogs/n_selection_dialog.dart:showSelectionFullscreenDialog",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/widgets/n_bottom_nav.dart",
+      "target": "class:lib/src/widgets/n_bottom_nav.dart:NBottomNav",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/widgets/n_bottom_nav.dart",
+      "target": "class:lib/src/widgets/n_bottom_nav.dart:NBottomNavItem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/widgets/n_bottom_nav.dart",
+      "target": "class:lib/src/widgets/n_bottom_nav.dart:NBottomNav",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/widgets/n_bottom_nav.dart",
+      "target": "class:lib/src/widgets/n_bottom_nav.dart:NBottomNavItem",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/widgets/n_image.dart",
+      "target": "class:lib/src/widgets/n_image.dart:NImage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/widgets/n_image.dart",
+      "target": "class:lib/src/widgets/n_image.dart:NImage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/widgets/n_image.dart",
+      "target": "file:lib/src/utils/utils.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:lib/src/widgets/n_image.dart:NImage",
+      "target": "class:lib/src/utils/n_silent_image_provider.dart:NSilentImageProvider",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:lib/src/widgets/n_image.dart:NImage",
+      "target": "class:lib/src/utils/extended_image_utils.dart:ExtendedImageUtils",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/widgets/n_provider.dart",
+      "target": "class:lib/src/widgets/n_provider.dart:NProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/widgets/n_provider.dart",
+      "target": "class:lib/src/widgets/n_provider.dart:NProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/widgets/n_provider.dart",
+      "target": "file:lib/src/classes/classes.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:lib/src/widgets/n_provider.dart:NProvider",
+      "target": "class:lib/src/classes/disposable.dart:Disposable",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:lib/src/widgets/text_form_field_button.dart",
+      "target": "class:lib/src/widgets/text_form_field_button.dart:TextFormFieldButton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/widgets/text_form_field_button.dart",
+      "target": "class:lib/src/widgets/text_form_field_button.dart:TextFormFieldButton",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/widgets/time_form_field.dart",
+      "target": "class:lib/src/widgets/time_form_field.dart:TimeFormField",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:lib/src/widgets/time_form_field.dart",
+      "target": "class:lib/src/widgets/time_form_field.dart:TimeFormField",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/widgets/time_form_field.dart",
+      "target": "file:lib/src/widgets/text_form_field_button.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "class:lib/src/widgets/time_form_field.dart:TimeFormField",
+      "target": "class:lib/src/widgets/text_form_field_button.dart:TextFormFieldButton",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:lib/src/widgets/widgets.dart",
+      "target": "file:lib/src/widgets/date_form_field.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/widgets/widgets.dart",
+      "target": "file:lib/src/widgets/date_time_form_field.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/widgets/widgets.dart",
+      "target": "file:lib/src/widgets/dispose_aware.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/widgets/widgets.dart",
+      "target": "file:lib/src/widgets/item_select_form_field.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/widgets/widgets.dart",
+      "target": "file:lib/src/widgets/n_bottom_nav.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/widgets/widgets.dart",
+      "target": "file:lib/src/widgets/n_image.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/widgets/widgets.dart",
+      "target": "file:lib/src/widgets/n_provider.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/widgets/widgets.dart",
+      "target": "file:lib/src/widgets/text_form_field_button.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:lib/src/widgets/widgets.dart",
+      "target": "file:lib/src/widgets/time_form_field.dart",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:public-api",
+      "name": "Public API",
+      "description": "Package entry-point barrel files that re-export the library surface for consumers (main and mobile-only).",
+      "nodeIds": [
+        "file:lib/flutter_resources2_mobile_only.dart",
+        "file:lib/flutter_resources2.dart"
+      ]
+    },
+    {
+      "id": "layer:widgets-ui",
+      "name": "Widgets & UI",
+      "description": "Reusable Flutter widgets, dialogs, list views, animations, and HTML rendering helpers under lib/src.",
+      "nodeIds": [
+        "file:lib/src/animationresources/animation_resources.dart",
+        "file:lib/src/animationresources/n_transitions.dart",
+        "file:lib/src/dialogs/dialogs.dart",
+        "file:lib/src/dialogs/n_selection_dialog.dart",
+        "file:lib/src/htmlrenderresources/extensions.dart",
+        "file:lib/src/htmlrenderresources/html_render_resources.dart",
+        "file:lib/src/htmlrenderresources/html_render.dart",
+        "file:lib/src/listresources/list_resources.dart",
+        "file:lib/src/listresources/n_list_view.dart",
+        "file:lib/src/listresources/n_sliver_list.dart",
+        "file:lib/src/widgets/date_form_field.dart",
+        "file:lib/src/widgets/date_time_form_field.dart",
+        "file:lib/src/widgets/dispose_aware.dart",
+        "file:lib/src/widgets/item_select_form_field.dart",
+        "file:lib/src/widgets/n_bottom_nav.dart",
+        "file:lib/src/widgets/n_image.dart",
+        "file:lib/src/widgets/n_provider.dart",
+        "file:lib/src/widgets/text_form_field_button.dart",
+        "file:lib/src/widgets/time_form_field.dart",
+        "file:lib/src/widgets/widgets.dart"
+      ]
+    },
+    {
+      "id": "layer:chat",
+      "name": "Chat",
+      "description": "Chat UI and message models: bubbles, chat widgets, and Freezed chat message types.",
+      "nodeIds": [
+        "file:lib/src/chatresources/chat_bubble.dart",
+        "file:lib/src/chatresources/chat_message.dart",
+        "file:lib/src/chatresources/chat_message.freezed.dart",
+        "file:lib/src/chatresources/chat_resources.dart",
+        "file:lib/src/chatresources/chat.dart"
+      ]
+    },
+    {
+      "id": "layer:search",
+      "name": "Search",
+      "description": "Search delegates, input search bar, and suggestion models for in-app search UX.",
+      "nodeIds": [
+        "file:lib/src/search_resources/n_basic_search_delegate.dart",
+        "file:lib/src/search_resources/n_input_search_bar.dart",
+        "file:lib/src/search_resources/n_search_suggestion.dart",
+        "file:lib/src/search_resources/n_search_suggestion.freezed.dart",
+        "file:lib/src/search_resources/search_resources.dart"
+      ]
+    },
+    {
+      "id": "layer:storage",
+      "name": "Storage",
+      "description": "Persisted field abstractions (base, Hive-backed, and secure) for typed local storage.",
+      "nodeIds": [
+        "file:lib/src/storage/n_base_persisted_field.dart",
+        "file:lib/src/storage/n_persisted_field.dart",
+        "file:lib/src/storage/n_secure_persisted_field.dart",
+        "file:lib/src/storage/storage.dart"
+      ]
+    },
+    {
+      "id": "layer:utils-foundations",
+      "name": "Utils & Foundations",
+      "description": "Shared utilities, Dart/Flutter extensions, FP types, failure/exception types, disposable/messenger classes, and adapter wrappers.",
+      "nodeIds": [
+        "file:lib/src/adapters/adapters.dart",
+        "file:lib/src/adapters/wrappers.dart",
+        "file:lib/src/classes/classes.dart",
+        "file:lib/src/classes/disposable.dart",
+        "file:lib/src/classes/n_messenger.dart",
+        "file:lib/src/classes/n_wrapper.dart",
+        "file:lib/src/extensions/color_extensions.dart",
+        "file:lib/src/extensions/context_extensions.dart",
+        "file:lib/src/extensions/extensions.dart",
+        "file:lib/src/extensions/function_extensions.dart",
+        "file:lib/src/extensions/iterable_extensions.dart",
+        "file:lib/src/extensions/map_extensions.dart",
+        "file:lib/src/extensions/string_extensions.dart",
+        "file:lib/src/extensions/time_extensions.dart",
+        "file:lib/src/extensions/widget_extensions.dart",
+        "file:lib/src/failure/failure.dart",
+        "file:lib/src/failure/n_exception.dart",
+        "file:lib/src/failure/n_failure.dart",
+        "file:lib/src/types/fp_types.dart",
+        "file:lib/src/types/types.dart",
+        "file:lib/src/utils/extended_image_utils.dart",
+        "file:lib/src/utils/fp_utils.dart",
+        "file:lib/src/utils/hooks.dart",
+        "file:lib/src/utils/image_utils.dart",
+        "file:lib/src/utils/list_utils.dart",
+        "file:lib/src/utils/mobile_only_utils.dart",
+        "file:lib/src/utils/n_app.dart",
+        "file:lib/src/utils/n_silent_image_provider.dart",
+        "file:lib/src/utils/screen_utils.dart",
+        "file:lib/src/utils/stream_utils.dart",
+        "file:lib/src/utils/url_utils.dart",
+        "file:lib/src/utils/utils.dart",
+        "file:lib/src/utils/widget_utils.dart"
+      ]
+    },
+    {
+      "id": "layer:agent-tooling-docs",
+      "name": "Agent Tooling & Docs",
+      "description": "Agent skills, IDE/assistant rules, project governance (AGENTS.md), and human-facing README documentation.",
+      "nodeIds": [
+        "document:.agents/skills/flutter-dart/SKILL.md",
+        "document:.agents/skills/flutter-dart/codegen.md",
+        "document:.agents/skills/flutter-dart/project.md",
+        "document:.agents/skills/flutter-dart/storage.md",
+        "document:.agents/skills/flutter-dart/widgets.md",
+        "document:AGENTS.md",
+        "document:README.md",
+        "document:.agents/rules/flutter-dart.mdc",
+        "document:.agents/rules/flutter-generated.mdc",
+        "document:.agents/rules/flutter/dart.md",
+        "document:.agents/rules/flutter/generated.md",
+        "document:.agents/rules/README.md",
+        "document:.agents/skills/edit-safety/SKILL.md",
+        "document:.agents/skills/git-commit/SKILL.md",
+        "document:.agents/skills/persistent-state/SKILL.md",
+        "document:.agents/skills/planning-workflow/SKILL.md",
+        "document:.aiassistant/rules/flutter_rules.md",
+        "document:.aiassistant/rules/general_rules.md",
+        "document:.cursor/README.md"
+      ]
+    },
+    {
+      "id": "layer:ci-config",
+      "name": "CI & Config",
+      "description": "CI workflows, package/pubspec and analyzer config, build script, IDE project files, and Understand-Anything analyzer config.",
+      "nodeIds": [
+        "pipeline:.github/workflows/build.yml",
+        "config:analysis_options.yaml",
+        "config:pubspec.yaml",
+        "config:.ua/config.json",
+        "file:.ua/.understandignore",
+        "file:flutter_resources2.iml",
+        "file:build.dart"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "title": "What is Flutter Resources 2?",
+      "description": "Start here: Flutter Resources 2 is a shared Flutter library that extends the sibling Flutter Resources packages with reusable widgets, utilities, and helpers. The README frames it as an extended, less-stable fork; pubspec.yaml shows the package identity, SDK constraints, and git dependencies on core_resources and related sibling packages. Keep this mental model: consumers depend on a curated public surface, not on app-specific business logic.",
+      "nodeIds": [
+        "document:README.md",
+        "config:pubspec.yaml"
+      ],
+      "languageLesson": "In Dart packages, pubspec.yaml is the package contract (name, SDK, dependencies); the README is the human-facing orientation, not the API surface."
+    },
+    {
+      "order": 2,
+      "title": "The public API barrels",
+      "description": "Consumers import package:flutter_resources2/flutter_resources2.dart. That primary barrel re-exports curated third-party packages (with clash hides) and every internal module barrel under lib/src. A secondary entry, flutter_resources2_mobile_only.dart, exposes dart:io helpers that must stay off the web compile path. When you add a new public type, export it through its module barrel and then through this primary file.",
+      "nodeIds": [
+        "file:lib/flutter_resources2.dart",
+        "file:lib/flutter_resources2_mobile_only.dart"
+      ],
+      "languageLesson": "Dart library barrels are export-only files: they re-export other libraries so consumers get one import path without reaching into lib/src."
+    },
+    {
+      "order": 3,
+      "title": "Repository layout and contribution rules",
+      "description": "Implementation lives under lib/src/<module>/ with a module barrel (e.g. widgets.dart, storage.dart) that the public entry re-exports. The project skill documents layout, barrel conventions, sibling flutter-resources deps, and the public-API change checklist. AGENTS.md sets library priorities: correctness, maintainability, small APIs, and no silent architectural decisions. Read these before changing exports or module boundaries.",
+      "nodeIds": [
+        "document:.agents/skills/flutter-dart/project.md",
+        "document:AGENTS.md",
+        "document:.agents/skills/flutter-dart/SKILL.md"
+      ]
+    },
+    {
+      "order": 4,
+      "title": "Utils and foundations",
+      "description": "The utils module is the shared toolkit: image helpers, Flutter Hooks utilities, platform detection (NApp), streams, URLs, and widget focus helpers. The utils.dart barrel is what the public API re-exports. Prefer these helpers over duplicating platform or image logic in feature widgets. Mobile-only File/test-environment helpers live separately so the main package stays web-safe.",
+      "nodeIds": [
+        "file:lib/src/utils/utils.dart",
+        "file:lib/src/utils/n_app.dart",
+        "file:lib/src/utils/hooks.dart",
+        "file:lib/src/utils/image_utils.dart",
+        "file:lib/src/utils/mobile_only_utils.dart"
+      ]
+    },
+    {
+      "order": 5,
+      "title": "Extensions, failures, and FP types",
+      "description": "Cross-cutting Dart/Flutter extensions (string, iterable, context, widget, time, and more) live under extensions/. Error modeling uses NFailure and NException; fp_types.dart typedefs Either/TaskEither specialized on NFailure for library-wide functional error handling. Classes such as Disposable, NMessenger, and NWrapper round out the foundation. Learn this layer before reading feature modules that return TaskEither or show snackbars without a BuildContext.",
+      "nodeIds": [
+        "file:lib/src/extensions/extensions.dart",
+        "file:lib/src/failure/failure.dart",
+        "file:lib/src/failure/n_failure.dart",
+        "file:lib/src/types/types.dart",
+        "file:lib/src/types/fp_types.dart",
+        "file:lib/src/classes/classes.dart",
+        "file:lib/src/classes/disposable.dart",
+        "file:lib/src/classes/n_messenger.dart"
+      ],
+      "languageLesson": "Either and TaskEither are functional error-handling types: success and failure are values, not thrown exceptions, which makes composition and testing more predictable."
+    },
+    {
+      "order": 6,
+      "title": "Reusable widgets",
+      "description": "The widgets module is a core product surface: form fields (date, time, date-time, item select) built on TextFormFieldButton; NImage for unified network/asset/memory images; NProvider for hook-based scoped instances with Disposable cleanup; DisposeAware for dispose callbacks; and NBottomNav for Material 3 navigation with badges. Prefer HookWidget patterns here. The widgets skill documents form-field patterns, barrel export rules, and test expectations.",
+      "nodeIds": [
+        "file:lib/src/widgets/widgets.dart",
+        "file:lib/src/widgets/n_provider.dart",
+        "file:lib/src/widgets/n_image.dart",
+        "file:lib/src/widgets/text_form_field_button.dart",
+        "file:lib/src/widgets/date_form_field.dart",
+        "file:lib/src/widgets/dispose_aware.dart",
+        "file:lib/src/widgets/n_bottom_nav.dart",
+        "document:.agents/skills/flutter-dart/widgets.md"
+      ]
+    },
+    {
+      "order": 7,
+      "title": "Lists, dialogs, and motion",
+      "description": "Companion UI modules sit beside widgets: listresources provides NListView and NSliverList; dialogs exposes selection dialogs used by item-select form fields; animationresources wraps common Scale/Fade/Size transitions. HTML rendering helpers live under htmlrenderresources. Together with widgets, these form the Widgets & UI layer consumers reach through the public barrel.",
+      "nodeIds": [
+        "file:lib/src/listresources/list_resources.dart",
+        "file:lib/src/listresources/n_list_view.dart",
+        "file:lib/src/dialogs/dialogs.dart",
+        "file:lib/src/dialogs/n_selection_dialog.dart",
+        "file:lib/src/animationresources/animation_resources.dart",
+        "file:lib/src/animationresources/n_transitions.dart",
+        "file:lib/src/htmlrenderresources/html_render_resources.dart"
+      ]
+    },
+    {
+      "order": 8,
+      "title": "Typed local storage",
+      "description": "Storage centers on persisted fields: NBasePersistedField is the abstract Hive-backed field with serialize/deserialize hooks and a reactive ValueStream; NPersistedField covers unsecured typed values; NSecurePersistedField adds AES encryption with keys in FlutterSecureStorage. Use stable keys and the patterns in the storage skill. Export path: storage.dart → flutter_resources2.dart.",
+      "nodeIds": [
+        "file:lib/src/storage/storage.dart",
+        "file:lib/src/storage/n_base_persisted_field.dart",
+        "file:lib/src/storage/n_persisted_field.dart",
+        "file:lib/src/storage/n_secure_persisted_field.dart",
+        "document:.agents/skills/flutter-dart/storage.md"
+      ]
+    },
+    {
+      "order": 9,
+      "title": "Chat UI and message models",
+      "description": "Chat resources provide a scrollable Chat layout (reverse list, empty state, optional composer), ChatBubble for left/right nip alignment, and a Freezed ChatMessage model (sender, timestamp, text/child, fromMe). chat_resources.dart is the module barrel. The .freezed.dart file is generated — never hand-edit it; regenerate via build_runner or build.dart.",
+      "nodeIds": [
+        "file:lib/src/chatresources/chat_resources.dart",
+        "file:lib/src/chatresources/chat.dart",
+        "file:lib/src/chatresources/chat_bubble.dart",
+        "file:lib/src/chatresources/chat_message.dart",
+        "file:lib/src/chatresources/chat_message.freezed.dart",
+        "document:.agents/skills/flutter-dart/codegen.md"
+      ],
+      "languageLesson": "Freezed generates immutable data classes with copyWith, equality, and pattern helpers from a short annotated source file; the companion .freezed.dart is output, not source of truth."
+    },
+    {
+      "order": 10,
+      "title": "In-app search UX",
+      "description": "Search resources wrap in-app search: NBasicSearchDelegate, NInputSearchBar, and a Freezed NSearchSuggestion model. The search_resources.dart barrel is re-exported from the public API alongside the sibling search_resources package. Use this module when you need consistent search UI rather than ad-hoc SearchDelegate subclasses in each app.",
+      "nodeIds": [
+        "file:lib/src/search_resources/search_resources.dart",
+        "file:lib/src/search_resources/n_basic_search_delegate.dart",
+        "file:lib/src/search_resources/n_input_search_bar.dart",
+        "file:lib/src/search_resources/n_search_suggestion.dart"
+      ]
+    },
+    {
+      "order": 11,
+      "title": "Build, analyze, and CI",
+      "description": "Local verification runs through build.dart: pub get, build_runner, analyze, and tests with coverage. GitHub Actions (.github/workflows/build.yml) installs Flutter stable, runs the same script, and uploads coverage to Codecov. analysis_options.yaml enforces formatter width and a strict linter set including prefer_relative_imports. Treat this pipeline as the gate before any public-API change.",
+      "nodeIds": [
+        "file:build.dart",
+        "pipeline:.github/workflows/build.yml",
+        "config:analysis_options.yaml",
+        "document:.agents/rules/flutter-generated.mdc"
+      ]
+    }
+  ]
+}
