@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class DisposeAware extends StatefulWidget {
   const DisposeAware({super.key, required this.onDispose, required this.child});

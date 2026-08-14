@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'n_basic_search_delegate.dart';
 import 'n_search_suggestion.dart';

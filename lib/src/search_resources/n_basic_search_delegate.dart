@@ -1,5 +1,5 @@
 import 'package:diacritic/diacritic.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:reactor_fp_resources/reactor_fp_resources.dart';
 import 'package:search_resources/search_resources.dart';
 

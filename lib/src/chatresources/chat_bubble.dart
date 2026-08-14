@@ -1,6 +1,6 @@
 import 'package:bubble/bubble.dart';
 import 'package:core_resources/core_resources.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'chat_message.dart';
 
