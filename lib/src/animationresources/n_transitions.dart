@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class NTransitions {
   static Widget scale(child, value, {Alignment alignment = .center}) {

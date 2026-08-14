@@ -33,7 +33,6 @@ export 'package:flutter_secure_storage/flutter_secure_storage.dart';
 export 'package:hive_ce_flutter/hive_flutter.dart';
 export 'package:masked_text_resources/masked_text_resources.dart'
     show FieldMasks, MaskTextInputFormatter;
-export 'package:omni_datetime_picker/omni_datetime_picker.dart';
 export 'package:reactor_fp_resources/reactor_fp_resources.dart';
 export 'package:search_resources/search_resources.dart';
 export 'package:skeletonizer/skeletonizer.dart'

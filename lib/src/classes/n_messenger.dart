@@ -1,6 +1,6 @@
 import 'package:core_resources/core_resources.dart' show SimpleAlert;
-import 'package:flutter/material.dart' as m;
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart' as m;
+import 'package:material_ui/material_ui.dart';
 
 /// A utility class that provides global access to showing messages and dialogs.
 ///

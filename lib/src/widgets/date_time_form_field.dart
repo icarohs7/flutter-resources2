@@ -1,13 +1,13 @@
 import 'package:core_resources/core_resources.dart';
-import 'package:flutter/material.dart';
-import 'package:omni_datetime_picker/omni_datetime_picker.dart';
+import 'package:material_ui/material_ui.dart';
 
+import '../dialogs/date_time_picker_dialog.dart';
 import 'text_form_field_button.dart';
 
-/// Read-only date-and-time field that opens [showOmniDateTimePicker] on tap.
+/// Read-only date-and-time field that opens [showDateTimePicker] on tap.
 ///
 /// The current [value] is shown through [TextFormFieldButton] using
-/// [dateTimeFormat]. Tapping the field presents an Omni date-time picker in
+/// [dateTimeFormat]. Tapping the field presents a date-time picker in
 /// 24-hour mode without seconds. When the user confirms a selection,
 /// [onChanged] receives [DateTime.now] with the picked calendar date and time
 /// (seconds set to zero).
@@ -79,12 +79,9 @@ class DateTimeFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     onTap() async {
       final now = DateTime.now();
-      final selectedTime = await showOmniDateTimePicker(
+      final selectedTime = await showDateTimePicker(
         context: context,
         title: title?.apply((t) => Text(t, style: context.textTheme.titleLarge)),
-        padding: .only(top: 8),
-        is24HourMode: true,
-        isShowSeconds: false,
         initialDate: value ?? pickerInitialDate,
         firstDate: pickerFirstDate ?? now - 52.weeks,
         lastDate: pickerLastDate ?? now + 52.weeks,

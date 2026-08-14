@@ -2,7 +2,7 @@ import 'dart:typed_data';
 
 import 'package:core_resources/core_resources.dart';
 import 'package:extended_image/extended_image.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../utils/utils.dart';
 
