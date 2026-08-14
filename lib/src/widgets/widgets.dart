@@ -6,5 +6,6 @@ export 'item_select_form_field.dart';
 export 'n_bottom_nav.dart';
 export 'n_image.dart';
 export 'n_provider.dart';
+export 'speed_dial.dart';
 export 'text_form_field_button.dart';
 export 'time_form_field.dart';
