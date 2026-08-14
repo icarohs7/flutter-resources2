@@ -2,7 +2,7 @@ name: flutter_resources2
 version: 0.1.0
 publish_to: 'none'
 environment:
-  sdk: '>=3.10.0 <4.0.0'
+  sdk: '>=3.13.0 <4.0.0'
 dependencies:
   bubble: '>=1.2.1'
   cupertino_ui: any
