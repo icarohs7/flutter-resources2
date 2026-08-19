@@ -93,24 +93,23 @@ class NSilentImageProvider extends ImageProvider<NSilentImageProvider> {
   @override
   ImageStreamCompleter loadImage(NSilentImageProvider key, ImageDecoderCallback decode) {
     final delegateKey = key._delegateKey;
-    if (delegateKey == null) {
-      return OneFrameImageStreamCompleter(
-        _transparentImageInfo(decode),
-        informationCollector: key._informationCollector,
-      );
-    }
+    final image = delegateKey == null || isKnownFailed(delegateKey)
+        ? _transparentImageInfo(decode)
+        : _loadSilently(key.delegate, delegateKey, decode);
+    return _oneFrameUntilComplete(image, informationCollector: key._informationCollector);
+  }
 
-    if (isKnownFailed(delegateKey)) {
-      return OneFrameImageStreamCompleter(
-        _transparentImageInfo(decode),
-        informationCollector: key._informationCollector,
-      );
-    }
-
-    return OneFrameImageStreamCompleter(
-      _loadSilently(key.delegate, delegateKey, decode),
-      informationCollector: key._informationCollector,
+  static ImageStreamCompleter _oneFrameUntilComplete(
+    Future<ImageInfo> image, {
+    InformationCollector? informationCollector,
+  }) {
+    final completer = OneFrameImageStreamCompleter(
+      image,
+      informationCollector: informationCollector,
     );
+    final handle = completer.keepAlive();
+    image.whenComplete(handle.dispose);
+    return completer;
   }
 
   List<DiagnosticsNode> _informationCollector() {

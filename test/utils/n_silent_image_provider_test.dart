@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart';
@@ -47,7 +48,52 @@ void main() {
 
       expect(find.byType(Image), findsOneWidget);
     });
+
+    test('completing after the last listener is removed does not throw', () async {
+      final pending = Completer<ImageInfo>();
+      final provider = NSilentImageProvider(_DelayedImageProvider(pending));
+      final key = await provider.obtainKey(ImageConfiguration.empty);
+      final completer = provider.loadImage(key, _decode);
+
+      final listener = ImageStreamListener((_, _) {});
+      completer.addListener(listener);
+      completer.removeListener(listener);
+
+      pending.complete(await _imageInfoFromPng());
+      await Future<void>.delayed(Duration.zero);
+    });
   });
+}
+
+Future<ui.Codec> _decode(
+  ui.ImmutableBuffer buffer, {
+  ui.TargetImageSize Function(int, int)? getTargetSize,
+}) {
+  return ui.instantiateImageCodecFromBuffer(buffer);
+}
+
+Future<ImageInfo> _imageInfoFromPng() async {
+  final codec = await ui.instantiateImageCodec(
+    Uint8List.fromList(NSilentImageProvider.k1x1TransparentPng),
+  );
+  final frame = await codec.getNextFrame();
+  return ImageInfo(image: frame.image, scale: 1);
+}
+
+class _DelayedImageProvider extends ImageProvider<_DelayedImageProvider> {
+  const _DelayedImageProvider(this.pending);
+
+  final Completer<ImageInfo> pending;
+
+  @override
+  Future<_DelayedImageProvider> obtainKey(ImageConfiguration configuration) {
+    return SynchronousFuture(this);
+  }
+
+  @override
+  ImageStreamCompleter loadImage(_DelayedImageProvider key, ImageDecoderCallback decode) {
+    return OneFrameImageStreamCompleter(pending.future);
+  }
 }
 
 class _FailingImageProvider extends ImageProvider<_FailingImageProvider> {
