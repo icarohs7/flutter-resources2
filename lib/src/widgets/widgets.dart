@@ -7,6 +7,7 @@ export 'n_bottom_nav.dart';
 export 'n_image.dart';
 export 'n_provider.dart';
 export 'numeric_keyboard.dart';
+export 'pin_input.dart';
 export 'speed_dial.dart';
 export 'text_form_field_button.dart';
 export 'time_form_field.dart';
