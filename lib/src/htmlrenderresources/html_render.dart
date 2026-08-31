@@ -1,15 +1,11 @@
 import 'package:material_ui/material_ui.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import '../adapters/adapters.dart';
 import 'extensions.dart';
 
-class HtmlRender extends StatelessWidget {
-  const HtmlRender({super.key, required this.data, this.style, this.extensions = const []});
-
+class const HtmlRender({super.key, required this.data}) extends StatelessWidget {
   final String data;
-  final Map<String, Style>? style;
-  final List<HtmlExtension> extensions;
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +14,13 @@ class HtmlRender extends StatelessWidget {
 
     return MediaQuery(
       data: mediaQueryData,
-      child: Html(
-        data: data.htmlUnescaped,
-        style: {...?style},
-        onLinkTap: (url, attributes, element) {
-          if (url != null) launchUrl(Uri.parse(url));
+      child: HtmlWidget(
+        data.htmlUnescaped,
+        onTapUrl: (url) async {
+          await launchUrl(Uri.parse(url));
+          return true;
         },
-        extensions: extensions,
+        renderMode: RenderMode.column,
       ),
     );
   }
