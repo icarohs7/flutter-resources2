@@ -3,5 +3,4 @@ import 'package:material_ui/material_ui.dart';
 
 /// Removes focus from any currently focused
 /// widget
-void clearFocus(BuildContext context) =>
-    runCatching(() => FocusScope.of(context).requestFocus(FocusNode()));
+void clearFocus(BuildContext context) => runCatching(() => context.focusScope.unfocus());
