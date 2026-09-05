@@ -22,6 +22,7 @@ class const NImage({
   final Widget? onFailureFallback,
   final Color? color,
   final BoxShape? shape,
+  final bool gaplessPlayback = false,
   super.key,
 }) extends StatelessWidget {
   @override
@@ -54,6 +55,7 @@ class const NImage({
             onFailureFallback?.apply((f) => ExtendedImageUtils.loadUsingShimmerAndFailWith(f)) ??
             ExtendedImageUtils.loadUsingShimmerAndFailWith(),
         shape: shape,
+        gaplessPlayback: gaplessPlayback,
       ),
       _ => SizedBox(width: width, height: height),
     };
