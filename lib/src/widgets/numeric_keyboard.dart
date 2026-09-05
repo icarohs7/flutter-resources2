@@ -2,6 +2,8 @@ import 'package:material_ui/material_ui.dart';
 
 typedef KeyboardTapCallback = void Function(String text);
 
+const _keyMinHeight = 72.0;
+
 /// A simple numeric keyboard with optional left and right action buttons.
 class const NumericKeyboard({
   super.key,
@@ -15,10 +17,10 @@ class const NumericKeyboard({
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(left: 32, right: 32, top: 20),
-      alignment: Alignment.center,
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 20),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           _NumericKeyboardRow(
             alignment: mainAxisAlignment,
@@ -64,7 +66,10 @@ class const _NumericKeyboardRow({
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return OverflowBar(alignment: alignment, children: children);
+    return Row(
+      mainAxisAlignment: alignment,
+      children: [for (final child in children) Expanded(child: child)],
+    );
   }
 }
 
@@ -75,30 +80,37 @@ class const _NumericKeyboardKey({
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(45),
+    return _NumericKeyboardHitTarget(
       onTap: () => onTap(value),
-      child: Container(
-        alignment: Alignment.center,
-        width: 50,
-        height: 50,
-        child: Text(
-          value,
-          style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: textColor),
-        ),
+      child: Text(
+        value,
+        style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: textColor),
       ),
     );
   }
 }
 
-class const _NumericKeyboardAction({required final Icon? icon, required final Function()? onTap})
+class const _NumericKeyboardAction({required final Icon? icon, required final VoidCallback? onTap})
     extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    return _NumericKeyboardHitTarget(onTap: onTap, child: icon);
+  }
+}
+
+class const _NumericKeyboardHitTarget({
+  required final VoidCallback? onTap,
+  required final Widget? child,
+}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return InkWell(
-      borderRadius: BorderRadius.circular(45),
-      onTap: onTap == null ? null : () => onTap!(),
-      child: Container(alignment: Alignment.center, width: 50, height: 50, child: icon),
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(16),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(minHeight: _keyMinHeight),
+        child: Center(child: child),
+      ),
     );
   }
 }

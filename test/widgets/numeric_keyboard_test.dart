@@ -61,12 +61,38 @@ void main() {
       ),
     );
 
-    final overflowBars = tester.widgetList<OverflowBar>(find.byType(OverflowBar));
-    expect(overflowBars, hasLength(4));
-    expect(
-      overflowBars.every((overflowBar) => overflowBar.alignment == MainAxisAlignment.spaceBetween),
-      isTrue,
+    final rows = tester.widgetList<Row>(
+      find.descendant(of: find.byType(NumericKeyboard), matching: find.byType(Row)),
     );
+    expect(rows, hasLength(4));
+    expect(rows.every((row) => row.mainAxisAlignment == MainAxisAlignment.spaceBetween), isTrue);
     expect(tester.widget<Text>(find.text('1')).style?.color, textColor);
+  });
+
+  testWidgets('digit hit target fills the grid cell beyond the glyph', (tester) async {
+    String? tappedValue;
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: Center(
+            child: SizedBox(
+              width: 360,
+              child: NumericKeyboard(onKeyboardTap: (value) => tappedValue = value),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    final hitTarget = find.ancestor(of: find.text('5'), matching: find.byType(InkWell));
+    final hitSize = tester.getSize(hitTarget);
+    expect(hitSize.width, greaterThan(50));
+    expect(hitSize.height, greaterThanOrEqualTo(72));
+
+    final digitCenter = tester.getCenter(find.text('5'));
+    await tester.tapAt(digitCenter + const Offset(36, 18));
+
+    expect(tappedValue, '5');
   });
 }
