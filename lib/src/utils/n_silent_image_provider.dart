@@ -85,9 +85,16 @@ class NSilentImageProvider extends ImageProvider<NSilentImageProvider> {
   static int _keyId(Object delegateKey) => identityHashCode(delegateKey);
 
   @override
-  Future<NSilentImageProvider> obtainKey(ImageConfiguration configuration) async {
-    final delegateKey = await delegate.obtainKey(configuration);
-    return NSilentImageProvider._(delegate, delegateKey);
+  Future<NSilentImageProvider> obtainKey(ImageConfiguration configuration) {
+    final future = delegate.obtainKey(configuration);
+    if (future is SynchronousFuture) {
+      late NSilentImageProvider key;
+      future.then((delegateKey) {
+        key = NSilentImageProvider._(delegate, delegateKey);
+      });
+      return SynchronousFuture(key);
+    }
+    return future.then((delegateKey) => NSilentImageProvider._(delegate, delegateKey));
   }
 
   @override
