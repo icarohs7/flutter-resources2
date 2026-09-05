@@ -6,42 +6,24 @@ import 'package:material_ui/material_ui.dart';
 
 import '../utils/utils.dart';
 
-class NImage extends StatelessWidget {
-  final String? url;
-  final String? asset;
-  final ExtendedImageMode mode;
-  final Uint8List? bytes;
-  final ImageProvider? imageProvider;
-  final double? width;
-  final double? height;
-  final InitGestureConfigHandler? initGestureConfigHandler;
-  final AlignmentGeometry alignment;
-  final BoxFit? fit;
-  final BoxConstraints? constraints;
-  final LoadStateChanged? loadStateChanged;
-  final Widget? onFailureFallback;
-  final Color? color;
-  final BoxShape? shape;
-
-  const NImage({
-    this.url,
-    this.asset,
-    this.mode = .none,
-    this.bytes,
-    this.imageProvider,
-    this.width,
-    this.height,
-    this.initGestureConfigHandler,
-    this.alignment = .center,
-    this.fit,
-    this.constraints,
-    this.loadStateChanged,
-    this.onFailureFallback,
-    this.color,
-    this.shape,
-    super.key,
-  });
-
+class const NImage({
+  final String? url,
+  final String? asset,
+  final ExtendedImageMode mode = .none,
+  final Uint8List? bytes,
+  final ImageProvider? imageProvider,
+  final double? width,
+  final double? height,
+  final InitGestureConfigHandler? initGestureConfigHandler,
+  final AlignmentGeometry alignment = .center,
+  final BoxFit? fit,
+  final BoxConstraints? constraints,
+  final LoadStateChanged? loadStateChanged,
+  final Widget? onFailureFallback,
+  final Color? color,
+  final BoxShape? shape,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ImageProvider? getProvider() {
