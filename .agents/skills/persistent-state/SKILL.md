@@ -20,8 +20,11 @@ sessions, use `memory_save` or `memory_lesson_save`.
 
 ## Memory Files
 
-On session start, read these files when they exist. As work progresses, keep
-them accurate.
+Read only existing state relevant to the task. All state-writing instructions
+below are subject to the task's authorization and AGENTS.md review-only gate.
+For a fully read-only review, report findings, deferred issues, and handoff
+information in the response instead of writing state. During authorized state
+maintenance, keep only the files needed for the task accurate.
 
 | File | Purpose |
 |------|---------|
@@ -31,7 +34,8 @@ them accurate.
 | `.memory/verify.md` | Definition of done and required checks |
 | `.memory/gotchas.md` | Mistakes already corrected by the human |
 
-**If the files do not exist, initialize them before substantive work.**
+Initialize only a missing file actually needed for authorized state maintenance;
+do not create the full set or make initialization a prerequisite for a review.
 
 ## Context management
 

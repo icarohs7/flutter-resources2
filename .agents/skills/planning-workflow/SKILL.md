@@ -15,12 +15,24 @@ architectural choices, or anything beyond an obvious one- or two-line fix.
 
 For trivial fixes, execute directly and verify — no formal plan.
 
-When the user provides a **written plan**, follow it step by step. Do not
-redesign unless there is a real blocker; flag the blocker and wait.
+For bounded routine changes with established patterns and deterministic
+checks, state the acceptance cases and execute within the authorized scope
+without creating a canonical plan or selecting new execution models. File count
+alone does not require a formal plan. Use the full planning workflow for an
+explicitly requested plan, an existing plan being executed, architectural or
+high-risk work, unresolved contracts, or work needing durable coordination.
+This lightweight path does not bypass explicit review or approval gates.
+
+When the user provides a **written plan**, follow its approved decisions and
+steps. Resolve routine implementation obstacles within that approach. If a
+blocker requires changing an approved decision or unavailable user input, name
+it and pause the dependent work; continue independent authorized work.
 
 ## Planning workflow
 
-Plan in this order:
+For work requiring a formal plan, plan in this order. State writes remain
+subject to the plan/review-only gate below; otherwise present the plan in the
+response without creating files:
 
 1. **Context** — map the relevant code and existing patterns.
 2. **Questions** — surface ambiguous requirements and tradeoffs.
@@ -31,10 +43,16 @@ Plan in this order:
 For `.memory/` file definitions, initialization, and handoff, use the
 `persistent-state` skill — do not duplicate that protocol here.
 
-**Plan-only:** when asked only to plan, think, review, or assess first, output
-the plan and do **not** edit files until the user approves execution.
+**Plan/review-only:** follow the AGENTS.md gate. Do not edit implementation or
+configuration until execution is approved. Create only requested planning/state
+artifacts allowed by that gate. For a pure read-only review or an explicit
+no-file-changes request, report findings in the response without state writes.
 
-**After approval:** execute the next slice without repeating the full plan.
+**After approval:** execute and verify one bounded slice at a time, continuing
+through the authorized scope without repeating the full plan. Slice boundaries
+are verification points; ask again only where the user or approved plan sets
+a checkpoint. Approval for the next slice alone does not authorize the whole
+plan. Do not stop merely because a slice is complete.
 
 ## Execution limits
 
