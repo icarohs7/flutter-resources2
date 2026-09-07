@@ -4,9 +4,7 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import '../adapters/adapters.dart';
 import 'extensions.dart';
 
-class const HtmlRender({super.key, required this.data}) extends StatelessWidget {
-  final String data;
-
+class const HtmlRender({super.key, required final String data}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = context.getInheritedWidgetOfExactType<MediaQuery>();
@@ -17,10 +15,10 @@ class const HtmlRender({super.key, required this.data}) extends StatelessWidget 
       child: HtmlWidget(
         data.htmlUnescaped,
         onTapUrl: (url) async {
-          await launchUrl(Uri.parse(url));
+          await launchUrl(.parse(url));
           return true;
         },
-        renderMode: RenderMode.column,
+        renderMode: .column,
       ),
     );
   }

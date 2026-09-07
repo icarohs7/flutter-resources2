@@ -3,22 +3,14 @@ import 'package:material_ui/material_ui.dart';
 import 'n_basic_search_delegate.dart';
 import 'n_search_suggestion.dart';
 
-class NInputSearchBar extends StatelessWidget {
-  final Iterable<NSearchSuggestion> suggestions;
-  final String? searchHint;
-  final ShapeBorder? shape;
-  final double? elevation;
-  final Widget? icon;
-
-  const NInputSearchBar({
-    required this.suggestions,
-    this.searchHint,
-    this.shape,
-    this.elevation,
-    this.icon,
-    super.key,
-  });
-
+class const NInputSearchBar({
+  required final Iterable<NSearchSuggestion> suggestions,
+  final String? searchHint,
+  final ShapeBorder? shape,
+  final double? elevation,
+  final Widget? icon,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,7 +35,7 @@ class NInputSearchBar extends StatelessWidget {
                   padding: .symmetric(vertical: 16, horizontal: 8),
                   child: Text(
                     searchHint ?? 'Pesquisar',
-                    style: TextStyle(fontSize: 18, fontWeight: .bold),
+                    style: .new(fontSize: 18, fontWeight: .bold),
                   ),
                 ),
               ),

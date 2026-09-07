@@ -20,7 +20,7 @@ class const NumericKeyboard({
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, top: 20),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: .min,
         children: <Widget>[
           _NumericKeyboardRow(
             alignment: mainAxisAlignment,
@@ -84,7 +84,7 @@ class const _NumericKeyboardKey({
       onTap: () => onTap(value),
       child: Text(
         value,
-        style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: textColor),
+        style: .new(fontSize: 26, fontWeight: .bold, color: textColor),
       ),
     );
   }
@@ -106,7 +106,7 @@ class const _NumericKeyboardHitTarget({
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: .circular(16),
       child: ConstrainedBox(
         constraints: const BoxConstraints(minHeight: _keyMinHeight),
         child: Center(child: child),

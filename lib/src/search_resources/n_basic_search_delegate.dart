@@ -6,12 +6,10 @@ import 'package:search_resources/search_resources.dart';
 import '../listresources/list_resources.dart';
 import 'n_search_suggestion.dart';
 
-class NBasicSearchDelegate extends SimpleSearchDelegate<Unit> {
-  final Iterable<NSearchSuggestion> suggestions;
-  final BuildContext? actionContext;
-
-  NBasicSearchDelegate(this.suggestions, {this.actionContext});
-
+class NBasicSearchDelegate(
+  final Iterable<NSearchSuggestion> suggestions, {
+  final BuildContext? actionContext,
+}) extends SimpleSearchDelegate<Unit> {
   @override
   Widget buildSuggestions(BuildContext context) => _buildItems(context);
 
@@ -72,25 +70,13 @@ List<_SearchListEntry> _groupedEntries(Iterable<NSearchSuggestion> suggestions) 
   return entries;
 }
 
-sealed class _SearchListEntry {}
+sealed class _SearchListEntry();
 
-final class _GroupHeaderEntry implements _SearchListEntry {
-  const _GroupHeaderEntry(this.label);
+final class const _GroupHeaderEntry(final String label) implements _SearchListEntry;
 
-  final String label;
-}
+final class const _SuggestionEntry(final NSearchSuggestion suggestion) implements _SearchListEntry;
 
-final class _SuggestionEntry implements _SearchListEntry {
-  const _SuggestionEntry(this.suggestion);
-
-  final NSearchSuggestion suggestion;
-}
-
-class _GroupHeader extends StatelessWidget {
-  const _GroupHeader({required this.label});
-
-  final String label;
-
+class const _GroupHeader({required final String label}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);

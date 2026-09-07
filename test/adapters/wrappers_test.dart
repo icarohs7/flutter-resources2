@@ -60,7 +60,10 @@ void main() {
   });
 }
 
-class _FakeUrlLauncher extends Fake with MockPlatformInterfaceMixin implements UrlLauncherPlatform {
+class _FakeUrlLauncher()
+    extends Fake
+    with MockPlatformInterfaceMixin
+    implements UrlLauncherPlatform {
   PreferredLaunchMode? lastLaunchMode;
   bool launchResult = true;
   Exception? launchException;

@@ -153,19 +153,12 @@ void main() {
   });
 }
 
-class _TestApp extends StatelessWidget {
-  final List<SpeedDialChild> children;
-  final ShapeBorder? shape;
-  final ValueNotifier<bool>? openCloseDial;
-  final bool switchLabelPosition;
-
-  const _TestApp({
-    required this.children,
-    this.shape,
-    this.openCloseDial,
-    this.switchLabelPosition = false,
-  });
-
+class const _TestApp({
+  required final List<SpeedDialChild> children,
+  final ShapeBorder? shape,
+  final ValueNotifier<bool>? openCloseDial,
+  final bool switchLabelPosition = false,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

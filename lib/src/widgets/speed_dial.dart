@@ -4,7 +4,12 @@ import 'package:core_resources/core_resources.dart';
 import 'package:material_ui/material_ui.dart';
 
 /// The direction in which a [SpeedDial]'s children are displayed.
-enum SpeedDialDirection { up, down, left, right }
+enum SpeedDialDirection() {
+  up,
+  down,
+  left,
+  right,
+}
 
 extension SpeedDialDirectionExtension on SpeedDialDirection {
   bool get isHorizontal => this == SpeedDialDirection.left || this == SpeedDialDirection.right;
@@ -19,234 +24,179 @@ extension SpeedDialDirectionExtension on SpeedDialDirection {
 }
 
 /// Describes one action button in a [SpeedDial].
-class SpeedDialChild {
-  /// Creates a child action for a [SpeedDial].
-  const SpeedDialChild({
-    this.key,
-    this.label,
-    this.labelStyle,
-    this.labelBackgroundColor,
-    this.labelWidget,
-    this.labelShadow,
-    this.child,
-    this.visible = true,
-    this.backgroundColor,
-    this.foregroundColor,
-    this.elevation,
-    this.onTap,
-    this.onLongPress,
-    this.shape,
-  });
-
+class const SpeedDialChild({
   /// The key assigned to the child action button.
-  final Key? key;
+  final Key? key,
 
   /// The text displayed beside the child action button.
-  final String? label;
+  final String? label,
 
   /// The style applied to [label].
-  final TextStyle? labelStyle;
+  final TextStyle? labelStyle,
 
   /// The background color applied to the label container.
-  final Color? labelBackgroundColor;
+  final Color? labelBackgroundColor,
 
   /// Replaces the default label widget when provided.
-  final Widget? labelWidget;
+  final Widget? labelWidget,
 
   /// The shadows applied to the label container.
-  final List<BoxShadow>? labelShadow;
+  final List<BoxShadow>? labelShadow,
 
   /// The widget displayed inside the child action button.
-  final Widget? child;
+  final Widget? child,
 
   /// Whether this child is included when the dial is open.
-  final bool visible;
+  final bool visible = true,
 
   /// The background color of the child action button.
-  final Color? backgroundColor;
+  final Color? backgroundColor,
 
   /// The foreground color of the child action button.
-  final Color? foregroundColor;
+  final Color? foregroundColor,
 
   /// The elevation of the child action button.
-  final double? elevation;
+  final double? elevation,
 
   /// Called after the child action is tapped.
-  final VoidCallback? onTap;
+  final VoidCallback? onTap,
 
   /// Called after the child action is long-pressed.
-  final VoidCallback? onLongPress;
+  final VoidCallback? onLongPress,
 
   /// The shape of the child action button.
-  final ShapeBorder? shape;
+  final ShapeBorder? shape,
+}) {
+  /// Creates a child action for a [SpeedDial].
+  this;
 }
 
 /// A floating action button that expands into a group of child actions.
-class SpeedDial extends HookWidget {
-  /// Creates a speed dial.
-  const SpeedDial({
-    super.key,
-    this.children = const [],
-    this.visible = true,
-    this.curve = Curves.fastOutSlowIn,
-    this.animationDuration = const Duration(milliseconds: 150),
-    this.tooltip,
-    this.heroTag,
-    this.backgroundColor,
-    this.foregroundColor,
-    this.activeBackgroundColor,
-    this.activeForegroundColor,
-    this.elevation = 6,
-    this.buttonSize = const Size(56, 56),
-    this.childrenButtonSize = const Size(56, 56),
-    this.shape = const StadiumBorder(),
-    this.isOpenOnStart = false,
-    this.closeDialOnPop = true,
-    this.animatedIcon,
-    this.animatedIconTheme,
-    this.icon,
-    this.activeIcon,
-    this.useRotationAnimation = true,
-    this.animationAngle = math.pi / 2,
-    this.iconTheme,
-    this.label,
-    this.activeLabel,
-    this.onOpen,
-    this.onClose,
-    this.onPress,
-    this.closeManually = false,
-    this.openCloseDial,
-    this.childMargin = const EdgeInsets.symmetric(horizontal: 16),
-    this.childPadding = const EdgeInsets.symmetric(vertical: 5),
-    this.spacing,
-    this.spaceBetweenChildren,
-    this.direction = SpeedDialDirection.up,
-    this.child,
-    this.activeChild,
-    this.switchLabelPosition = false,
-    this.animationCurve,
-    this.mini = false,
-  });
+class const SpeedDial({
+  super.key,
 
   /// Child actions, ordered from the lowest to the highest position.
-  final List<SpeedDialChild> children;
+  final List<SpeedDialChild> children = const [],
 
   /// Whether the dial is shown. When false, the dial shrinks away.
-  final bool visible;
+  final bool visible = true,
 
   /// The curve used by the dial's size animation.
-  final Curve curve;
+  final Curve curve = Curves.fastOutSlowIn,
 
   /// The duration used for opening and closing animations.
-  final Duration animationDuration;
+  final Duration animationDuration = const Duration(milliseconds: 150),
 
   /// The tooltip of the main action button.
-  final String? tooltip;
+  final String? tooltip,
 
   /// The hero tag of the main action button. Null disables its hero.
-  final Object? heroTag;
+  final Object? heroTag,
 
   /// The background color of the main action button.
-  final Color? backgroundColor;
+  final Color? backgroundColor,
 
   /// The foreground color of the main action button.
-  final Color? foregroundColor;
+  final Color? foregroundColor,
 
   /// The background color of the main action button while open.
-  final Color? activeBackgroundColor;
+  final Color? activeBackgroundColor,
 
   /// The foreground color of the main action button while open.
-  final Color? activeForegroundColor;
+  final Color? activeForegroundColor,
 
   /// The elevation of the main and child action buttons.
-  final double elevation;
+  final double elevation = 6,
 
   /// The size of the main action button.
-  final Size buttonSize;
+  final Size buttonSize = const Size(56, 56),
 
   /// The size of each child action button.
-  final Size childrenButtonSize;
+  final Size childrenButtonSize = const Size(56, 56),
 
   /// The shape of the main action button.
-  final ShapeBorder shape;
+  final ShapeBorder shape = const StadiumBorder(),
 
   /// Whether the dial starts open.
-  final bool isOpenOnStart;
+  final bool isOpenOnStart = false,
 
   /// Whether back closes an open dial before the route is popped.
-  final bool closeDialOnPop;
+  final bool closeDialOnPop = true,
 
   /// The animated icon shown in the main action button.
-  final AnimatedIconData? animatedIcon;
+  final AnimatedIconData? animatedIcon,
 
   /// The theme applied to [animatedIcon].
-  final IconThemeData? animatedIconTheme;
+  final IconThemeData? animatedIconTheme,
 
   /// The closed icon of the main action button.
-  final IconData? icon;
+  final IconData? icon,
 
   /// The open icon of the main action button.
-  final IconData? activeIcon;
+  final IconData? activeIcon,
 
   /// Whether icon changes rotate during the transition.
-  final bool useRotationAnimation;
+  final bool useRotationAnimation = true,
 
   /// The rotation angle, in radians, used by icon transitions.
-  final double animationAngle;
+  final double animationAngle = math.pi / 2,
 
   /// The theme applied to [child], [activeChild], [icon], and [activeIcon].
-  final IconThemeData? iconTheme;
+  final IconThemeData? iconTheme,
 
   /// The optional label of the main action button.
-  final Widget? label;
+  final Widget? label,
 
   /// The optional label shown while the dial is open.
-  final Widget? activeLabel;
+  final Widget? activeLabel,
 
   /// Called after the dial opens.
-  final VoidCallback? onOpen;
+  final VoidCallback? onOpen,
 
   /// Called after the dial closes.
-  final VoidCallback? onClose;
+  final VoidCallback? onClose,
 
   /// Called instead of opening the dial when it is closed.
-  final VoidCallback? onPress;
+  final VoidCallback? onPress,
 
   /// Whether tapping a child leaves the dial open.
-  final bool closeManually;
+  final bool closeManually = false,
 
   /// Controls the dial from outside the widget.
-  final ValueNotifier<bool>? openCloseDial;
+  final ValueNotifier<bool>? openCloseDial,
 
   /// The margin around each child action.
-  final EdgeInsets childMargin;
+  final EdgeInsets childMargin = const EdgeInsets.symmetric(horizontal: 16),
 
   /// The padding around each child action button.
-  final EdgeInsets childPadding;
+  final EdgeInsets childPadding = const EdgeInsets.symmetric(vertical: 5),
 
   /// The space between the main button and the child actions.
-  final double? spacing;
+  final double? spacing,
 
   /// The space between child actions.
-  final double? spaceBetweenChildren;
+  final double? spaceBetweenChildren,
 
   /// The direction in which child actions expand.
-  final SpeedDialDirection direction;
+  final SpeedDialDirection direction = SpeedDialDirection.up,
 
   /// The closed widget inside the main action button.
-  final Widget? child;
+  final Widget? child,
 
   /// The open widget inside the main action button.
-  final Widget? activeChild;
+  final Widget? activeChild,
 
   /// Whether labels are placed after their child buttons.
-  final bool switchLabelPosition;
+  final bool switchLabelPosition = false,
 
   /// The curve used by child scale animations.
-  final Curve? animationCurve;
+  final Curve? animationCurve,
 
   /// Whether the main action button uses the compact size.
-  final bool mini;
+  final bool mini = false,
+}) extends HookWidget {
+  /// Creates a speed dial.
+  this;
 
   @override
   Widget build(BuildContext context) {
@@ -297,22 +247,12 @@ class SpeedDial extends HookWidget {
   }
 }
 
-class _SpeedDialView extends StatelessWidget {
-  final SpeedDial widget;
-  final AnimationController controller;
-  final bool open;
-  final void Function(bool) setOpen;
-
-  const _SpeedDialView({
-    required this.widget,
-    required this.controller,
-    required this.open,
-    required this.setOpen,
-  });
-
-  List<SpeedDialChild> get _visibleChildren =>
-      widget.children.where((child) => child.visible).toList(growable: false);
-
+class const _SpeedDialView({
+  required final SpeedDial widget,
+  required final AnimationController controller,
+  required final bool open,
+  required final void Function(bool) setOpen,
+}) extends StatelessWidget {
   void _toggle() => setOpen(!open);
 
   void _handleMainPressed() {
@@ -337,26 +277,118 @@ class _SpeedDialView extends StatelessWidget {
     child.onLongPress?.call();
   }
 
-  Animation<double> _childAnimation(int index, int count) {
-    final begin = count == 1 ? 0.0 : index / count;
-    return CurvedAnimation(
-      parent: controller,
-      curve: Interval(begin, 1, curve: widget.animationCurve ?? widget.curve),
+  @override
+  Widget build(BuildContext context) {
+    Widget dial = AnimatedBuilder(
+      animation: controller,
+      builder: (_, _) => _SpeedDialDial(
+        speedDial: widget,
+        controller: controller,
+        open: open,
+        onMainPressed: _handleMainPressed,
+        onMainLongPress: _toggle,
+        onChildTap: _handleChildTap,
+        onChildLongPress: _handleChildLongPress,
+      ),
     );
-  }
-
-  Widget _buildLabel(BuildContext context, SpeedDialChild child) {
-    if (child.labelWidget != null) {
-      return GestureDetector(
-        onTap: () => _handleChildTap(child),
-        onLongPress: child.onLongPress == null ? null : () => _handleChildLongPress(child),
-        child: child.labelWidget,
+    if (widget.closeDialOnPop) {
+      dial = PopScope(
+        canPop: !open,
+        onPopInvokedWithResult: (didPop, _) {
+          if (!didPop && open) {
+            setOpen(false);
+          }
+        },
+        child: dial,
       );
     }
-    if (child.label == null) {
-      return const SizedBox.shrink();
-    }
 
+    return AnimatedSize(
+      duration: widget.animationDuration,
+      curve: widget.curve,
+      alignment: Alignment.bottomRight,
+      child: widget.visible ? dial : const SizedBox.shrink(),
+    );
+  }
+}
+
+class const _SpeedDialChildView({
+  required final SpeedDial speedDial,
+  required final AnimationController controller,
+  required final SpeedDialChild child,
+  required final int index,
+  required final int count,
+  required final void Function(SpeedDialChild) onTap,
+  required final void Function(SpeedDialChild) onLongPress,
+}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final button = child.child == null
+        ? const SizedBox.shrink()
+        : Padding(
+            padding: speedDial.childPadding,
+            child: SizedBox(
+              width: speedDial.childrenButtonSize.width,
+              height: speedDial.childrenButtonSize.height,
+              child: FloatingActionButton(
+                key: child.key,
+                heroTag: speedDial.heroTag == null ? null : '${speedDial.heroTag}-child-$index',
+                onPressed: () => onTap(child),
+                backgroundColor: child.backgroundColor,
+                foregroundColor: child.foregroundColor,
+                elevation: child.elevation ?? speedDial.elevation,
+                shape: child.shape,
+                child: child.child,
+              ),
+            ),
+          );
+
+    final action = child.onLongPress == null
+        ? button
+        : GestureDetector(onLongPress: () => onLongPress(child), child: button);
+    final label = child.labelWidget != null
+        ? GestureDetector(
+            onTap: () => onTap(child),
+            onLongPress: child.onLongPress == null ? null : () => onLongPress(child),
+            child: child.labelWidget,
+          )
+        : child.label == null
+        ? const SizedBox.shrink()
+        : _SpeedDialChildLabel(child: child, onTap: onTap, onLongPress: onLongPress);
+    final content = speedDial.switchLabelPosition
+        ? <Widget>[
+            action,
+            if (child.label != null || child.labelWidget != null) const SizedBox(width: 8),
+            label,
+          ]
+        : <Widget>[
+            label,
+            if (child.label != null || child.labelWidget != null) const SizedBox(width: 8),
+            action,
+          ];
+    final begin = count == 1 ? 0.0 : index / count;
+    final scale = CurvedAnimation(
+      parent: controller,
+      curve: Interval(begin, 1, curve: speedDial.animationCurve ?? speedDial.curve),
+    );
+
+    return Padding(
+      padding: speedDial.childMargin,
+      child: ScaleTransition(
+        scale: scale,
+        child: Row(mainAxisSize: .min, crossAxisAlignment: .center, children: content),
+      ),
+    );
+  }
+}
+
+class const _SpeedDialChildLabel({
+  required final SpeedDialChild child,
+  required final void Function(SpeedDialChild) onTap,
+  required final void Function(SpeedDialChild) onLongPress,
+}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final borderRadius = BorderRadius.circular(6);
     final labelBackgroundColor =
@@ -378,12 +410,12 @@ class _SpeedDialView extends StatelessWidget {
         boxShadow: labelShadow,
       ),
       child: Material(
-        type: MaterialType.transparency,
+        type: .transparency,
         borderRadius: borderRadius,
-        clipBehavior: Clip.hardEdge,
+        clipBehavior: .hardEdge,
         child: InkWell(
-          onTap: () => _handleChildTap(child),
-          onLongPress: child.onLongPress == null ? null : () => _handleChildLongPress(child),
+          onTap: () => onTap(child),
+          onLongPress: child.onLongPress == null ? null : () => onLongPress(child),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
             child: Text(child.label!, style: child.labelStyle),
@@ -392,270 +424,261 @@ class _SpeedDialView extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildChild(BuildContext context, SpeedDialChild child, int index, int count) {
-    final button = child.child == null
-        ? const SizedBox.shrink()
-        : Padding(
-            padding: widget.childPadding,
-            child: SizedBox(
-              width: widget.childrenButtonSize.width,
-              height: widget.childrenButtonSize.height,
-              child: FloatingActionButton(
-                key: child.key,
-                heroTag: widget.heroTag == null ? null : '${widget.heroTag}-child-$index',
-                onPressed: () => _handleChildTap(child),
-                backgroundColor: child.backgroundColor,
-                foregroundColor: child.foregroundColor,
-                elevation: child.elevation ?? widget.elevation,
-                shape: child.shape,
-                child: child.child,
-              ),
-            ),
-          );
+class const _SpeedDialChildLayout({
+  required final SpeedDial speedDial,
+  required final AnimationController controller,
+  required final bool open,
+  required final void Function(SpeedDialChild) onTap,
+  required final void Function(SpeedDialChild) onLongPress,
+}) extends StatelessWidget {
+  List<SpeedDialChild> get _visibleChildren =>
+      speedDial.children.where((child) => child.visible).toList(growable: false);
 
-    final action = child.onLongPress == null
-        ? button
-        : GestureDetector(onLongPress: () => _handleChildLongPress(child), child: button);
-    final label = _buildLabel(context, child);
-    final content = widget.switchLabelPosition
-        ? <Widget>[
-            action,
-            if (child.label != null || child.labelWidget != null) const SizedBox(width: 8),
-            label,
-          ]
-        : <Widget>[
-            label,
-            if (child.label != null || child.labelWidget != null) const SizedBox(width: 8),
-            action,
-          ];
-
-    final childContent = Row(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: content,
-    );
-
-    return Padding(
-      padding: widget.childMargin,
-      child: ScaleTransition(scale: _childAnimation(index, count), child: childContent),
-    );
+  EdgeInsets get _padding {
+    final spacing = speedDial.spacing ?? 0;
+    if (speedDial.direction.isUp) {
+      return .only(bottom: spacing);
+    }
+    if (speedDial.direction.isDown) {
+      return .only(top: spacing);
+    }
+    if (speedDial.direction.isLeft) {
+      return .only(right: spacing);
+    }
+    return .only(left: spacing);
   }
 
-  Widget _buildChildLayout(BuildContext context) {
+  AlignmentGeometry get _alignment {
+    if (speedDial.switchLabelPosition && !speedDial.direction.isHorizontal) {
+      return speedDial.direction.isUp
+          ? AlignmentDirectional.bottomStart
+          : AlignmentDirectional.topStart;
+    }
+    if (speedDial.direction.isUp) {
+      return AlignmentDirectional.bottomEnd;
+    }
+    if (speedDial.direction.isDown) {
+      return AlignmentDirectional.topEnd;
+    }
+    if (speedDial.direction.isLeft) {
+      return AlignmentDirectional.centerEnd;
+    }
+    return AlignmentDirectional.centerStart;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     if (!open && !controller.isAnimating) {
       return const SizedBox.shrink();
     }
 
     final children = _visibleChildren;
-    final orderedChildren = widget.direction.isUp || widget.direction.isLeft
+    final orderedChildren = speedDial.direction.isUp || speedDial.direction.isLeft
         ? children.reversed.toList(growable: false)
         : children;
     final childWidgets = <Widget>[];
     for (var index = 0; index < orderedChildren.length; index++) {
-      if (index > 0 && widget.spaceBetweenChildren != null) {
+      if (index > 0 && speedDial.spaceBetweenChildren != null) {
         childWidgets.add(
           SizedBox(
-            width: widget.direction.isHorizontal ? widget.spaceBetweenChildren : null,
-            height: widget.direction.isHorizontal ? null : widget.spaceBetweenChildren,
+            width: speedDial.direction.isHorizontal ? speedDial.spaceBetweenChildren : null,
+            height: speedDial.direction.isHorizontal ? null : speedDial.spaceBetweenChildren,
           ),
         );
       }
-      childWidgets.add(_buildChild(context, orderedChildren[index], index, orderedChildren.length));
+      childWidgets.add(
+        _SpeedDialChildView(
+          speedDial: speedDial,
+          controller: controller,
+          child: orderedChildren[index],
+          index: index,
+          count: orderedChildren.length,
+          onTap: onTap,
+          onLongPress: onLongPress,
+        ),
+      );
     }
 
-    final layout = widget.direction.isHorizontal
-        ? Row(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: childWidgets,
-          )
+    final layout = speedDial.direction.isHorizontal
+        ? Row(mainAxisSize: .min, crossAxisAlignment: .center, children: childWidgets)
         : Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: widget.switchLabelPosition
+            mainAxisSize: .min,
+            crossAxisAlignment: speedDial.switchLabelPosition
                 ? CrossAxisAlignment.start
                 : CrossAxisAlignment.end,
             children: childWidgets,
           );
-    final spacing = widget.spacing ?? 0;
-    final padding = widget.direction.isUp
-        ? EdgeInsets.only(bottom: spacing)
-        : widget.direction.isDown
-        ? EdgeInsets.only(top: spacing)
-        : widget.direction.isLeft
-        ? EdgeInsets.only(right: spacing)
-        : EdgeInsets.only(left: spacing);
 
     return SizeTransition(
-      sizeFactor: CurvedAnimation(parent: controller, curve: widget.curve),
-      axis: widget.direction.isHorizontal ? Axis.horizontal : Axis.vertical,
-      alignment: widget.switchLabelPosition && !widget.direction.isHorizontal
-          ? widget.direction.isUp
-                ? AlignmentDirectional.bottomStart
-                : AlignmentDirectional.topStart
-          : widget.direction.isUp
-          ? AlignmentDirectional.bottomEnd
-          : widget.direction.isDown
-          ? AlignmentDirectional.topEnd
-          : widget.direction.isLeft
-          ? AlignmentDirectional.centerEnd
-          : AlignmentDirectional.centerStart,
-      child: Padding(padding: padding, child: layout),
+      sizeFactor: CurvedAnimation(parent: controller, curve: speedDial.curve),
+      axis: speedDial.direction.isHorizontal ? Axis.horizontal : Axis.vertical,
+      alignment: _alignment,
+      child: Padding(padding: _padding, child: layout),
     );
   }
+}
 
-  Widget _buildMainChild() {
-    if (widget.animatedIcon != null) {
-      return AnimatedIcon(
-        icon: widget.animatedIcon!,
-        progress: controller,
-        color: widget.animatedIconTheme?.color,
-        size: widget.animatedIconTheme?.size,
-      );
-    }
-
-    final selectedChild = open ? (widget.activeChild ?? widget.child) : widget.child;
-    final iconData = open
-        ? (widget.activeIcon ?? widget.icon ?? Icons.close)
-        : (widget.icon ?? Icons.add);
-    final content = selectedChild ?? Icon(iconData);
-    final themedContent = widget.iconTheme == null
-        ? content
-        : IconTheme(data: widget.iconTheme!, child: content);
-
-    if (!widget.useRotationAnimation || (widget.activeChild == null && widget.activeIcon == null)) {
-      return AnimatedSwitcher(
-        duration: widget.animationDuration,
-        child: KeyedSubtree(key: ValueKey(open), child: themedContent),
-      );
-    }
-
-    return Transform.rotate(
-      angle: controller.value * widget.animationAngle,
-      child: AnimatedSwitcher(
-        duration: widget.animationDuration,
-        child: KeyedSubtree(key: ValueKey(open), child: themedContent),
-      ),
-    );
-  }
-
-  Widget _buildMainButton() {
+class const _SpeedDialMainButton({
+  required final SpeedDial speedDial,
+  required final AnimationController controller,
+  required final bool open,
+  required final VoidCallback onPressed,
+  required final VoidCallback onLongPress,
+}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final mainChild = speedDial.animatedIcon != null
+        ? AnimatedIcon(
+            icon: speedDial.animatedIcon!,
+            progress: controller,
+            color: speedDial.animatedIconTheme?.color,
+            size: speedDial.animatedIconTheme?.size,
+          )
+        : _SpeedDialMainChild(speedDial: speedDial, controller: controller, open: open);
     final backgroundColor = Color.lerp(
-      widget.backgroundColor,
-      widget.activeBackgroundColor ?? widget.backgroundColor,
+      speedDial.backgroundColor,
+      speedDial.activeBackgroundColor ?? speedDial.backgroundColor,
       controller.value,
     );
     final foregroundColor = Color.lerp(
-      widget.foregroundColor,
-      widget.activeForegroundColor ?? widget.foregroundColor,
+      speedDial.foregroundColor,
+      speedDial.activeForegroundColor ?? speedDial.foregroundColor,
       controller.value,
     );
-    final mainChild = _buildMainChild();
-    final hasMainLabel = widget.label != null || (widget.activeLabel != null && open);
+    final hasMainLabel = speedDial.label != null || (speedDial.activeLabel != null && open);
     final button = !hasMainLabel
-        ? (widget.mini
+        ? (speedDial.mini
               ? FloatingActionButton.small(
-                  tooltip: widget.tooltip,
-                  heroTag: widget.heroTag,
+                  tooltip: speedDial.tooltip,
+                  heroTag: speedDial.heroTag,
                   backgroundColor: backgroundColor,
                   foregroundColor: foregroundColor,
-                  elevation: widget.elevation,
-                  shape: widget.shape,
-                  onPressed: _handleMainPressed,
+                  elevation: speedDial.elevation,
+                  shape: speedDial.shape,
+                  onPressed: onPressed,
                   child: mainChild,
                 )
               : FloatingActionButton(
-                  tooltip: widget.tooltip,
-                  heroTag: widget.heroTag,
+                  tooltip: speedDial.tooltip,
+                  heroTag: speedDial.heroTag,
                   backgroundColor: backgroundColor,
                   foregroundColor: foregroundColor,
-                  elevation: widget.elevation,
-                  shape: widget.shape,
-                  onPressed: _handleMainPressed,
+                  elevation: speedDial.elevation,
+                  shape: speedDial.shape,
+                  onPressed: onPressed,
                   child: mainChild,
                 ))
         : FloatingActionButton.extended(
-            tooltip: widget.tooltip,
-            heroTag: widget.heroTag,
+            tooltip: speedDial.tooltip,
+            heroTag: speedDial.heroTag,
             backgroundColor: backgroundColor,
             foregroundColor: foregroundColor,
-            elevation: widget.elevation,
-            shape: widget.shape,
-            onPressed: _handleMainPressed,
+            elevation: speedDial.elevation,
+            shape: speedDial.shape,
+            onPressed: onPressed,
             icon: mainChild,
             label: AnimatedSwitcher(
-              duration: widget.animationDuration,
+              duration: speedDial.animationDuration,
               child: KeyedSubtree(
                 key: ValueKey(open),
-                child: open ? (widget.activeLabel ?? widget.label!) : widget.label!,
+                child: open ? (speedDial.activeLabel ?? speedDial.label!) : speedDial.label!,
               ),
             ),
           );
 
     final sizedButton = !hasMainLabel
         ? SizedBox(
-            width: widget.mini ? 40 : widget.buttonSize.width,
-            height: widget.mini ? 40 : widget.buttonSize.height,
+            width: speedDial.mini ? 40 : speedDial.buttonSize.width,
+            height: speedDial.mini ? 40 : speedDial.buttonSize.height,
             child: button,
           )
         : button;
 
-    return GestureDetector(onLongPress: _toggle, child: sizedButton);
+    return GestureDetector(onLongPress: onLongPress, child: sizedButton);
   }
+}
 
-  Widget _buildDial(BuildContext context) {
-    return widget.direction.isUp || widget.direction.isLeft
-        ? (widget.direction.isUp
-              ? Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: widget.switchLabelPosition
-                      ? CrossAxisAlignment.start
-                      : CrossAxisAlignment.end,
-                  children: [_buildChildLayout(context), _buildMainButton()],
-                )
-              : Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [_buildChildLayout(context), _buildMainButton()],
-                ))
-        : (widget.direction.isDown
-              ? Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: widget.switchLabelPosition
-                      ? CrossAxisAlignment.start
-                      : CrossAxisAlignment.end,
-                  children: [_buildMainButton(), _buildChildLayout(context)],
-                )
-              : Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [_buildMainButton(), _buildChildLayout(context)],
-                ));
-  }
-
+class const _SpeedDialMainChild({
+  required final SpeedDial speedDial,
+  required final AnimationController controller,
+  required final bool open,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Widget dial = AnimatedBuilder(
-      animation: controller,
-      builder: (context, _) => _buildDial(context),
+    final selectedChild = open ? (speedDial.activeChild ?? speedDial.child) : speedDial.child;
+    final iconData = open
+        ? (speedDial.activeIcon ?? speedDial.icon ?? Icons.close)
+        : (speedDial.icon ?? Icons.add);
+    final content = selectedChild ?? Icon(iconData);
+    final themedContent = speedDial.iconTheme == null
+        ? content
+        : IconTheme(data: speedDial.iconTheme!, child: content);
+    final switcher = AnimatedSwitcher(
+      duration: speedDial.animationDuration,
+      child: KeyedSubtree(key: ValueKey(open), child: themedContent),
     );
-    if (widget.closeDialOnPop) {
-      dial = PopScope(
-        canPop: !open,
-        onPopInvokedWithResult: (didPop, _) {
-          if (!didPop && open) {
-            setOpen(false);
-          }
-        },
-        child: dial,
-      );
-    }
 
-    return AnimatedSize(
-      duration: widget.animationDuration,
-      curve: widget.curve,
-      alignment: Alignment.bottomRight,
-      child: widget.visible ? dial : const SizedBox.shrink(),
+    return !speedDial.useRotationAnimation ||
+            (speedDial.activeChild == null && speedDial.activeIcon == null)
+        ? switcher
+        : Transform.rotate(angle: controller.value * speedDial.animationAngle, child: switcher);
+  }
+}
+
+class const _SpeedDialDial({
+  required final SpeedDial speedDial,
+  required final AnimationController controller,
+  required final bool open,
+  required final VoidCallback onMainPressed,
+  required final VoidCallback onMainLongPress,
+  required final void Function(SpeedDialChild) onChildTap,
+  required final void Function(SpeedDialChild) onChildLongPress,
+}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final childLayout = _SpeedDialChildLayout(
+      speedDial: speedDial,
+      controller: controller,
+      open: open,
+      onTap: onChildTap,
+      onLongPress: onChildLongPress,
     );
+    final mainButton = _SpeedDialMainButton(
+      speedDial: speedDial,
+      controller: controller,
+      open: open,
+      onPressed: onMainPressed,
+      onLongPress: onMainLongPress,
+    );
+
+    return speedDial.direction.isUp || speedDial.direction.isLeft
+        ? (speedDial.direction.isUp
+              ? Column(
+                  mainAxisSize: .min,
+                  crossAxisAlignment: speedDial.switchLabelPosition
+                      ? CrossAxisAlignment.start
+                      : CrossAxisAlignment.end,
+                  children: [childLayout, mainButton],
+                )
+              : Row(
+                  mainAxisSize: .min,
+                  crossAxisAlignment: .center,
+                  children: [childLayout, mainButton],
+                ))
+        : (speedDial.direction.isDown
+              ? Column(
+                  mainAxisSize: .min,
+                  crossAxisAlignment: speedDial.switchLabelPosition
+                      ? CrossAxisAlignment.start
+                      : CrossAxisAlignment.end,
+                  children: [mainButton, childLayout],
+                )
+              : Row(
+                  mainAxisSize: .min,
+                  crossAxisAlignment: .center,
+                  children: [mainButton, childLayout],
+                ));
   }
 }

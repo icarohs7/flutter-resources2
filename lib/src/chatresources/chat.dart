@@ -19,52 +19,41 @@ import 'chat_message.dart';
 ///
 /// Pass [messageController] to control the text field from outside; otherwise
 /// an internal [TextEditingController] is created.
-class Chat extends StatelessWidget {
+// ignore: prefer_const_constructors_in_immutables
+class Chat({
+  super.key,
+
   /// External controller for the composer. When null, an internal controller is used.
-  final TextEditingController? messageController;
+  final TextEditingController? messageController,
 
   /// Number of messages passed to [NListView.builder].
-  final int? messageCount;
+  final int? messageCount,
 
   /// Builds the [ChatMessage] displayed at [index].
-  final ChatMessage Function(BuildContext context, int index) messageBuilder;
+  required final ChatMessage Function(BuildContext context, int index) messageBuilder,
 
   /// When true, the send button shows a loading state and the field is disabled.
-  final bool isLoading;
+  final bool isLoading = false,
 
   /// Called with the trimmed composer text when send is pressed and validation passes.
   /// When null, the composer row is hidden.
-  final void Function(String message)? onSubmit;
+  final void Function(String message)? onSubmit,
 
   /// Optional validation run before [onSubmit]. Return false to block submission.
-  final bool Function(String? message)? validator;
+  final bool Function(String? message)? validator,
 
   /// Hint text for the composer [TextFormField].
-  final String? fieldHint;
+  final String? fieldHint,
 
   /// Message shown centered in the list when [messageCount] is zero.
-  final String? messageWhenEmpty;
+  final String? messageWhenEmpty,
 
   /// When false, the composer field and send button are disabled.
-  final bool enabled;
+  final bool enabled = true,
 
   /// Vertical sizing of the root [Column].
-  final MainAxisSize mainAxisSize;
-
-  Chat({
-    super.key,
-    this.messageController,
-    this.messageCount,
-    required this.messageBuilder,
-    this.isLoading = false,
-    this.onSubmit,
-    this.validator,
-    this.fieldHint,
-    this.messageWhenEmpty,
-    this.enabled = true,
-    this.mainAxisSize = .max,
-  });
-
+  final MainAxisSize mainAxisSize = .max,
+}) extends StatelessWidget {
   late final textController = messageController ?? TextEditingController();
 
   @override
@@ -85,7 +74,7 @@ class Chat extends StatelessWidget {
                   Center(
                     child: Padding(
                       padding: const .all(8),
-                      child: Text(messageWhenEmpty!, style: TextStyle(fontSize: 16)),
+                      child: Text(messageWhenEmpty!, style: .new(fontSize: 16)),
                     ),
                   )
                 else
@@ -104,7 +93,7 @@ class Chat extends StatelessWidget {
                     minLines: 1,
                     maxLines: 999,
                     enabled: enabled && !isLoading,
-                    decoration: InputDecoration(
+                    decoration: .new(
                       hintText: fieldHint,
                       border: OutlineInputBorder(borderRadius: .circular(32)),
                     ),

@@ -3,12 +3,11 @@ import 'dart:async';
 import 'package:core_resources/core_resources.dart';
 import 'package:material_ui/material_ui.dart';
 
-class DoubleBackToCloseApp extends HookWidget {
-  final SnackBar snackBar;
-  final Widget child;
-
-  const DoubleBackToCloseApp({required this.snackBar, required this.child, super.key});
-
+class const DoubleBackToCloseApp({
+  required final SnackBar snackBar,
+  required final Widget child,
+  super.key,
+}) extends HookWidget {
   @override
   Widget build(BuildContext context) {
     assert(() {

@@ -80,11 +80,8 @@ Future<ImageInfo> _imageInfoFromPng() async {
   return ImageInfo(image: frame.image, scale: 1);
 }
 
-class _DelayedImageProvider extends ImageProvider<_DelayedImageProvider> {
-  const _DelayedImageProvider(this.pending);
-
-  final Completer<ImageInfo> pending;
-
+class const _DelayedImageProvider(final Completer<ImageInfo> pending)
+    extends ImageProvider<_DelayedImageProvider> {
   @override
   Future<_DelayedImageProvider> obtainKey(ImageConfiguration configuration) {
     return SynchronousFuture(this);
@@ -96,9 +93,7 @@ class _DelayedImageProvider extends ImageProvider<_DelayedImageProvider> {
   }
 }
 
-class _FailingImageProvider extends ImageProvider<_FailingImageProvider> {
-  const _FailingImageProvider();
-
+class const _FailingImageProvider() extends ImageProvider<_FailingImageProvider> {
   @override
   Future<_FailingImageProvider> obtainKey(ImageConfiguration configuration) {
     return SynchronousFuture(this);
@@ -113,11 +108,7 @@ class _FailingImageProvider extends ImageProvider<_FailingImageProvider> {
   }
 }
 
-class _KeyImageProvider extends ImageProvider<_KeyImageProvider> {
-  const _KeyImageProvider(this.label);
-
-  final String label;
-
+class const _KeyImageProvider(final String label) extends ImageProvider<_KeyImageProvider> {
   @override
   Future<_KeyImageProvider> obtainKey(ImageConfiguration configuration) {
     return SynchronousFuture(this);

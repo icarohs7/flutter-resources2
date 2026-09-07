@@ -18,63 +18,47 @@ import 'text_form_field_button.dart';
 ///
 /// [validator] validates the [DateTime?] [value], not the displayed string.
 /// When [enabled] is false, the field cannot be opened.
-class DateTimeFormField extends StatelessWidget {
+class const DateTimeFormField({
   /// Optional title shown at the top of the picker dialog.
-  final String? title;
+  final String? title,
 
   /// Currently selected date and time, or null when empty.
-  final DateTime? value;
+  required final DateTime? value,
 
   /// Called when the user confirms a new date and time in the picker.
-  final ValueChanged<DateTime> onChanged;
+  required final ValueChanged<DateTime> onChanged,
 
   /// Format pattern used to display [value] in the text field.
-  final String dateTimeFormat;
+  final String dateTimeFormat = 'dd/MM/yyyy HH:mm:ss',
 
   /// Decoration for the underlying [TextFormField].
-  final InputDecoration? decoration;
+  final InputDecoration? decoration,
 
   /// Help text for the picker. Reserved for API parity with [DateFormField].
-  final String? pickerHelpText;
+  final String? pickerHelpText,
 
   /// Field label text for the picker. Reserved for API parity with [DateFormField].
-  final String? pickerFieldLabelText;
+  final String? pickerFieldLabelText,
 
   /// Initial picker position when [value] is null.
-  final DateTime pickerInitialDate;
+  required final DateTime pickerInitialDate,
 
   /// Earliest selectable date in the picker.
-  final DateTime? pickerFirstDate;
+  final DateTime? pickerFirstDate,
 
   /// Latest selectable date in the picker.
-  final DateTime? pickerLastDate;
+  final DateTime? pickerLastDate,
 
   /// Locale for the picker. Reserved for API parity with [DateFormField].
-  final Locale? locale;
+  final Locale? locale,
 
   /// Validates the current [value] when the parent [Form] is submitted.
-  final FormFieldValidator<DateTime?>? validator;
+  final FormFieldValidator<DateTime?>? validator,
 
   /// When false, the field is read-only and the picker cannot be opened.
-  final bool enabled;
-
-  const DateTimeFormField({
-    this.title,
-    required this.value,
-    required this.onChanged,
-    this.dateTimeFormat = 'dd/MM/yyyy HH:mm:ss',
-    this.decoration,
-    this.pickerHelpText,
-    this.pickerFieldLabelText,
-    required this.pickerInitialDate,
-    this.pickerFirstDate,
-    this.pickerLastDate,
-    this.locale,
-    this.validator,
-    this.enabled = true,
-    super.key,
-  });
-
+  final bool enabled = true,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     onTap() async {

@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 
 const getIt = Core.get;
 
-class NApp {
+class NApp() {
   static bool get isAndroid => defaultTargetPlatform == .android;
 
   static bool get isIOS => defaultTargetPlatform == .iOS;
@@ -31,7 +31,7 @@ class NApp {
   }
 }
 
-enum NOS {
+enum NOS(final String stringRepresentation) {
   Android('Android'),
   IOS('iOS'),
   Windows('Windows'),
@@ -40,10 +40,6 @@ enum NOS {
   Fuchsia('Fuchsia'),
   Web('Web'),
   Unknown('Unknown');
-
-  const NOS(this.stringRepresentation);
-
-  final String stringRepresentation;
 
   @override
   String toString() => stringRepresentation;

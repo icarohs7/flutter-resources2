@@ -1,17 +1,16 @@
 import 'package:material_ui/material_ui.dart';
 
-class DisposeAware extends StatefulWidget {
-  const DisposeAware({super.key, required this.onDispose, required this.child});
-
-  final VoidCallback onDispose;
-  final Widget child;
-
+class const DisposeAware({
+  super.key,
+  required final VoidCallback onDispose,
+  required final Widget child,
+}) extends StatefulWidget {
   @override
   // ignore: library_private_types_in_public_api
   _DisposeAwareState createState() => _DisposeAwareState();
 }
 
-class _DisposeAwareState extends State<DisposeAware> {
+class _DisposeAwareState() extends State<DisposeAware> {
   @override
   Widget build(BuildContext context) => widget.child;
 

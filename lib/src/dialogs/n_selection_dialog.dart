@@ -21,20 +21,13 @@ Future<T?> showSelectionFullscreenDialog<T>(
   );
 }
 
-class NSelectionPage<T> extends StatelessWidget {
-  final String? title;
-  final int itemCount;
-  final NullableIndexedWidgetBuilder itemBuilder;
-  final IndexedWidgetBuilder? separatorBuilder;
-
-  const NSelectionPage({
-    this.title,
-    required this.itemCount,
-    required this.itemBuilder,
-    this.separatorBuilder,
-    super.key,
-  });
-
+class const NSelectionPage<T>({
+  final String? title,
+  required final int itemCount,
+  required final NullableIndexedWidgetBuilder itemBuilder,
+  final IndexedWidgetBuilder? separatorBuilder,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

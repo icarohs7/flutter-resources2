@@ -10,24 +10,19 @@ import 'package:stream_resources/stream_resources.dart';
 ///
 /// This class provides a type-safe way to persist and retrieve values with
 /// automatic serialization and deserialization support.
-abstract class NBasePersistedField<T> {
-  final String key;
-  final T? defaultValue;
-  final T Function(String json) deserialize;
-  final String Function(T value) serialize;
-
+abstract class NBasePersistedField<T>({
+  required final String key,
+  required final T? defaultValue,
+  required final T Function(String json) deserialize,
+  required final String Function(T value) serialize,
+}) {
   /// Creates a new [BasePersistedField] instance.
   ///
   /// [key] - The unique identifier for storing the value.
   /// [defaultValue] - The value to return when no value is stored.
   /// [deserialize] - Function to convert stored JSON string to type [T].
   /// [serialize] - Function to convert type [T] to JSON string for storage.
-  NBasePersistedField({
-    required this.key,
-    required this.defaultValue,
-    required this.deserialize,
-    required this.serialize,
-  });
+  this;
 
   /// The Hive storage box used for persistence.
   Box<String> get box;

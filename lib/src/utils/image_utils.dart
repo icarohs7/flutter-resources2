@@ -8,7 +8,7 @@ import 'package:image/image.dart' as img;
 
 import 'mobile_only_utils.dart' as utils_mobile;
 
-abstract class ImageUtils {
+abstract class ImageUtils() {
   /// Resize the given image from its byte data or file path
   /// to the given [imageWidth], retaining its
   /// original proportions
@@ -89,9 +89,7 @@ abstract class ImageUtils {
   static Future<Uint8List?> loadNetworkImage(String url) async {
     final completer = Completer<ImageInfo>();
     final img = NetworkImage(url);
-    img
-        .resolve(const ImageConfiguration())
-        .addListener(ImageStreamListener((info, _) => completer.complete(info)));
+    img.resolve(const .new()).addListener(.new((info, _) => completer.complete(info)));
     final imageInfo = await completer.future;
     final byteData = await imageInfo.image.toByteData(format: .png);
     return byteData?.buffer.asUint8List();
@@ -110,7 +108,7 @@ abstract class ImageUtils {
     } else if (assetPath != null) {
       return ExtendedAssetImageProvider(assetPath);
     } else if (filePath != null) {
-      if (kIsWeb) return ExtendedMemoryImageProvider(Uint8List.fromList([]));
+      if (kIsWeb) return ExtendedMemoryImageProvider(.fromList([]));
       final dynamic f = utils_mobile.getFile(filePath); //workaround to allow compiling for web
       return ExtendedFileImageProvider(f);
     } else if (bytes != null) {

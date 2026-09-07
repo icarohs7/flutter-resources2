@@ -5,7 +5,7 @@ part 'chat_message.freezed.dart';
 
 @freezed
 abstract class ChatMessage with _$ChatMessage {
-  const factory ChatMessage({
+  const factory({
     @Default(true) bool showSender,
     @Default(true) bool fromMe,
     String? sender,

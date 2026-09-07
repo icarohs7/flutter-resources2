@@ -4,19 +4,18 @@ import 'package:material_ui/material_ui.dart';
 
 import 'chat_message.dart';
 
-class ChatBubble extends StatelessWidget {
-  final ChatMessage message;
-  final double nipWidth;
-  final EdgeInsets textPadding;
-
-  const ChatBubble(this.message, {super.key, this.nipWidth = 12, this.textPadding = const .all(8)});
-
+class const ChatBubble(
+  final ChatMessage message, {
+  super.key,
+  final double nipWidth = 12,
+  final EdgeInsets textPadding = const .all(8),
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textColor = Color(0xFF303030);
 
     return Bubble(
-      margin: BubbleEdges.only(
+      margin: .only(
         top: 2,
         left: message.fromMe ? 48 : 8,
         bottom: 2,
@@ -42,13 +41,13 @@ class ChatBubble extends StatelessWidget {
                   if (message.showSender && message.sender != null)
                     Text(
                       message.sender ?? '',
-                      style: TextStyle(fontSize: 14, color: textColor.withAlpha(150)),
+                      style: .new(fontSize: 14, color: textColor.withAlpha(150)),
                     ),
                   if (message.timestamp != null) ...[
                     Spacer(),
                     Text(
                       message.timestamp!.string('dd/MM/yyyy HH:mm'),
-                      style: TextStyle(fontSize: 12, color: textColor.withAlpha(175)),
+                      style: .new(fontSize: 12, color: textColor.withAlpha(175)),
                     ),
                   ],
                 ],

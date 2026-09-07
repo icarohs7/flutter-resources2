@@ -3,7 +3,7 @@ import 'package:flutter_resources2/flutter_resources2.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockDisposable extends Mock implements Disposable {}
+class MockDisposable() extends Mock implements Disposable;
 
 void main() {
   group('NProvider', () {

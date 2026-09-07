@@ -2,7 +2,7 @@ import 'package:flutter_resources2/flutter_resources2.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockFailure extends Mock implements NFailure {}
+class MockFailure() extends Mock implements NFailure;
 
 void main() {
   group('eitherCast', () {

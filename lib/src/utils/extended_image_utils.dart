@@ -2,7 +2,7 @@ import 'package:extended_image/extended_image.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class ExtendedImageUtils {
+class ExtendedImageUtils() {
   static Widget? ignoreErrorCallback(ExtendedImageState state) {
     return switch (state.extendedImageLoadState) {
       .failed => SizedBox(),

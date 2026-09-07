@@ -21,22 +21,19 @@ Future<DateTime?> showDateTimePicker({
   );
 }
 
-class DateTimePickerDialog extends HookWidget {
-  final Widget? title;
-  final DateTime initialDate;
-  final DateTime firstDate;
-  final DateTime lastDate;
-
-  DateTimePickerDialog({
-    this.title,
-    required this.initialDate,
-    required this.firstDate,
-    required this.lastDate,
-    super.key,
-  }) : assert(
-         !lastDate.isBefore(firstDate),
-         'lastDate $lastDate must be on or after firstDate $firstDate.',
-       );
+// ignore: prefer_const_constructors_in_immutables
+class DateTimePickerDialog({
+  final Widget? title,
+  required final DateTime initialDate,
+  required final DateTime firstDate,
+  required final DateTime lastDate,
+  super.key,
+}) extends HookWidget {
+  this
+    : assert(
+        !lastDate.isBefore(firstDate),
+        'lastDate $lastDate must be on or after firstDate $firstDate.',
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +56,7 @@ class DateTimePickerDialog extends HookWidget {
 
     final localizations = MaterialLocalizations.of(context);
     final selectedDateTime = _clampDateTime(
-      DateTime(date.value.year, date.value.month, date.value.day, hour.value, minute.value),
+      .new(date.value.year, date.value.month, date.value.day, hour.value, minute.value),
       firstDate,
       lastDate,
     );
@@ -67,7 +64,7 @@ class DateTimePickerDialog extends HookWidget {
     return Dialog(
       insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: ConstrainedBox(
-        constraints: BoxConstraints(
+        constraints: .new(
           minWidth: 280,
           maxWidth: 360,
           maxHeight: MediaQuery.sizeOf(context).height - 32,
@@ -75,7 +72,7 @@ class DateTimePickerDialog extends HookWidget {
         child: Padding(
           padding: const EdgeInsets.only(top: 8),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: .min,
             children: [
               if (title case final title?)
                 Padding(padding: const EdgeInsets.fromLTRB(16, 8, 16, 0), child: title),
@@ -97,7 +94,7 @@ class DateTimePickerDialog extends HookWidget {
                 ),
               ),
               OverflowBar(
-                alignment: MainAxisAlignment.end,
+                alignment: .end,
                 children: [
                   TextButton(
                     onPressed: () => Navigator.pop(context),
@@ -117,19 +114,12 @@ class DateTimePickerDialog extends HookWidget {
   }
 }
 
-class _HourMinutePicker extends StatelessWidget {
-  final FixedExtentScrollController hourController;
-  final FixedExtentScrollController minuteController;
-  final ValueChanged<int> onHourChanged;
-  final ValueChanged<int> onMinuteChanged;
-
-  const _HourMinutePicker({
-    required this.hourController,
-    required this.minuteController,
-    required this.onHourChanged,
-    required this.onMinuteChanged,
-  });
-
+class const _HourMinutePicker({
+  required final FixedExtentScrollController hourController,
+  required final FixedExtentScrollController minuteController,
+  required final ValueChanged<int> onHourChanged,
+  required final ValueChanged<int> onMinuteChanged,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textStyle =
@@ -159,17 +149,11 @@ class _HourMinutePicker extends StatelessWidget {
   }
 }
 
-class _LoopingDigitPicker extends StatelessWidget {
-  final FixedExtentScrollController controller;
-  final int itemCount;
-  final ValueChanged<int> onChanged;
-
-  const _LoopingDigitPicker({
-    required this.controller,
-    required this.itemCount,
-    required this.onChanged,
-  });
-
+class const _LoopingDigitPicker({
+  required final FixedExtentScrollController controller,
+  required final int itemCount,
+  required final ValueChanged<int> onChanged,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPicker(

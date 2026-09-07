@@ -3,20 +3,13 @@ import 'package:material_ui/material_ui.dart';
 
 import '../classes/classes.dart';
 
-class NProvider<T> extends HookWidget {
-  final T Function() instanceFactory;
-  final void Function(T)? dispose;
-  final Widget Function(T) builder;
-  final List<Object?> keys;
-
-  const NProvider({
-    required this.instanceFactory,
-    this.dispose,
-    required this.builder,
-    this.keys = const <Object?>[],
-    super.key,
-  });
-
+class const NProvider<T>({
+  required final T Function() instanceFactory,
+  final void Function(T)? dispose,
+  required final Widget Function(T) builder,
+  final List<Object?> keys = const <Object?>[],
+  super.key,
+}) extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final instance = useMemoized(instanceFactory, keys);

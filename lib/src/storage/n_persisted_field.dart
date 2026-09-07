@@ -9,8 +9,8 @@ import 'n_base_persisted_field.dart';
 ///
 /// Provides serialization and deserialization of integer values to/from string format
 /// with a default value of 0 if parsing fails.
-class NPersistedFieldInt extends NPersistedField<int> {
-  NPersistedFieldInt({required super.key, super.defaultValue})
+class NPersistedFieldInt({required super.key, super.defaultValue}) extends NPersistedField<int> {
+  this
     : super(
         deserialize: (json) => int.tryParse(json) ?? defaultValue ?? 0,
         serialize: (value) => value.toString(),
@@ -21,8 +21,9 @@ class NPersistedFieldInt extends NPersistedField<int> {
 ///
 /// Provides serialization and deserialization of double values to/from string format
 /// with a default value of 0.0 if parsing fails.
-class NPersistedFieldDouble extends NPersistedField<double> {
-  NPersistedFieldDouble({required super.key, super.defaultValue})
+class NPersistedFieldDouble({required super.key, super.defaultValue})
+    extends NPersistedField<double> {
+  this
     : super(
         deserialize: (json) => double.tryParse(json) ?? defaultValue ?? 0.0,
         serialize: (value) => value.toString(),
@@ -33,33 +34,30 @@ class NPersistedFieldDouble extends NPersistedField<double> {
 ///
 /// Provides serialization and deserialization of boolean values to/from string format,
 /// where 'true' string represents true value.
-class NPersistedFieldBool extends NPersistedField<bool> {
-  NPersistedFieldBool({required super.key, super.defaultValue})
-    : super(deserialize: (json) => json == 'true', serialize: (value) => value.toString());
+class NPersistedFieldBool({required super.key, super.defaultValue}) extends NPersistedField<bool> {
+  this : super(deserialize: (json) => json == 'true', serialize: (value) => value.toString());
 }
 
 /// A persisted field implementation for storing string values.
 ///
 /// Uses direct string values without any transformation for storage and retrieval.
-class NPersistedFieldString extends NPersistedField<String> {
-  NPersistedFieldString({required super.key, super.defaultValue})
-    : super(deserialize: identity, serialize: identity);
+class NPersistedFieldString({required super.key, super.defaultValue})
+    extends NPersistedField<String> {
+  this : super(deserialize: identity, serialize: identity);
 }
 
 /// Base implementation of a persisted field that stores values in an unsecured Hive box.
 ///
 /// Provides generic type storage with customizable serialization and deserialization.
 /// Values are stored as strings in a Hive box named 'n_unsecure_box'.
-class NPersistedField<T> extends NBasePersistedField<T> {
+class NPersistedField<T>({
+  required super.key,
+  super.defaultValue,
+  required super.deserialize,
+  super.serialize = jsonEncode,
+}) extends NBasePersistedField<T> {
   static const String _boxName = 'n_unsecure_box';
   static late Box<String> _box;
-
-  NPersistedField({
-    required super.key,
-    super.defaultValue,
-    required super.deserialize,
-    super.serialize = jsonEncode,
-  });
 
   /// Initializes the persistent storage by setting up the Hive box.
   ///

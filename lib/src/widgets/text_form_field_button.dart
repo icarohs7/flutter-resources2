@@ -1,26 +1,16 @@
 import 'package:core_resources/core_resources.dart';
 import 'package:material_ui/material_ui.dart';
 
-class TextFormFieldButton extends HookWidget {
-  final String? value;
-  final FormFieldValidator<String?>? validator;
-  final InputDecoration? decoration;
-  final VoidCallback? onTap;
-  final VoidCallback? onLongPress;
-  final Widget Function(TextEditingController controller)? fieldBuilder;
-  final bool? enabled;
-
-  const TextFormFieldButton({
-    this.value,
-    this.validator,
-    this.decoration,
-    this.onTap,
-    this.onLongPress,
-    this.fieldBuilder,
-    this.enabled,
-    super.key,
-  });
-
+class const TextFormFieldButton({
+  final String? value,
+  final FormFieldValidator<String?>? validator,
+  final InputDecoration? decoration,
+  final VoidCallback? onTap,
+  final VoidCallback? onLongPress,
+  final Widget Function(TextEditingController controller)? fieldBuilder,
+  final bool? enabled,
+  super.key,
+}) extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final controller = useTextEditingController();

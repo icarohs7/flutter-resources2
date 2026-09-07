@@ -3,30 +3,18 @@ import 'package:material_ui/material_ui.dart';
 
 import 'text_form_field_button.dart';
 
-class TimeFormField extends StatelessWidget {
-  final DateTime? value;
-  final ValueChanged<DateTime> onChanged;
-  final String timeFormat;
-  final InputDecoration? decoration;
-  final String? pickerHelpText;
-  final String? pickerFieldLabelText;
-  final DateTime pickerInitialTime;
-  final FormFieldValidator<DateTime?>? validator;
-  final bool enabled;
-
-  const TimeFormField({
-    required this.value,
-    required this.onChanged,
-    this.timeFormat = 'HH:mm:ss',
-    this.decoration,
-    this.pickerHelpText,
-    this.pickerFieldLabelText,
-    required this.pickerInitialTime,
-    this.validator,
-    this.enabled = true,
-    super.key,
-  });
-
+class const TimeFormField({
+  required final DateTime? value,
+  required final ValueChanged<DateTime> onChanged,
+  final String timeFormat = 'HH:mm:ss',
+  final InputDecoration? decoration,
+  final String? pickerHelpText,
+  final String? pickerFieldLabelText,
+  required final DateTime pickerInitialTime,
+  final FormFieldValidator<DateTime?>? validator,
+  final bool enabled = true,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     onTap() async {

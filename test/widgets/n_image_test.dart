@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class _MockExtendedImageState extends Mock implements ExtendedImageState {}
+class _MockExtendedImageState() extends Mock implements ExtendedImageState;
 
 void main() {
   setUpAll(() {
@@ -200,9 +200,7 @@ ExtendedImageState _mockState(LoadState loadState) {
   return state;
 }
 
-class _FailingImageProvider extends ImageProvider<_FailingImageProvider> {
-  const _FailingImageProvider();
-
+class const _FailingImageProvider() extends ImageProvider<_FailingImageProvider> {
   @override
   Future<_FailingImageProvider> obtainKey(ImageConfiguration configuration) {
     return SynchronousFuture(this);
@@ -217,11 +215,7 @@ class _FailingImageProvider extends ImageProvider<_FailingImageProvider> {
   }
 }
 
-class _KeyImageProvider extends ImageProvider<_KeyImageProvider> {
-  const _KeyImageProvider(this.label);
-
-  final String label;
-
+class const _KeyImageProvider(final String label) extends ImageProvider<_KeyImageProvider> {
   @override
   Future<_KeyImageProvider> obtainKey(ImageConfiguration configuration) {
     return SynchronousFuture(this);

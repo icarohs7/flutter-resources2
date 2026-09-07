@@ -29,8 +29,8 @@ class const PinInput({
       label: semanticsLabel,
       value: '$filledLength/$length',
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: .center,
+        mainAxisSize: .min,
         children: <Widget>[
           for (int index = 0; index < length; index++) ...[
             if (index > 0) SizedBox(width: spacing),

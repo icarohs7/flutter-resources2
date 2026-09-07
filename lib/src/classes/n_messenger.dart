@@ -6,7 +6,7 @@ import 'package:material_ui/material_ui.dart';
 ///
 /// This class cannot be instantiated and only provides static methods and properties
 /// for managing global messaging and dialog functionality.
-abstract class NMessenger {
+abstract class NMessenger() {
   /// Global key for accessing the [ScaffoldMessenger] state throughout the app.
   static final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 

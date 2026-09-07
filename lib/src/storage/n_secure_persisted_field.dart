@@ -11,8 +11,9 @@ import 'n_base_persisted_field.dart';
 ///
 /// Provides serialization and deserialization of integer values to/from string format
 /// for secure storage.
-class NSecurePersistedFieldInt extends NSecurePersistedField<int> {
-  NSecurePersistedFieldInt({required super.key, super.defaultValue})
+class NSecurePersistedFieldInt({required super.key, super.defaultValue})
+    extends NSecurePersistedField<int> {
+  this
     : super(
         deserialize: (json) => int.tryParse(json) ?? defaultValue ?? 0,
         serialize: (value) => value.toString(),
@@ -23,8 +24,9 @@ class NSecurePersistedFieldInt extends NSecurePersistedField<int> {
 ///
 /// Provides serialization and deserialization of double values to/from string format
 /// for secure storage.
-class NSecurePersistedFieldDouble extends NSecurePersistedField<double> {
-  NSecurePersistedFieldDouble({required super.key, super.defaultValue})
+class NSecurePersistedFieldDouble({required super.key, super.defaultValue})
+    extends NSecurePersistedField<double> {
+  this
     : super(
         deserialize: (json) => double.tryParse(json) ?? defaultValue ?? 0.0,
         serialize: (value) => value.toString(),
@@ -35,18 +37,18 @@ class NSecurePersistedFieldDouble extends NSecurePersistedField<double> {
 ///
 /// Provides serialization and deserialization of boolean values to/from string format
 /// for secure storage.
-class NSecurePersistedFieldBool extends NSecurePersistedField<bool> {
-  NSecurePersistedFieldBool({required super.key, super.defaultValue})
-    : super(deserialize: (json) => json == 'true', serialize: (value) => value.toString());
+class NSecurePersistedFieldBool({required super.key, super.defaultValue})
+    extends NSecurePersistedField<bool> {
+  this : super(deserialize: (json) => json == 'true', serialize: (value) => value.toString());
 }
 
 /// A secure persisted field that stores string values.
 ///
 /// Uses identity function for both serialization and deserialization since
 /// the values are already in string format.
-class NSecurePersistedFieldString extends NSecurePersistedField<String> {
-  NSecurePersistedFieldString({required super.key, super.defaultValue})
-    : super(deserialize: identity, serialize: identity);
+class NSecurePersistedFieldString({required super.key, super.defaultValue})
+    extends NSecurePersistedField<String> {
+  this : super(deserialize: identity, serialize: identity);
 }
 
 /// Base class for secure persisted fields that provides encrypted storage functionality.
@@ -54,17 +56,15 @@ class NSecurePersistedFieldString extends NSecurePersistedField<String> {
 /// Uses Hive for storage with AES encryption. The encryption key is stored securely
 /// using FlutterSecureStorage. Supports generic type [T] for storing different
 /// data types.
-class NSecurePersistedField<T> extends NBasePersistedField<T> {
+class NSecurePersistedField<T>({
+  required super.key,
+  super.defaultValue,
+  required super.deserialize,
+  super.serialize = jsonEncode,
+}) extends NBasePersistedField<T> {
   static const String _boxName = 'n_secure_box';
   static const String _encryptionKeyName = 'n_secure_box_hive_encryption_key';
   static late Box<String> _box;
-
-  NSecurePersistedField({
-    required super.key,
-    super.defaultValue,
-    required super.deserialize,
-    super.serialize = jsonEncode,
-  });
 
   /// Initializes the secure storage by setting up an encrypted Hive box.
   ///

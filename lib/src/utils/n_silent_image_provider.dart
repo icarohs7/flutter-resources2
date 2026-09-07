@@ -12,14 +12,14 @@ import 'package:flutter/painting.dart';
 ///
 /// Animated images are reduced to a single frame when loaded through this wrapper.
 class NSilentImageProvider extends ImageProvider<NSilentImageProvider> {
-  const NSilentImageProvider(this.delegate) : _delegateKey = null;
+  const new(this.delegate) : _delegateKey = null;
 
-  const NSilentImageProvider._(this.delegate, this._delegateKey);
+  const new _(this.delegate, this._delegateKey);
 
   final ImageProvider<Object> delegate;
   final Object? _delegateKey;
 
-  static const Duration failureCacheTtl = Duration(seconds: 60);
+  static const Duration failureCacheTtl = .new(seconds: 60);
 
   static final Map<int, DateTime> _failedAtByKeyId = <int, DateTime>{};
   static const int _maxFailedKeys = 2048;
@@ -173,7 +173,7 @@ class NSilentImageProvider extends ImageProvider<NSilentImageProvider> {
   }
 
   static Future<ui.Codec> _transparentCodec(ImageDecoderCallback decode) async {
-    final buffer = await ui.ImmutableBuffer.fromUint8List(Uint8List.fromList(k1x1TransparentPng));
+    final buffer = await ui.ImmutableBuffer.fromUint8List(.fromList(k1x1TransparentPng));
     return decode(buffer);
   }
 

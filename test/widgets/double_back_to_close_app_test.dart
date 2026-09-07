@@ -151,7 +151,7 @@ void main() {
   });
 }
 
-class _PopRouteCounter extends WidgetsBindingObserver {
+class _PopRouteCounter() extends WidgetsBindingObserver {
   int didPopRouteCount = 0;
 
   @override
@@ -161,12 +161,8 @@ class _PopRouteCounter extends WidgetsBindingObserver {
   }
 }
 
-class _TestApp extends StatelessWidget {
-  final bool withScaffold;
-  final bool withDrawer;
-
-  const _TestApp({this.withScaffold = true, this.withDrawer = false});
-
+class const _TestApp({final bool withScaffold = true, final bool withDrawer = false})
+    extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const doubleBackToCloseApp = DoubleBackToCloseApp(
