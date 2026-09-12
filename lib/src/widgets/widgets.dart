@@ -11,6 +11,7 @@ export 'n_form_category_header.dart';
 export 'n_header_alert_dialog.dart';
 export 'n_image.dart';
 export 'n_animated_list_item.dart';
+export 'n_labeled_text_form_field.dart';
 export 'n_message_bar.dart';
 export 'n_list_error_fallback.dart';
 export 'n_no_items_tile.dart';
