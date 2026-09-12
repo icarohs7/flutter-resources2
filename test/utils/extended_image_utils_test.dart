@@ -1,7 +1,6 @@
-import 'package:material_ui/material_ui.dart';
 import 'package:flutter_resources2/flutter_resources2.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:skeletonizer/skeletonizer.dart';
+import 'package:material_ui/material_ui.dart';
 
 void main() {
   group('ExtendedImageUtils', () {

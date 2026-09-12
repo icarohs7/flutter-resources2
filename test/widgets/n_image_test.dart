@@ -1,11 +1,10 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart';
-import 'package:material_ui/material_ui.dart';
 import 'package:flutter_resources2/flutter_resources2.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
 class _MockExtendedImageState() extends Mock implements ExtendedImageState;
 
