@@ -1,6 +1,10 @@
 import 'package:core_resources/core_resources.dart';
 import 'package:material_ui/material_ui.dart';
 
+/// A standard Material [NavigationBar].
+///
+/// Use [NFloatingBottomNav], [NFilledBottomNav], or [NRoutedBottomNav] when a
+/// floating, filled, or route-aware presentation is needed.
 class const NBottomNav({
   super.key,
   required final int currentIndex,
@@ -39,6 +43,7 @@ class const NBottomNav({
   }
 }
 
+/// A destination used by the shared bottom navigation widgets.
 class const NBottomNavItem(
   final String title,
   final IconData icon, {
