@@ -1,3 +1,4 @@
+import 'package:core_resources/core_resources.dart';
 import 'package:flutter/rendering.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -67,37 +68,24 @@ class const NSimpleScaffold({
   }
 }
 
-class _FloatingBody extends StatefulWidget {
-  const _FloatingBody({
-    required this.body,
-    required this.bottomNavigationBar,
-    this.floatingActionButton,
-    this.floatingActionButtonLocation,
-  });
-
-  final Widget body;
-  final Widget bottomNavigationBar;
-  final Widget? floatingActionButton;
-  final FloatingActionButtonLocation? floatingActionButtonLocation;
-
-  @override
-  State<_FloatingBody> createState() => _FloatingBodyState();
-}
-
-class _FloatingBodyState extends State<_FloatingBody> {
-  double _overlayHeight = 0;
-
+class const _FloatingBody({
+  required final Widget body,
+  required final Widget bottomNavigationBar,
+  final Widget? floatingActionButton,
+  final FloatingActionButtonLocation? floatingActionButtonLocation,
+}) extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    final overlayHeight = useState(0.0);
     final mediaQuery = MediaQuery.of(context);
     final bodyMediaQuery = mediaQuery.copyWith(
-      padding: mediaQuery.padding.copyWith(bottom: mediaQuery.padding.bottom + _overlayHeight),
+      padding: mediaQuery.padding.copyWith(bottom: mediaQuery.padding.bottom + overlayHeight.value),
     );
 
     return Stack(
       children: [
         Positioned.fill(
-          child: MediaQuery(data: bodyMediaQuery, child: widget.body),
+          child: MediaQuery(data: bodyMediaQuery, child: body),
         ),
         Align(
           alignment: Alignment.bottomCenter,
@@ -107,19 +95,22 @@ class _FloatingBodyState extends State<_FloatingBody> {
             right: false,
             bottom: true,
             child: _SizeReporter(
-              onSizeChanged: _updateOverlayHeight,
+              onSizeChanged: (size) {
+                if (!context.mounted || size.height == overlayHeight.value) return;
+                overlayHeight.value = size.height;
+              },
               child: Column(
                 mainAxisSize: .min,
                 children: [
-                  if (widget.floatingActionButton != null)
+                  if (floatingActionButton != null)
                     Align(
-                      alignment: _fabAlignment(widget.floatingActionButtonLocation),
+                      alignment: _fabAlignment(floatingActionButtonLocation),
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-                        child: widget.floatingActionButton,
+                        child: floatingActionButton,
                       ),
                     ),
-                  widget.bottomNavigationBar,
+                  bottomNavigationBar,
                 ],
               ),
             ),
@@ -127,11 +118,6 @@ class _FloatingBodyState extends State<_FloatingBody> {
         ),
       ],
     );
-  }
-
-  void _updateOverlayHeight(Size size) {
-    if (!mounted || size.height == _overlayHeight) return;
-    setState(() => _overlayHeight = size.height);
   }
 
   static Alignment _fabAlignment(FloatingActionButtonLocation? location) {
@@ -153,11 +139,10 @@ class _FloatingBodyState extends State<_FloatingBody> {
   }
 }
 
-class _SizeReporter extends SingleChildRenderObjectWidget {
-  const _SizeReporter({required this.onSizeChanged, required super.child});
-
-  final void Function(Size size) onSizeChanged;
-
+class const _SizeReporter({
+  required final void Function(Size size) onSizeChanged,
+  required super.child,
+}) extends SingleChildRenderObjectWidget {
   @override
   RenderObject createRenderObject(BuildContext context) {
     return _RenderSizeReporter(onSizeChanged);
@@ -169,10 +154,9 @@ class _SizeReporter extends SingleChildRenderObjectWidget {
   }
 }
 
-class _RenderSizeReporter extends RenderProxyBox {
-  _RenderSizeReporter(this.onSizeChanged);
+class _RenderSizeReporter(final void Function(Size size) initialCallback) extends RenderProxyBox {
+  void Function(Size size) onSizeChanged = initialCallback;
 
-  void Function(Size size) onSizeChanged;
   Size? _reportedSize;
 
   @override
