@@ -132,6 +132,14 @@ class const NFloatingBottomNav({
       return () => controller.removeListener(onScroll);
     }, [hideOnScroll, resolvedController]);
 
+    useEffect(() {
+      if (isVisible.value) return null;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (context.mounted && !_canHide(resolvedController)) isVisible.value = true;
+      });
+      return null;
+    });
+
     final pill = _NavPill(
       items: items,
       selectedIndex: selectedIndex,
@@ -185,13 +193,21 @@ class const NFloatingBottomNav({
   }
 
   void _updateScrollVisibility(ScrollController controller, ValueNotifier<bool> isVisible) {
-    if (!controller.hasClients) return;
     final direction = controller.positions.firstOrNull?.userScrollDirection;
-    if (direction == .reverse) {
+    if (direction == .reverse && _canHide(controller)) {
       isVisible.value = false;
     } else if (direction == .forward) {
       isVisible.value = true;
     }
+  }
+
+  // Only a forward scroll brings a hidden bar back, so content that cannot
+  // scroll must never leave it hidden, including iOS bounce on short content.
+  bool _canHide(ScrollController? controller) {
+    final position = controller?.positions.firstOrNull;
+    return position != null &&
+        position.hasContentDimensions &&
+        position.maxScrollExtent > position.minScrollExtent;
   }
 }
 
