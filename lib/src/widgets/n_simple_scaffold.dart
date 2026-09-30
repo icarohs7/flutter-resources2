@@ -7,7 +7,7 @@ import 'package:material_ui/material_ui.dart';
 /// When [floatingBottomNav] is enabled, the bottom navigation is rendered over
 /// the body and its measured height is added to [MediaQuery.padding.bottom].
 /// Scroll views that read that padding can therefore keep their final content
-/// above the overlay.
+/// above the overlay. Snackbars are shown above the navigation.
 class const NSimpleScaffold({
   super.key,
   final String? title,
@@ -30,18 +30,25 @@ class const NSimpleScaffold({
   /// normal layout and the floating action button uses the standard scaffold
   /// placement.
   final bool floatingBottomNav = true,
-}) extends StatelessWidget {
+}) extends HookWidget {
   this : assert(!(title != null && appBar != null));
 
   @override
   Widget build(BuildContext context) {
     final useFloatingOverlay = floatingBottomNav && bottomNavigationBar != null;
+    final navigationHeight = useState(0.0);
+    final bottomPadding = MediaQuery.paddingOf(context).bottom;
+    final bottomViewPadding = MediaQuery.viewPaddingOf(context).bottom;
+    final keyboardVisible = MediaQuery.viewInsetsOf(context).bottom > 0;
     final resolvedBody = useFloatingOverlay
         ? _FloatingBody(
             body: body,
             bottomNavigationBar: bottomNavigationBar!,
             floatingActionButton: floatingActionButton,
             floatingActionButtonLocation: floatingActionButtonLocation,
+            bottomPadding: bottomPadding,
+            bottomViewPadding: bottomViewPadding,
+            onNavigationHeightChanged: (height) => navigationHeight.value = height,
           )
         : body;
 
@@ -56,7 +63,12 @@ class const NSimpleScaffold({
                   bottom: bottom,
                 ),
       body: resolvedBody,
-      bottomNavigationBar: useFloatingOverlay ? null : bottomNavigationBar,
+      // Scaffold lays snackbars out above this slot, so an empty box as tall as the floating
+      // navigation keeps them off it. While the keyboard is shorter than the box, Scaffold
+      // would keep the extended body, and the navigation with it, behind the keyboard.
+      bottomNavigationBar: useFloatingOverlay
+          ? SizedBox(height: keyboardVisible ? 0 : bottomPadding + navigationHeight.value)
+          : bottomNavigationBar,
       floatingActionButton: useFloatingOverlay ? null : floatingActionButton,
       floatingActionButtonLocation: useFloatingOverlay ? null : floatingActionButtonLocation,
       drawer: drawer,
@@ -73,13 +85,21 @@ class const _FloatingBody({
   required final Widget bottomNavigationBar,
   final Widget? floatingActionButton,
   final FloatingActionButtonLocation? floatingActionButtonLocation,
+  required final double bottomPadding,
+  required final double bottomViewPadding,
+  required final void Function(double height) onNavigationHeightChanged,
 }) extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final overlayHeight = useState(0.0);
-    final mediaQuery = MediaQuery.of(context);
+    // The scaffold replaces the body's bottom insets with the height of its navigation slot.
+    final scaffoldMediaQuery = MediaQuery.of(context);
+    final mediaQuery = scaffoldMediaQuery.copyWith(
+      padding: scaffoldMediaQuery.padding.copyWith(bottom: bottomPadding),
+      viewPadding: scaffoldMediaQuery.viewPadding.copyWith(bottom: bottomViewPadding),
+    );
     final bodyMediaQuery = mediaQuery.copyWith(
-      padding: mediaQuery.padding.copyWith(bottom: mediaQuery.padding.bottom + overlayHeight.value),
+      padding: mediaQuery.padding.copyWith(bottom: bottomPadding + overlayHeight.value),
     );
 
     return Stack(
@@ -89,29 +109,37 @@ class const _FloatingBody({
         ),
         Align(
           alignment: Alignment.bottomCenter,
-          child: SafeArea(
-            left: false,
-            top: false,
-            right: false,
-            bottom: true,
-            child: _SizeReporter(
-              onSizeChanged: (size) {
-                if (!context.mounted || size.height == overlayHeight.value) return;
-                overlayHeight.value = size.height;
-              },
-              child: Column(
-                mainAxisSize: .min,
-                children: [
-                  if (floatingActionButton != null)
-                    Align(
-                      alignment: _fabAlignment(floatingActionButtonLocation),
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-                        child: floatingActionButton,
+          child: MediaQuery(
+            data: mediaQuery,
+            child: SafeArea(
+              left: false,
+              top: false,
+              right: false,
+              bottom: true,
+              child: _SizeReporter(
+                onSizeChanged: (size) {
+                  if (!context.mounted || size.height == overlayHeight.value) return;
+                  overlayHeight.value = size.height;
+                },
+                child: Column(
+                  mainAxisSize: .min,
+                  children: [
+                    if (floatingActionButton != null)
+                      Align(
+                        alignment: _fabAlignment(floatingActionButtonLocation),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+                          child: floatingActionButton,
+                        ),
                       ),
+                    _SizeReporter(
+                      onSizeChanged: (size) {
+                        if (context.mounted) onNavigationHeightChanged(size.height);
+                      },
+                      child: bottomNavigationBar,
                     ),
-                  bottomNavigationBar,
-                ],
+                  ],
+                ),
               ),
             ),
           ),
