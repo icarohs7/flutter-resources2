@@ -62,7 +62,7 @@ listed below.
 | Persistence | `NPersistedField*`, `NSecurePersistedField*` | [`lib/src/storage`](lib/src/storage) |
 | Search and dialogs | `NInputSearchBar`, `NBasicSearchDelegate`, `NSelectionPage`, `DateTimePickerDialog` | [`lib/src/search_resources`](lib/src/search_resources), [`lib/src/dialogs`](lib/src/dialogs) |
 | Lists and failures | `NListView`, `NSliverList`, `NException`, `NFailure` | [`lib/src/listresources`](lib/src/listresources), [`lib/src/failure`](lib/src/failure) |
-| Rendering and application helpers | `HtmlRender`, `Chat`, `ChatBubble`, `ShareParams`, image utilities | [`lib/src/htmlrenderresources`](lib/src/htmlrenderresources), [`lib/src/chatresources`](lib/src/chatresources), [`lib/src/adapters`](lib/src/adapters) |
+| Text and application helpers | `htmlUnescaped`, `Chat`, `ChatBubble`, `ShareParams`, image utilities | [`lib/src/htmlrenderresources`](lib/src/htmlrenderresources), [`lib/src/chatresources`](lib/src/chatresources), [`lib/src/adapters`](lib/src/adapters) |
 
 ## Quick start
 
