@@ -53,6 +53,9 @@ class const NRoutedBottomNav({
   /// Whether to use the inverse filled style instead of [NBottomNav].
   final bool isCustomStyle = false,
 
+  /// Whether the floating style slides out of view while content scrolls down.
+  final bool hideOnScroll = true,
+
   /// Whether the floating style can collapse into a compact indicator.
   final bool collapsible = true,
 
@@ -103,6 +106,7 @@ class const NRoutedBottomNav({
         currentIndex: resolvedIndex,
         onTap: onItemTap,
         items: children,
+        hideOnScroll: hideOnScroll,
         collapsible: collapsible,
         centerAction: centerAction,
         centerActionSize: centerActionSize,
