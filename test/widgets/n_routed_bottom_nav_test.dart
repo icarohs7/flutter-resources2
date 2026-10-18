@@ -55,4 +55,28 @@ void main() {
     final screen = Offset.zero & tester.view.physicalSize / tester.view.devicePixelRatio;
     expect(screen.contains(tester.getRect(find.byIcon(Icons.shopping_cart)).bottomCenter), isTrue);
   });
+
+  testWidgets('passes a custom item padding to the floating bar', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: NRoutedBottomNav(
+            currentRoute: '/home',
+            routes: const ['/home', '/cart'],
+            children: const [
+              NBottomNavItem('Home', Icons.home),
+              NBottomNavItem('Cart', Icons.shopping_cart),
+            ],
+            itemPadding: EdgeInsets.zero,
+            onNavigate: (_, _) {},
+          ),
+        ),
+      ),
+    );
+
+    final selection = tester.getRect(
+      find.ancestor(of: find.text('Home'), matching: find.byType(AnimatedContainer)).first,
+    );
+    expect(selection.width, tester.getRect(find.text('Home')).width);
+  });
 }

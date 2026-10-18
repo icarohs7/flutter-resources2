@@ -25,7 +25,8 @@ const _kCollapseDragVelocity = 150.0;
 ///
 /// The bar can hide while its scroll controller moves down and collapse into a
 /// compact indicator when dragged. [items] can also provide badges and a
-/// selected icon through [NBottomNavItem].
+/// selected icon through [NBottomNavItem], or draw their own selected and
+/// unselected presentation through [NBottomNavItem.childBuilder].
 class const NFloatingBottomNav({
   super.key,
 
@@ -70,6 +71,10 @@ class const NFloatingBottomNav({
 
   /// Icon size for nav items.
   final double iconSize = 22.0,
+
+  /// Padding between each item's content and its selection highlight.
+  /// Defaults to 16 horizontally and 4 vertically.
+  final EdgeInsets? itemPadding,
 
   /// Text style for unselected labels.
   final TextStyle? labelStyle,
@@ -153,6 +158,9 @@ class const NFloatingBottomNav({
       elevation: elevation,
       height: height,
       iconSize: iconSize,
+      itemPadding:
+          itemPadding ??
+          const .symmetric(horizontal: _kItemHorizontalPadding, vertical: _kItemVerticalPadding),
       labelStyle: labelStyle ?? defaultLabelStyle,
       selectedLabelStyle: selectedLabelStyle ?? defaultSelectedLabelStyle,
       centerGapWidth: centerAction == null ? 0 : centerActionSize.width,
@@ -330,6 +338,7 @@ class const _NavPill({
   required final double elevation,
   required final double height,
   required final double iconSize,
+  required final EdgeInsets itemPadding,
   required final TextStyle labelStyle,
   required final TextStyle selectedLabelStyle,
   required final double centerGapWidth,
@@ -345,6 +354,8 @@ class const _NavPill({
           isSelected: selectedIndex == index,
           onTap: onTap,
           iconSize: iconSize,
+          padding: itemPadding,
+          backgroundColor: backgroundColor,
           selectedColor: selectedColor,
           unselectedColor: unselectedColor,
           labelStyle: labelStyle,
@@ -442,6 +453,8 @@ class const _NavItem({
   required final bool isSelected,
   required final void Function(int) onTap,
   required final double iconSize,
+  required final EdgeInsets padding,
+  required final Color backgroundColor,
   required final Color selectedColor,
   required final Color unselectedColor,
   required final TextStyle labelStyle,
@@ -449,6 +462,7 @@ class const _NavItem({
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final childBuilder = item.childBuilder;
     final badgeContent = item.badgeText ?? '';
     final hasBadge = item.badge != null || badgeContent.isNotBlank;
 
@@ -461,38 +475,41 @@ class const _NavItem({
           child: AnimatedContainer(
             duration: _kItemAnimDuration,
             curve: Curves.easeInOut,
-            padding: const .symmetric(
-              horizontal: _kItemHorizontalPadding,
-              vertical: _kItemVerticalPadding,
-            ),
+            padding: padding,
             decoration: BoxDecoration(
-              color: isSelected
+              color: isSelected && childBuilder == null
                   ? selectedColor.withValues(alpha: _kSelectedHighlightAlpha)
                   : Colors.transparent,
               borderRadius: .circular(_kSelectionPillRadius),
             ),
-            child: Column(
-              mainAxisSize: .min,
-              mainAxisAlignment: .center,
-              children: [
-                Badge(
-                  label: item.badge ?? Text(badgeContent),
-                  isLabelVisible: hasBadge,
-                  child: Icon(
-                    isSelected ? (item.selectedIcon ?? item.icon) : item.icon,
-                    size: iconSize,
-                    color: isSelected ? selectedColor : unselectedColor,
+            child: childBuilder != null
+                ? childBuilder(
+                    isSelected,
+                    backgroundColor,
+                    isSelected ? selectedColor : unselectedColor,
+                  )
+                : Column(
+                    mainAxisSize: .min,
+                    mainAxisAlignment: .center,
+                    children: [
+                      Badge(
+                        label: item.badge ?? Text(badgeContent),
+                        isLabelVisible: hasBadge,
+                        child: Icon(
+                          isSelected ? (item.selectedIcon ?? item.icon) : item.icon,
+                          size: iconSize,
+                          color: isSelected ? selectedColor : unselectedColor,
+                        ),
+                      ),
+                      const SizedBox(height: _kIconLabelGap),
+                      Text(
+                        item.title,
+                        maxLines: 1,
+                        overflow: .ellipsis,
+                        style: isSelected ? selectedLabelStyle : labelStyle,
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(height: _kIconLabelGap),
-                Text(
-                  item.title,
-                  maxLines: 1,
-                  overflow: .ellipsis,
-                  style: isSelected ? selectedLabelStyle : labelStyle,
-                ),
-              ],
-            ),
           ),
         ),
       ),

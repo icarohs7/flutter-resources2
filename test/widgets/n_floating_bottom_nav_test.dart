@@ -119,4 +119,82 @@ void main() {
     expect(actionTaps, 2);
     expect(navigationTaps, [0, 1]);
   });
+
+  group('item layout', () {
+    Widget bar({EdgeInsets? itemPadding, List<NBottomNavItem>? items, List<int>? taps}) {
+      return MaterialApp(
+        home: Scaffold(
+          body: Align(
+            alignment: Alignment.bottomCenter,
+            child: itemPadding == null
+                ? NFloatingBottomNav(
+                    currentIndex: 0,
+                    onTap: (index) => taps?.add(index),
+                    items:
+                        items ??
+                        const [NBottomNavItem('A', Icons.home), NBottomNavItem('B', Icons.person)],
+                    hideOnScroll: false,
+                    collapsible: false,
+                  )
+                : NFloatingBottomNav(
+                    currentIndex: 0,
+                    onTap: (index) => taps?.add(index),
+                    items:
+                        items ??
+                        const [NBottomNavItem('A', Icons.home), NBottomNavItem('B', Icons.person)],
+                    itemPadding: itemPadding,
+                    hideOnScroll: false,
+                    collapsible: false,
+                  ),
+          ),
+        ),
+      );
+    }
+
+    Rect selectionOf(WidgetTester tester, String label) {
+      return tester.getRect(
+        find.ancestor(of: find.text(label), matching: find.byType(AnimatedContainer)).first,
+      );
+    }
+
+    testWidgets('pads each item by 16 horizontally and 4 vertically by default', (tester) async {
+      await tester.pumpWidget(bar());
+
+      final selection = selectionOf(tester, 'A');
+      final icon = tester.getRect(find.byIcon(Icons.home));
+      final label = tester.getRect(find.text('A'));
+      expect(selection.width, icon.width + 32);
+      expect(selection.height, icon.height + 4 + label.height + 8);
+    });
+
+    testWidgets('lets narrow bars choose a smaller item padding', (tester) async {
+      await tester.pumpWidget(bar(itemPadding: const EdgeInsets.symmetric(horizontal: 2)));
+
+      final selection = selectionOf(tester, 'A');
+      final icon = tester.getRect(find.byIcon(Icons.home));
+      expect(selection.width, icon.width + 4);
+    });
+
+    testWidgets('draws an item from its childBuilder with the selected state', (tester) async {
+      final taps = <int>[];
+      Widget tab(bool selected, Color backgroundColor, Color textColor) {
+        return Text(selected ? 'selected' : 'unselected', style: TextStyle(color: textColor));
+      }
+
+      await tester.pumpWidget(
+        bar(
+          taps: taps,
+          items: [
+            NBottomNavItem('Home', Icons.home, childBuilder: tab),
+            NBottomNavItem('Cart', Icons.shopping_cart, childBuilder: tab),
+          ],
+        ),
+      );
+
+      expect(find.byIcon(Icons.home), findsNothing);
+      expect(find.text('selected'), findsOneWidget);
+      await tester.tap(find.text('unselected'));
+      expect(taps, [1]);
+    });
+  });
 }

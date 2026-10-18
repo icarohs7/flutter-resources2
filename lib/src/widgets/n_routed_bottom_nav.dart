@@ -64,6 +64,9 @@ class const NRoutedBottomNav({
 
   /// Layout size reserved for [centerAction].
   final Size centerActionSize = const .square(88),
+
+  /// Padding of each floating-style item; [NFloatingBottomNav]'s default when null.
+  final EdgeInsets? itemPadding,
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -110,6 +113,7 @@ class const NRoutedBottomNav({
         collapsible: collapsible,
         centerAction: centerAction,
         centerActionSize: centerActionSize,
+        itemPadding: itemPadding,
       );
     }
 
