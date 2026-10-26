@@ -7,8 +7,8 @@ import 'package:flutter/painting.dart';
 /// Wraps any [ImageProvider] so load failures never reach [FlutterError.onError].
 ///
 /// On failure the stream completes with a 1x1 transparent image instead of
-/// reporting an error. Use [isKnownFailed] / [didFail] with [onFailureFallback]
-/// to show a visible placeholder. This provider only prevents framework leaks.
+/// reporting an error. Check loaded images with [isFailurePlaceholder] to show a
+/// visible fallback. This provider only prevents framework leaks.
 ///
 /// Animated images are reduced to a single frame when loaded through this wrapper.
 class NSilentImageProvider extends ImageProvider<NSilentImageProvider> {
@@ -23,6 +23,14 @@ class NSilentImageProvider extends ImageProvider<NSilentImageProvider> {
 
   static final Map<int, DateTime> _failedAtByKeyId = <int, DateTime>{};
   static const int _maxFailedKeys = 2048;
+
+  static ui.Image? _failurePlaceholderImage;
+
+  /// Whether [info] is the transparent image this provider completes with on failure.
+  static bool isFailurePlaceholder(ImageInfo? info) {
+    final placeholder = _failurePlaceholderImage;
+    return info != null && placeholder != null && info.image.isCloneOf(placeholder);
+  }
 
   static ImageProvider<Object>? wrap(ImageProvider<Object>? provider) {
     if (provider == null) {
@@ -101,7 +109,7 @@ class NSilentImageProvider extends ImageProvider<NSilentImageProvider> {
   ImageStreamCompleter loadImage(NSilentImageProvider key, ImageDecoderCallback decode) {
     final delegateKey = key._delegateKey;
     final image = delegateKey == null || isKnownFailed(delegateKey)
-        ? _transparentImageInfo(decode)
+        ? _failurePlaceholderInfo(decode)
         : _loadSilently(key.delegate, delegateKey, decode);
     return _oneFrameUntilComplete(image, informationCollector: key._informationCollector);
   }
@@ -136,7 +144,7 @@ class NSilentImageProvider extends ImageProvider<NSilentImageProvider> {
       return imageInfo;
     } catch (_) {
       markLoadFailed(delegateKey);
-      return _transparentImageInfo(decode);
+      return _failurePlaceholderInfo(decode);
     }
   }
 
@@ -166,10 +174,15 @@ class NSilentImageProvider extends ImageProvider<NSilentImageProvider> {
     return result.future.whenComplete(() => streamCompleter.removeListener(listener));
   }
 
-  static Future<ImageInfo> _transparentImageInfo(ImageDecoderCallback decode) async {
+  static Future<ImageInfo> _failurePlaceholderInfo(ImageDecoderCallback decode) async {
+    final placeholder = _failurePlaceholderImage ?? await _decodeTransparentImage(decode);
+    return ImageInfo(image: placeholder.clone(), scale: 1);
+  }
+
+  static Future<ui.Image> _decodeTransparentImage(ImageDecoderCallback decode) async {
     final codec = await _transparentCodec(decode);
     final frame = await codec.getNextFrame();
-    return ImageInfo(image: frame.image, scale: 1);
+    return _failurePlaceholderImage ??= frame.image;
   }
 
   static Future<ui.Codec> _transparentCodec(ImageDecoderCallback decode) async {

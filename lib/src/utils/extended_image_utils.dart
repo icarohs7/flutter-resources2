@@ -2,6 +2,8 @@ import 'package:extended_image/extended_image.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
+import 'n_silent_image_provider.dart';
+
 class ExtendedImageUtils() {
   static Widget? ignoreErrorCallback(ExtendedImageState state) {
     return switch (state.extendedImageLoadState) {
@@ -25,6 +27,8 @@ class ExtendedImageUtils() {
           ),
         ),
         .failed => onFailure ?? SizedBox(),
+        .completed when NSilentImageProvider.isFailurePlaceholder(state.extendedImageInfo) =>
+          onFailure ?? SizedBox(),
         .completed => null,
       };
     };

@@ -177,6 +177,30 @@ void main() {
       expect(completedWidget, isNull);
     });
 
+    testWidgets('shows onFailureFallback when the image fails to load', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: NImage(imageProvider: _FailingImageProvider(), onFailureFallback: Text('fallback')),
+        ),
+      );
+      await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 50)));
+      await tester.pump();
+
+      expect(find.text('fallback'), findsOneWidget);
+    });
+
+    testWidgets('does not show onFailureFallback for a loaded transparent image', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: NImage(imageProvider: _KeyImageProvider('ok'), onFailureFallback: Text('fallback')),
+        ),
+      );
+      await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 50)));
+      await tester.pump();
+
+      expect(find.text('fallback'), findsNothing);
+    });
+
     testWidgets('failed delegate does not report FlutterError', (tester) async {
       final reported = <FlutterErrorDetails>[];
       final previousHandler = FlutterError.onError;
