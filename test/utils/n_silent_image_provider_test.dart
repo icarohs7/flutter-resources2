@@ -62,6 +62,44 @@ void main() {
       pending.complete(await _imageInfoFromPng());
       await Future<void>.delayed(Duration.zero);
     });
+
+    test('relays every frame of an animated delegate', () async {
+      final frames = _ManualImageStreamCompleter();
+      final provider = NSilentImageProvider(_ManualImageProvider(frames));
+      final completer = provider.loadImage(await provider.obtainKey(.empty), _decode);
+      var received = 0;
+      completer.addListener(
+        ImageStreamListener((info, _) {
+          received++;
+          info.dispose();
+        }),
+      );
+
+      frames.emit(await _imageInfoFromPng());
+      await Future<void>.delayed(Duration.zero);
+      frames.emit(await _imageInfoFromPng());
+      await Future<void>.delayed(Duration.zero);
+
+      expect(received, 2);
+    });
+
+    test('pauses the delegate while nothing listens and resumes it on a new listener', () async {
+      final frames = _ManualImageStreamCompleter();
+      final provider = NSilentImageProvider(_ManualImageProvider(frames));
+      final completer = provider.loadImage(await provider.obtainKey(.empty), _decode);
+      final cached = completer.keepAlive();
+      addTearDown(cached.dispose);
+      final listener = ImageStreamListener((info, _) => info.dispose());
+      completer.addListener(listener);
+      frames.emit(await _imageInfoFromPng());
+      await Future<void>.delayed(Duration.zero);
+
+      completer.removeListener(listener);
+      expect(frames.hasListeners, isFalse);
+
+      completer.addListener(listener);
+      expect(frames.hasListeners, isTrue);
+    });
   });
 }
 
@@ -90,6 +128,23 @@ class const _DelayedImageProvider(final Completer<ImageInfo> pending)
   @override
   ImageStreamCompleter loadImage(_DelayedImageProvider key, ImageDecoderCallback decode) {
     return OneFrameImageStreamCompleter(pending.future);
+  }
+}
+
+class _ManualImageStreamCompleter() extends ImageStreamCompleter {
+  void emit(ImageInfo info) => setImage(info);
+}
+
+class const _ManualImageProvider(final _ManualImageStreamCompleter completer)
+    extends ImageProvider<_ManualImageProvider> {
+  @override
+  Future<_ManualImageProvider> obtainKey(ImageConfiguration configuration) {
+    return SynchronousFuture(this);
+  }
+
+  @override
+  ImageStreamCompleter loadImage(_ManualImageProvider key, ImageDecoderCallback decode) {
+    return completer;
   }
 }
 

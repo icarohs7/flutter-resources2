@@ -9,8 +9,6 @@ import 'package:flutter/painting.dart';
 /// On failure the stream completes with a 1x1 transparent image instead of
 /// reporting an error. Check loaded images with [isFailurePlaceholder] to show a
 /// visible fallback. This provider only prevents framework leaks.
-///
-/// Animated images are reduced to a single frame when loaded through this wrapper.
 class NSilentImageProvider extends ImageProvider<NSilentImageProvider> {
   const new(this.delegate) : _delegateKey = null;
 
@@ -108,10 +106,17 @@ class NSilentImageProvider extends ImageProvider<NSilentImageProvider> {
   @override
   ImageStreamCompleter loadImage(NSilentImageProvider key, ImageDecoderCallback decode) {
     final delegateKey = key._delegateKey;
-    final image = delegateKey == null || isKnownFailed(delegateKey)
-        ? _failurePlaceholderInfo(decode)
-        : _loadSilently(key.delegate, delegateKey, decode);
-    return _oneFrameUntilComplete(image, informationCollector: key._informationCollector);
+    if (delegateKey == null || isKnownFailed(delegateKey)) {
+      return _oneFrameUntilComplete(
+        _failurePlaceholderInfo(decode),
+        informationCollector: key._informationCollector,
+      );
+    }
+    return _SilentImageStreamCompleter(
+      key.delegate.loadImage(delegateKey, decode),
+      delegateKey,
+      decode,
+    );
   }
 
   static ImageStreamCompleter _oneFrameUntilComplete(
@@ -131,47 +136,6 @@ class NSilentImageProvider extends ImageProvider<NSilentImageProvider> {
     return <DiagnosticsNode>[
       DiagnosticsProperty<ImageProvider<Object>>('Wrapped provider', delegate),
     ];
-  }
-
-  static Future<ImageInfo> _loadSilently(
-    ImageProvider<Object> provider,
-    Object delegateKey,
-    ImageDecoderCallback decode,
-  ) async {
-    try {
-      final imageInfo = await _loadImageInfo(provider, delegateKey, decode);
-      markLoadSucceeded(delegateKey);
-      return imageInfo;
-    } catch (_) {
-      markLoadFailed(delegateKey);
-      return _failurePlaceholderInfo(decode);
-    }
-  }
-
-  static Future<ImageInfo> _loadImageInfo(
-    ImageProvider<Object> provider,
-    Object delegateKey,
-    ImageDecoderCallback decode,
-  ) {
-    final streamCompleter = provider.loadImage(delegateKey, decode);
-    final result = Completer<ImageInfo>();
-    late ImageStreamListener listener;
-
-    listener = ImageStreamListener(
-      (ImageInfo info, bool _) {
-        if (!result.isCompleted) {
-          result.complete(info);
-        }
-      },
-      onError: (Object error, StackTrace? stackTrace) {
-        if (!result.isCompleted) {
-          result.completeError(error, stackTrace);
-        }
-      },
-    );
-
-    streamCompleter.addListener(listener);
-    return result.future.whenComplete(() => streamCompleter.removeListener(listener));
   }
 
   static Future<ImageInfo> _failurePlaceholderInfo(ImageDecoderCallback decode) async {
@@ -272,4 +236,78 @@ class NSilentImageProvider extends ImageProvider<NSilentImageProvider> {
     0x60,
     0x82,
   ];
+}
+
+class _SilentImageStreamCompleter(
+  final ImageStreamCompleter _delegate,
+  final Object _delegateKey,
+  final ImageDecoderCallback _decode,
+) extends ImageStreamCompleter {
+  this {
+    _delegateHandle = _delegate.keepAlive();
+    _pendingHandle = keepAlive();
+    _delegate.addListener(_relay);
+  }
+
+  late final ImageStreamCompleterHandle _delegateHandle;
+  ImageStreamCompleterHandle? _pendingHandle;
+  late final _relay = ImageStreamListener(_onFrame, onError: _onError);
+  var _relaying = true;
+
+  void _onFrame(ImageInfo info, bool _) {
+    setImage(info);
+    if (_pendingHandle != null) {
+      NSilentImageProvider.markLoadSucceeded(_delegateKey);
+      _settle();
+    }
+  }
+
+  Future<void> _onError(Object _, StackTrace? _) async {
+    if (_pendingHandle == null) {
+      return;
+    }
+    NSilentImageProvider.markLoadFailed(_delegateKey);
+    setImage(await NSilentImageProvider._failurePlaceholderInfo(_decode));
+    _settle();
+  }
+
+  void _settle() {
+    final pending = _pendingHandle!;
+    _pendingHandle = null;
+    if (!hasListeners) {
+      _detach();
+    }
+    pending.dispose();
+  }
+
+  void _detach() {
+    if (_relaying) {
+      _relaying = false;
+      _delegate.removeListener(_relay);
+    }
+  }
+
+  @override
+  void addListener(ImageStreamListener listener) {
+    if (!_relaying) {
+      _relaying = true;
+      _delegate.addListener(_relay);
+    }
+    super.addListener(listener);
+  }
+
+  @override
+  void removeListener(ImageStreamListener listener) {
+    super.removeListener(listener);
+    if (!hasListeners && _pendingHandle == null) {
+      _detach();
+    }
+  }
+
+  @override
+  void onDisposed() {
+    _detach();
+    _delegateHandle.dispose();
+    super.onDisposed();
+  }
 }
